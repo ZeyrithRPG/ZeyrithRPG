@@ -67,6 +67,16 @@ async def receber_classe(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     session = get_session()
     classe = session.get(Classe, classe_id)
+    tg_id = str(update.effective_user.id)
+
+    ja_existe = session.query(Player).filter_by(telegram_id=tg_id).first()
+    if ja_existe:
+        session.close()
+        await query.edit_message_text(
+            "Você já tem um personagem criado. Use /status pra ver a ficha."
+        )
+        return ConversationHandler.END
+
     curva_nv1 = session.query(CurvaMestra).filter_by(nivel=1).first()
 
     # status iniciais: usa a Curva Mestra nivel 1 como base
@@ -75,7 +85,7 @@ async def receber_classe(update: Update, context: ContextTypes.DEFAULT_TYPE):
     vig_max = 60  # 60 + (CON-3)*10, CON=3 por padrão até a ficha de atributos existir
 
     novo_player = Player(
-        telegram_id=str(update.effective_user.id),
+        telegram_id=tg_id,
         nome_personagem=context.user_data["nome_personagem"],
         classe_id=classe.id,
         nivel=1,
@@ -91,12 +101,16 @@ async def receber_classe(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
     session.add(novo_player)
     session.commit()
+
+    nome_classe = classe.nome
+    vantagem = classe.vantagem
+    desvantagem = classe.desvantagem
     session.close()
 
     await query.edit_message_text(
-        f"✅ {context.user_data['nome_personagem']}, o {classe.nome}, está pronto.\n\n"
-        f"*Vantagem:* {classe.vantagem}\n"
-        f"*Desvantagem:* {classe.desvantagem}\n\n"
+        f"✅ {context.user_data['nome_personagem']}, o {nome_classe}, está pronto.\n\n"
+        f"*Vantagem:* {vantagem}\n"
+        f"*Desvantagem:* {desvantagem}\n\n"
         "Digite /status pra ver sua ficha.",
         parse_mode="Markdown",
     )
