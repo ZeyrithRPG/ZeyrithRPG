@@ -8,6 +8,7 @@ usuário não precisa rodar nada na mão.
 """
 import json
 import os
+from sqlalchemy import inspect, text
 from db.connection import engine, get_session
 from db.models import (
     Base, Tier, CurvaMestra, Classe, TalentoClasse, Arma, Armadura,
@@ -21,8 +22,38 @@ def banco_esta_vazio(session):
     return session.query(Tier).count() == 0
 
 
+def migrar_colunas_novas():
+    """
+    Sempre que um novo campo é adicionado num modelo (ex: Player.local_atual),
+    isso garante que a tabela real no banco ganhe essa coluna também — sem
+    precisar mexer no banco na mão toda vez que o jogo cresce.
+    """
+    inspector = inspect(engine)
+    for tabela in Base.metadata.tables.values():
+        if not inspector.has_table(tabela.name):
+            continue
+        colunas_existentes = {c["name"] for c in inspector.get_columns(tabela.name)}
+        for coluna in tabela.columns:
+            if coluna.name not in colunas_existentes:
+                tipo_sql = coluna.type.compile(engine.dialect)
+                with engine.begin() as conn:
+                    conn.execute(text(
+                        f'ALTER TABLE {tabela.name} ADD COLUMN {coluna.name} {tipo_sql}'
+                    ))
+                    # preenche o valor padrao pra quem ja tinha linha antes da coluna existir
+                    if coluna.default is not None and hasattr(coluna.default, "arg"):
+                        valor_padrao = coluna.default.arg
+                        if not callable(valor_padrao):
+                            conn.execute(
+                                text(f'UPDATE {tabela.name} SET {coluna.name} = :v WHERE {coluna.name} IS NULL'),
+                                {"v": valor_padrao},
+                            )
+                print(f"Coluna nova adicionada: {tabela.name}.{coluna.name}")
+
+
 def importar():
     Base.metadata.create_all(engine)
+    migrar_colunas_novas()
     session = get_session()
 
     if not banco_esta_vazio(session):
