@@ -21,6 +21,8 @@ def _tier_numero(nome_tier: str, session) -> int:
 
 def _nome_do_tier(numero: int, session) -> str:
     tiers = session.query(Tier).order_by(Tier.id).all()
+    if not tiers:
+        return "Sucata Enferrujada"  # nunca deve acontecer, mas evita quebrar se acontecer
     idx = max(0, min(numero - 1, len(tiers) - 1))
     return tiers[idx].nome
 
