@@ -29,6 +29,25 @@ def _curva(session, nivel: int) -> CurvaMestra:
     return session.query(CurvaMestra).filter_by(nivel=nivel).first()
 
 
+def _local_do_player(session, player) -> Local:
+    """
+    Nunca devolve None: se o jogador estiver sem local (personagem antigo, dado
+    faltando, local removido do jogo), ele volta pra Vila Inicial automaticamente.
+    Isso evita que qualquer tela quebre por causa de dado ausente.
+    """
+    local = None
+    if player.local_atual:
+        local = session.query(Local).filter_by(nome=player.local_atual).first()
+    if local is None:
+        local = session.query(Local).filter_by(nome="Vila Inicial").first()
+        if local is None:
+            local = session.query(Local).order_by(Local.id).first()
+        if local is not None:
+            player.local_atual = local.nome
+            session.commit()
+    return local
+
+
 # ---------- Menu Aventura ----------
 
 async def menu_aventura(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -37,7 +56,7 @@ async def menu_aventura(update: Update, context: ContextTypes.DEFAULT_TYPE):
     session = get_session()
     tg_id = str(update.effective_user.id)
     player = session.query(Player).filter_by(telegram_id=tg_id).first()
-    local = session.query(Local).filter_by(nome=player.local_atual).first()
+    local = _local_do_player(session, player)
 
     texto = (
         f"📍 *{local.nome}* ({local.tipo})\n"
@@ -60,7 +79,7 @@ async def explorar(update: Update, context: ContextTypes.DEFAULT_TYPE):
     session = get_session()
     tg_id = str(update.effective_user.id)
     player = session.query(Player).filter_by(telegram_id=tg_id).first()
-    local = session.query(Local).filter_by(nome=player.local_atual).first()
+    local = _local_do_player(session, player)
 
     custo = custo_vig_exploracao(local.perigo)
     if player.vig_atual < custo:
@@ -112,6 +131,19 @@ async def explorar(update: Update, context: ContextTypes.DEFAULT_TYPE):
     candidatos = session.query(Monstro).filter_by(tier=tier_nome, papel=papel).all()
     if not candidatos:
         candidatos = session.query(Monstro).filter_by(tier=tier_nome, papel="Comum").all()
+    if not candidatos:
+        candidatos = session.query(Monstro).filter_by(tier=tier_nome).all()
+    if not candidatos:
+        session.commit()
+        session.close()
+        await query.edit_message_text(
+            "🌫️ Você ouve algo à distância, mas nada aparece.",
+            reply_markup=InlineKeyboardMarkup(
+                [[InlineKeyboardButton("🔍 Explorar de novo", callback_data="explorar")],
+                 [InlineKeyboardButton("⬅️ Voltar", callback_data="menu_status")]]
+            ),
+        )
+        return
     monstro = random.choice(candidatos)
 
     player.em_combate_monstro_id = monstro.id
@@ -141,7 +173,16 @@ async def atacar(update: Update, context: ContextTypes.DEFAULT_TYPE):
     session = get_session()
     tg_id = str(update.effective_user.id)
     player = session.query(Player).filter_by(telegram_id=tg_id).first()
-    monstro = session.get(Monstro, player.em_combate_monstro_id)
+    monstro = session.get(Monstro, player.em_combate_monstro_id) if player.em_combate_monstro_id else None
+    if monstro is None or player.em_combate_hp_monstro is None:
+        session.close()
+        await query.edit_message_text(
+            "Esse combate não está mais ativo.",
+            reply_markup=InlineKeyboardMarkup(
+                [[InlineKeyboardButton("⬅️ Voltar", callback_data="menu_status")]]
+            ),
+        )
+        return
     tier_jogador = session.query(Tier).filter(
         Tier.id == player.tier_mais_alto_alcancado
     ).first()
@@ -236,7 +277,16 @@ async def fugir(update: Update, context: ContextTypes.DEFAULT_TYPE):
         )
         return
 
-    monstro = session.get(Monstro, player.em_combate_monstro_id)
+    monstro = session.get(Monstro, player.em_combate_monstro_id) if player.em_combate_monstro_id else None
+    if monstro is None:
+        session.close()
+        await query.edit_message_text(
+            "Esse combate não está mais ativo.",
+            reply_markup=InlineKeyboardMarkup(
+                [[InlineKeyboardButton("⬅️ Voltar", callback_data="menu_status")]]
+            ),
+        )
+        return
     curva = _curva(session, player.nivel)
     defesa_jogador = curva.defesa_esperada if curva else 6
     res_m = resolver_ataque(monstro.atq_bonus, defesa_jogador, monstro.dano)
