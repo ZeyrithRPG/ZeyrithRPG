@@ -137,13 +137,21 @@ async def mostrar_hud(update: Update, context: ContextTypes.DEFAULT_TYPE):
         session.close()
         return
 
-    classe = session.get(Classe, player.classe_id)
+    classe = session.get(Classe, player.classe_id) if player.classe_id else None
+    nome_classe = classe.nome if classe else "Sem classe"
+
+    # protege contra personagem antigo com campo vazio (evita quebrar a barra)
+    hp_max = player.hp_max or 24
+    vig_max = player.vig_max or 60
+    hp_atual = player.hp_atual if player.hp_atual is not None else hp_max
+    vig_atual = player.vig_atual if player.vig_atual is not None else vig_max
+
     texto = (
-        f"🧍 *{player.nome_personagem}* — {classe.nome}, Nv. {player.nivel}\n\n"
-        f"❤️ HP: {player.hp_atual}/{player.hp_max}\n{barra(player.hp_atual, player.hp_max)}\n\n"
-        f"⚡ Vigor: {player.vig_atual}/{player.vig_max}\n{barra(player.vig_atual, player.vig_max)}\n\n"
-        f"✨ XP: {player.xp_atual}\n"
-        f"💰 Ouro: {player.ouro}"
+        f"🧍 *{player.nome_personagem}* — {nome_classe}, Nv. {player.nivel or 1}\n\n"
+        f"❤️ HP: {hp_atual}/{hp_max}\n{barra(hp_atual, hp_max)}\n\n"
+        f"⚡ Vigor: {vig_atual}/{vig_max}\n{barra(vig_atual, vig_max)}\n\n"
+        f"✨ XP: {player.xp_atual or 0}\n"
+        f"💰 Ouro: {player.ouro or 0}"
     )
     botoes = [
         [InlineKeyboardButton("⚔️ Aventura", callback_data="menu_aventura"),
@@ -176,6 +184,24 @@ async def menu_status_callback(update: Update, context: ContextTypes.DEFAULT_TYP
 async def botao_em_construcao(update: Update, context: ContextTypes.DEFAULT_TYPE):
     query = update.callback_query
     await query.answer("🚧 Essa tela ainda não foi construída — chega numa próxima fase.", show_alert=True)
+
+
+async def tratar_erro(update: object, context: ContextTypes.DEFAULT_TYPE):
+    """
+    Rede de segurança global: se qualquer tela quebrar, o jogador recebe um aviso
+    em vez de o botão simplesmente não fazer nada. O erro completo continua indo
+    pro log do Render pra eu conseguir diagnosticar.
+    """
+    log.error("Erro não tratado:", exc_info=context.error)
+    if isinstance(update, Update):
+        aviso = "⚠️ Algo deu errado nessa ação. O erro foi registrado. Use /status pra voltar."
+        try:
+            if update.callback_query:
+                await update.callback_query.answer(aviso, show_alert=True)
+            elif update.effective_message:
+                await update.effective_message.reply_text(aviso)
+        except Exception:
+            pass
 
 
 # ---------- "porteiro" HTTP: só existe pra o Render confirmar que o servico esta vivo ----------
@@ -225,6 +251,7 @@ def main():
     app.add_handler(CallbackQueryHandler(atacar, pattern=r"^atacar$"))
     app.add_handler(CallbackQueryHandler(fugir, pattern=r"^fugir$"))
     app.add_handler(CallbackQueryHandler(botao_em_construcao, pattern=r"^menu_"))
+    app.add_error_handler(tratar_erro)
 
     log.info("Bot iniciado.")
     app.run_polling()

@@ -1,0 +1,6 @@
+.env
+local_test.db
+__pycache__/
+*.pyc
+recalc_fresh/
+balanceamento_rpg-13.xlsx
