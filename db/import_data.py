@@ -81,34 +81,30 @@ def importar():
     preencher_padroes_faltando()
     session = get_session()
 
-    if not banco_esta_vazio(session):
-        session.close()
-        print("Banco já tem dados de referência — importação pulada.")
-        return
+    tabelas_e_dados = [
+        (Tier, "tiers"), (CurvaMestra, "curva_mestra"), (Arma, "armas"),
+        (Armadura, "armaduras"), (Monstro, "bestiario"), (Classe, "classes"),
+        (TalentoClasse, "talentos_classe"), (Local, "locais"),
+    ]
 
     with open(CAMINHO_JSON, encoding="utf-8") as f:
         dados = json.load(f)
 
-    for item in dados.get("tiers", []):
-        session.add(Tier(**item))
-    for item in dados.get("curva_mestra", []):
-        session.add(CurvaMestra(**item))
-    for item in dados.get("armas", []):
-        session.add(Arma(**item))
-    for item in dados.get("armaduras", []):
-        session.add(Armadura(**item))
-    for item in dados.get("bestiario", []):
-        session.add(Monstro(**item))
-    for item in dados.get("classes", []):
-        session.add(Classe(**item))
-    for item in dados.get("talentos_classe", []):
-        session.add(TalentoClasse(**item))
-    for item in dados.get("locais", []):
-        session.add(Local(**item))
+    algo_novo = False
+    for Modelo, chave in tabelas_e_dados:
+        if session.query(Modelo).count() > 0:
+            continue  # essa tabela especifica ja tem dado, nao mexe nela
+        for item in dados.get(chave, []):
+            session.add(Modelo(**item))
+        algo_novo = True
+        print(f"Tabela de referência preenchida: {chave}")
 
-    session.commit()
+    if algo_novo:
+        session.commit()
+        print("Importação concluída com sucesso.")
+    else:
+        print("Todas as tabelas de referência já tinham dado — nada novo a importar.")
     session.close()
-    print("Importação concluída com sucesso.")
 
 
 if __name__ == "__main__":
