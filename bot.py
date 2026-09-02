@@ -122,9 +122,16 @@ async def receber_classe(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 # ---------- HUD de status ----------
 
-def barra(atual, maximo, tamanho=10):
-    cheio = round(tamanho * max(0, min(atual, maximo)) / maximo) if maximo else 0
-    return "🟩" * cheio + "⬛" * (tamanho - cheio)
+def barra(atual, maximo, tamanho=10, cheio="🟩"):
+    cheio_n = round(tamanho * max(0, min(atual, maximo)) / maximo) if maximo else 0
+    return cheio * cheio_n + "⬛" * (tamanho - cheio_n)
+
+
+ICONE_CLASSE = {
+    "Guerreiro da Forja": "🛡️", "Inquisidor de Prata": "✨", "Conjurador de Sangue (Hemomante)": "🩸",
+    "Batedor dos Ecos": "🏹", "Ladino das Sombras": "🗡️", "Mago Elemental": "🔮",
+    "Bárbaro da Fenda": "🪓", "Artífice Mecânico": "⚙️",
+}
 
 
 async def mostrar_hud(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -145,12 +152,24 @@ async def mostrar_hud(update: Update, context: ContextTypes.DEFAULT_TYPE):
     vig_max = player.vig_max or 60
     hp_atual = player.hp_atual if player.hp_atual is not None else hp_max
     vig_atual = player.vig_atual if player.vig_atual is not None else vig_max
+    mana_max = player.mana_max or 0
+    mana_atual = player.mana_atual if player.mana_atual is not None else mana_max
+    xp_atual = player.xp_atual or 0
+    curva = session.query(CurvaMestra).filter_by(nivel=player.nivel or 1).first()
+    xp_prox = curva.xp_prox_nivel if curva else 20
+    tier_atual = player.tier_mais_alto_alcancado or 1
+    icone_classe = ICONE_CLASSE.get(nome_classe, "🧍")
 
     texto = (
-        f"🧍 *{player.nome_personagem}* — {nome_classe}, Nv. {player.nivel or 1}\n\n"
+        f"{icone_classe} *{player.nome_personagem}* — {nome_classe}\n"
+        f"🎖️ Nível {player.nivel or 1}  ·  🏔️ Tier {tier_atual}\n\n"
         f"❤️ HP: {hp_atual}/{hp_max}\n{barra(hp_atual, hp_max)}\n\n"
         f"⚡ Vigor: {vig_atual}/{vig_max}\n{barra(vig_atual, vig_max)}\n\n"
-        f"✨ XP: {player.xp_atual or 0}\n"
+    )
+    if mana_max:
+        texto += f"🔷 Mana: {mana_atual}/{mana_max}\n{barra(mana_atual, mana_max, cheio='🟦')}\n\n"
+    texto += (
+        f"✨ XP: {xp_atual}/{xp_prox}\n{barra(xp_atual, xp_prox, cheio='🟨')}\n\n"
         f"💰 Ouro: {player.ouro or 0}"
     )
     botoes = [
