@@ -4,6 +4,8 @@ Fase 1: criação de personagem + HUD de status.
 """
 import os
 import logging
+import threading
+from http.server import BaseHTTPRequestHandler, HTTPServer
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import (
     Application, CommandHandler, CallbackQueryHandler, MessageHandler,
@@ -14,6 +16,7 @@ from dotenv import load_dotenv
 from db.connection import get_session
 from db.models import Player, Classe, CurvaMestra
 from db.import_data import importar as importar_dados_do_jogo
+from handlers.aventura import menu_aventura, explorar, atacar, fugir
 
 load_dotenv()
 logging.basicConfig(level=logging.INFO)
@@ -164,9 +167,34 @@ async def status_cmd(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await mostrar_hud(update, context)
 
 
+async def menu_status_callback(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    query = update.callback_query
+    await query.answer()
+    await mostrar_hud(update, context)
+
+
 async def botao_em_construcao(update: Update, context: ContextTypes.DEFAULT_TYPE):
     query = update.callback_query
-    await query.answer("🚧 Essa tela ainda não foi construída — chega na Fase 3.", show_alert=True)
+    await query.answer("🚧 Essa tela ainda não foi construída — chega numa próxima fase.", show_alert=True)
+
+
+# ---------- "porteiro" HTTP: só existe pra o Render confirmar que o servico esta vivo ----------
+
+class _Porteiro(BaseHTTPRequestHandler):
+    def do_GET(self):
+        self.send_response(200)
+        self.end_headers()
+        self.wfile.write(b"Bot rodando.")
+
+    def log_message(self, *args):
+        pass  # evita poluir o log com toda visita do checador do Render
+
+
+def iniciar_porteiro():
+    porta = int(os.getenv("PORT", "10000"))
+    servidor = HTTPServer(("0.0.0.0", porta), _Porteiro)
+    threading.Thread(target=servidor.serve_forever, daemon=True).start()
+    log.info(f"Porteiro HTTP escutando na porta {porta} (só pro Render, não é o jogo).")
 
 
 def main():
@@ -176,6 +204,8 @@ def main():
 
     log.info("Verificando dados do jogo...")
     importar_dados_do_jogo()
+
+    iniciar_porteiro()
 
     app = Application.builder().token(token).build()
 
@@ -189,6 +219,11 @@ def main():
     )
     app.add_handler(conv)
     app.add_handler(CommandHandler("status", status_cmd))
+    app.add_handler(CallbackQueryHandler(menu_status_callback, pattern=r"^menu_status$"))
+    app.add_handler(CallbackQueryHandler(menu_aventura, pattern=r"^menu_aventura$"))
+    app.add_handler(CallbackQueryHandler(explorar, pattern=r"^explorar$"))
+    app.add_handler(CallbackQueryHandler(atacar, pattern=r"^atacar$"))
+    app.add_handler(CallbackQueryHandler(fugir, pattern=r"^fugir$"))
     app.add_handler(CallbackQueryHandler(botao_em_construcao, pattern=r"^menu_"))
 
     log.info("Bot iniciado.")

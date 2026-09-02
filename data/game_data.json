@@ -10010,5 +10010,207 @@
    "efeito": "1x por Ato, invoca um aliado temporário (stats de \"Golem de Guerra\") por 1 combate",
    "mestre": "Thrum o Engenheiro Renegado"
   }
+ ],
+ "locais": [
+  {
+   "nome": "Vila Inicial",
+   "tipo": "Cidade",
+   "cidade_proxima": "-",
+   "nivel_ref": 3,
+   "descricao": "Onde tudo comeca.",
+   "perigo": 1
+  },
+  {
+   "nome": "Estrada dos Bandidos",
+   "tipo": "Estrada Perigosa",
+   "cidade_proxima": "Vila Inicial",
+   "nivel_ref": 2,
+   "descricao": "Salteadores e javalis assombram os arredores.",
+   "perigo": 2
+  },
+  {
+   "nome": "Mina de Bronze",
+   "tipo": "Mina",
+   "cidade_proxima": "Vila Inicial",
+   "nivel_ref": 6,
+   "descricao": "Infestada por kobolds e aranhas.",
+   "perigo": 2
+  },
+  {
+   "nome": "Posto dos Mineiros",
+   "tipo": "Cidade",
+   "cidade_proxima": "-",
+   "nivel_ref": 12,
+   "descricao": "Cidade de mineracao proxima a criptas.",
+   "perigo": 1
+  },
+  {
+   "nome": "Ruinas da Antiga Forja",
+   "tipo": "Dungeon",
+   "cidade_proxima": "Posto dos Mineiros",
+   "nivel_ref": 15,
+   "descricao": "Golem de Sucata guarda o local.",
+   "perigo": 3
+  },
+  {
+   "nome": "Criptas de Prata",
+   "tipo": "Dungeon",
+   "cidade_proxima": "Posto dos Mineiros",
+   "nivel_ref": 20,
+   "descricao": "Tomada por mortos-vivos.",
+   "perigo": 3
+  },
+  {
+   "nome": "Entreposto Elfico",
+   "tipo": "Cidade",
+   "cidade_proxima": "-",
+   "nivel_ref": 25,
+   "descricao": "Comercio entre elfos e anoes.",
+   "perigo": 1
+  },
+  {
+   "nome": "Ruinas Elficas",
+   "tipo": "Ruina",
+   "cidade_proxima": "Entreposto Elfico",
+   "nivel_ref": 30,
+   "descricao": "Guardadas pelo Espirito da Ultima Elfa.",
+   "perigo": 3
+  },
+  {
+   "nome": "Camara Mecanica Ana",
+   "tipo": "Dungeon",
+   "cidade_proxima": "Entreposto Elfico",
+   "nivel_ref": 35,
+   "descricao": "Puzzle mecanico protege o nucleo.",
+   "perigo": 3
+  },
+  {
+   "nome": "Cidadela dos Forjadores",
+   "tipo": "Cidade",
+   "cidade_proxima": "-",
+   "nivel_ref": 30,
+   "descricao": "Proxima da fenda vulcanica ativa.",
+   "perigo": 1
+  },
+  {
+   "nome": "Fenda Vulcanica Ativa",
+   "tipo": "Fenda",
+   "cidade_proxima": "Cidadela dos Forjadores",
+   "nivel_ref": 40,
+   "descricao": "Guardiao da Fenda Ativa protege o local.",
+   "perigo": 4
+  },
+  {
+   "nome": "Acampamento Orc",
+   "tipo": "Campo de Batalha",
+   "cidade_proxima": "Cidadela dos Forjadores",
+   "nivel_ref": 45,
+   "descricao": "Territorio do Chefe do Bando Orc.",
+   "perigo": 4
+  },
+  {
+   "nome": "Floresta dos Trolls",
+   "tipo": "Floresta Perigosa",
+   "cidade_proxima": "Cidadela dos Forjadores",
+   "nivel_ref": 42,
+   "descricao": "Trolls rondam entre as arvores antigas.",
+   "perigo": 3
+  },
+  {
+   "nome": "Porto das Profundezas",
+   "tipo": "Cidade",
+   "cidade_proxima": "-",
+   "nivel_ref": 50,
+   "descricao": "Entrada para cavernas profundas.",
+   "perigo": 1
+  },
+  {
+   "nome": "Cavernas Profundas de Mithril",
+   "tipo": "Caverna",
+   "cidade_proxima": "Porto das Profundezas",
+   "nivel_ref": 55,
+   "descricao": "Elemental Guardiao protege as vetas.",
+   "perigo": 3
+  },
+  {
+   "nome": "Fenda Vulcanica Morta",
+   "tipo": "Fenda",
+   "cidade_proxima": "Porto das Profundezas",
+   "nivel_ref": 40,
+   "descricao": "Guardiao da Fenda Morta ronda as cinzas.",
+   "perigo": 4
+  },
+  {
+   "nome": "Planicie das Feras Alfa",
+   "tipo": "Planicie Selvagem",
+   "cidade_proxima": "Porto das Profundezas",
+   "nivel_ref": 55,
+   "descricao": "Feras alfa disputam territorio aqui.",
+   "perigo": 3
+  },
+  {
+   "nome": "Bastiao Adamantino",
+   "tipo": "Cidade",
+   "cidade_proxima": "-",
+   "nivel_ref": 50,
+   "descricao": "Fortaleza onde cacadores de dragao se reunem.",
+   "perigo": 1
+  },
+  {
+   "nome": "Covil do Titan",
+   "tipo": "Covil de Boss",
+   "cidade_proxima": "Bastiao Adamantino",
+   "nivel_ref": 55,
+   "descricao": "So o Titan de Adamantina dropa o minerio.",
+   "perigo": 5
+  },
+  {
+   "nome": "Covil do Dragao Anciao",
+   "tipo": "Covil de Boss",
+   "cidade_proxima": "Bastiao Adamantino",
+   "nivel_ref": 45,
+   "descricao": "O proprio Dragao Anciao guarda o local.",
+   "perigo": 5
+  },
+  {
+   "nome": "Campo de Batalha Esquecido",
+   "tipo": "Ruina",
+   "cidade_proxima": "Bastiao Adamantino",
+   "nivel_ref": 62,
+   "descricao": "Antigo campo de guerra, ossadas por toda parte.",
+   "perigo": 3
+  },
+  {
+   "nome": "Santuario Proibido",
+   "tipo": "Cidade",
+   "cidade_proxima": "-",
+   "nivel_ref": 70,
+   "descricao": "Ultimo posto antes do desconhecido.",
+   "perigo": 1
+  },
+  {
+   "nome": "Circulo Ritualistico Daedrico",
+   "tipo": "Ritual",
+   "cidade_proxima": "Santuario Proibido",
+   "nivel_ref": 60,
+   "descricao": "Exige um ritual arriscado para obter o minerio.",
+   "perigo": 5
+  },
+  {
+   "nome": "Portal Estelar",
+   "tipo": "Portal",
+   "cidade_proxima": "Santuario Proibido",
+   "nivel_ref": 72,
+   "descricao": "O desafio final da campanha.",
+   "perigo": 5
+  },
+  {
+   "nome": "Pantano Esquecido",
+   "tipo": "Pantano",
+   "cidade_proxima": "Cidadela dos Forjadores",
+   "nivel_ref": 38,
+   "descricao": "Neblina espessa o ano inteiro. Quem entra perde a nocao de direcao antes de perder o pe firme.",
+   "perigo": 4
+  }
  ]
 }

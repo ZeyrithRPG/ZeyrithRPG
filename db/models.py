@@ -145,6 +145,17 @@ class Material(Base):
     icone = Column(String)
 
 
+class Local(Base):
+    __tablename__ = "ref_locais"
+    id = Column(Integer, primary_key=True)
+    nome = Column(String, unique=True, nullable=False)
+    tipo = Column(String)
+    cidade_proxima = Column(String)
+    nivel_ref = Column(Integer)
+    descricao = Column(Text)
+    perigo = Column(Integer)
+
+
 class Magia(Base):
     __tablename__ = "ref_magias"
     id = Column(Integer, primary_key=True)
@@ -179,6 +190,9 @@ class Player(Base):
     ouro = Column(Integer, default=0)
     tier_mais_alto_alcancado = Column(Integer, default=1)
     hora_do_mundo = Column(Integer, default=8)  # relogio do sistema de Tempo, 0-23
+    local_atual = Column(String, default="Vila Inicial")
+    em_combate_monstro_id = Column(Integer, nullable=True)
+    em_combate_hp_monstro = Column(Integer, nullable=True)
     criado_em = Column(DateTime, default=datetime.utcnow)
 
     classe = relationship("Classe")

@@ -11,7 +11,7 @@ import os
 from db.connection import engine, get_session
 from db.models import (
     Base, Tier, CurvaMestra, Classe, TalentoClasse, Arma, Armadura,
-    Monstro, Missao, Material, Magia,
+    Monstro, Missao, Material, Magia, Local,
 )
 
 CAMINHO_JSON = os.path.join(os.path.dirname(__file__), "..", "data", "game_data.json")
@@ -47,6 +47,8 @@ def importar():
         session.add(Classe(**item))
     for item in dados.get("talentos_classe", []):
         session.add(TalentoClasse(**item))
+    for item in dados.get("locais", []):
+        session.add(Local(**item))
 
     session.commit()
     session.close()
