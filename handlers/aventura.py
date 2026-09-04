@@ -9,7 +9,8 @@ from telegram.ext import ContextTypes
 from db.connection import get_session
 from db.models import Player, Local, Tier, CurvaMestra, Monstro
 from game.exploracao import custo_vig_exploracao, rolar_exploracao
-from game.combat import resolver_ataque, chance_fuga
+from game.combat import resolver_ataque, chance_fuga, verificar_pode_poupar
+from game.efeitos import identificar_efeito, aplicar_dano_periodico, turnos_padrao, ICONE_EFEITO
 
 ICONE_TIPO_LOCAL = {
     "Cidade": "🏰", "Estrada Perigosa": "🛤️", "Mina": "⛏️", "Dungeon": "🕸️",
@@ -21,11 +22,7 @@ ICONE_PAPEL = {"Comum": "⚪", "Elite": "🟣", "Boss": "🔴", "Cosmico": "⚫"
 BARRA_PERIGO = {1: "🟢", 2: "🟢", 3: "🟡", 4: "🟠", 5: "🔴"}
 
 
-def _barra(atual, maximo, tamanho=10, cheio="🟩", vazio="⬛"):
-    if not maximo:
-        return vazio * tamanho
-    n = round(tamanho * max(0, min(atual, maximo)) / maximo)
-    return cheio * n + vazio * (tamanho - n)
+from game.ui_utils import barra as _barra
 
 
 def _tier_numero(nome_tier, session):
@@ -76,10 +73,13 @@ async def menu_aventura(update: Update, context: ContextTypes.DEFAULT_TYPE):
     custo = custo_vig_exploracao(local.perigo)
 
     vig_atual, vig_max = player.vig_atual, player.vig_max
+    subtitulo = local.tipo
+    if local.cidade_proxima and local.cidade_proxima != local.nome:
+        subtitulo += f" · perto de {local.cidade_proxima}"
 
     texto = (
         f"{icone_local} *{local.nome}*\n"
-        f"_{local.tipo} · perto de {local.cidade_proxima}_\n\n"
+        f"_{subtitulo}_\n\n"
         f"{local.descricao}\n\n"
         f"⚠️ Perigo: {barra_perigo} ({local.perigo}/5)\n"
         f"⚡ Vigor: {vig_atual}/{vig_max}\n"
@@ -190,6 +190,7 @@ async def explorar(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     icone_papel = ICONE_PAPEL.get(monstro.papel, "⚪")
     vig_atual, vig_max = player.vig_atual, player.vig_max
+    mana_atual, mana_max = player.mana_atual, player.mana_max
     texto = (
         f"⚔️ *COMBATE INICIADO*\n"
         f"{icone_local} {local.nome}\n\n"
@@ -197,14 +198,18 @@ async def explorar(update: Update, context: ContextTypes.DEFAULT_TYPE):
         f"❤️ {monstro.hp}/{monstro.hp}\n{_barra(monstro.hp, monstro.hp, cheio='🟥')}\n\n"
         f"🗡️ Golpe: {monstro.golpe_especial}\n\n"
         f"⚡ Seu Vigor: {vig_atual}/{vig_max}"
+        + (f"\n🔷 Mana: {mana_atual}/{mana_max}" if mana_max else "")
     )
     session.close()
+    botoes = [[InlineKeyboardButton("⚔️ Atacar", callback_data="atacar")]]
+    if verificar_pode_poupar(monstro, monstro.hp, monstro.hp):
+        botoes.append([InlineKeyboardButton("🕊️ Poupar", callback_data="poupar")])
+    if mana_max:
+        botoes[0].append(InlineKeyboardButton("✨ Magias", callback_data="menu_magias"))
+    botoes.append([InlineKeyboardButton("🏃 Fugir", callback_data="fugir")])
     await query.edit_message_text(
         texto, parse_mode="Markdown",
-        reply_markup=InlineKeyboardMarkup(
-            [[InlineKeyboardButton("⚔️ Atacar", callback_data="atacar"),
-              InlineKeyboardButton("🏃 Fugir", callback_data="fugir")]]
-        ),
+        reply_markup=InlineKeyboardMarkup(botoes),
     )
 
 
@@ -238,6 +243,38 @@ async def atacar(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     linhas = []
 
+    # --- 1) tick dos efeitos ativos (dano periodico de Sangramento/Queimadura/Veneno) ---
+    if player.em_combate_efeito_monstro and player.em_combate_efeito_monstro_turnos:
+        dano_dot = aplicar_dano_periodico(player.em_combate_efeito_monstro)
+        if dano_dot:
+            player.em_combate_hp_monstro -= dano_dot
+            icone_ef = ICONE_EFEITO.get(player.em_combate_efeito_monstro, "🔸")
+            linhas.append(f"{icone_ef} {player.em_combate_efeito_monstro} causa {dano_dot} de dano em {monstro.nome}.")
+        player.em_combate_efeito_monstro_turnos -= 1
+        if player.em_combate_efeito_monstro_turnos <= 0:
+            player.em_combate_efeito_monstro = None
+            player.em_combate_efeito_monstro_turnos = None
+
+    if player.em_combate_efeito_jogador and player.em_combate_efeito_jogador_turnos:
+        dano_dot = aplicar_dano_periodico(player.em_combate_efeito_jogador)
+        if dano_dot:
+            player.hp_atual -= dano_dot
+            icone_ef = ICONE_EFEITO.get(player.em_combate_efeito_jogador, "🔸")
+            linhas.append(f"{icone_ef} {player.em_combate_efeito_jogador} causa {dano_dot} de dano em você.")
+        player.em_combate_efeito_jogador_turnos -= 1
+        if player.em_combate_efeito_jogador_turnos <= 0:
+            player.em_combate_efeito_jogador = None
+            player.em_combate_efeito_jogador_turnos = None
+
+    # checa se o efeito periodico ja resolveu o combate
+    if player.em_combate_hp_monstro <= 0:
+        await _vitoria(session, query, player, monstro, linhas)
+        return
+    if player.hp_atual <= 0:
+        await _derrota(session, query, player, linhas)
+        return
+
+    # --- 2) ataque do jogador ---
     res = resolver_ataque(atq_bonus_jogador, monstro.defesa, dano_jogador_base)
     if res.acertou:
         player.em_combate_hp_monstro -= res.dano
@@ -246,64 +283,153 @@ async def atacar(update: Update, context: ContextTypes.DEFAULT_TYPE):
         linhas.append("💨 Você errou o golpe.")
 
     if player.em_combate_hp_monstro <= 0:
-        xp_ganho = 10 * player.tier_mais_alto_alcancado
-        ouro_ganho = random.randint(5, 15) * player.tier_mais_alto_alcancado
-        player.xp_atual += xp_ganho
-        player.ouro += ouro_ganho
-        player.em_combate_monstro_id = None
-        player.em_combate_hp_monstro = None
-        session.commit()
-        nome_derrotado, ouro_total, xp_total = monstro.nome, player.ouro, player.xp_atual
-        session.close()
-        await query.edit_message_text(
-            "\n".join(linhas) +
-            f"\n\n🏆 *Você derrotou {nome_derrotado}!*\n\n"
-            f"✨ +{xp_ganho} XP (total: {xp_total})\n"
-            f"💰 +{ouro_ganho} Ouro (total: {ouro_total})",
-            parse_mode="Markdown",
-            reply_markup=InlineKeyboardMarkup(
-                [[InlineKeyboardButton("⬅️ Voltar", callback_data="menu_status")]]
-            ),
-        )
+        await _vitoria(session, query, player, monstro, linhas)
         return
 
+    # --- 3) contra-ataque do monstro, com chance de aplicar efeito ---
     res_m = resolver_ataque(monstro.atq_bonus, defesa_jogador, monstro.dano)
     if res_m.acertou:
         player.hp_atual -= res_m.dano
         linhas.append(f"💥 {monstro.nome} acerta{' (CRÍTICO!)' if res_m.critico else ''}: *{res_m.dano}* de dano em você.")
+
+        if not player.em_combate_efeito_jogador:
+            efeito_reconhecido = identificar_efeito(monstro.golpe_especial) or identificar_efeito(monstro.efeito_mecanico)
+            if efeito_reconhecido and random.random() < 0.30:
+                player.em_combate_efeito_jogador = efeito_reconhecido
+                player.em_combate_efeito_jogador_turnos = turnos_padrao(efeito_reconhecido)
+                icone_ef = ICONE_EFEITO.get(efeito_reconhecido, "🔸")
+                linhas.append(f"{icone_ef} Você foi afetado por *{efeito_reconhecido}*!")
     else:
         linhas.append(f"💨 {monstro.nome} errou o ataque.")
 
     if player.hp_atual <= 0:
-        player.hp_atual = 1
-        player.em_combate_monstro_id = None
-        player.em_combate_hp_monstro = None
-        session.commit()
-        session.close()
-        await query.edit_message_text(
-            "\n".join(linhas) + "\n\n☠️ *Você quase morreu* e recua do combate, ferido.",
-            parse_mode="Markdown",
-            reply_markup=InlineKeyboardMarkup(
-                [[InlineKeyboardButton("⬅️ Voltar", callback_data="menu_status")]]
-            ),
-        )
+        await _derrota(session, query, player, linhas)
         return
 
     session.commit()
     hp_monstro, hp_monstro_max = player.em_combate_hp_monstro, monstro.hp
     hp_jogador, hp_jogador_max = player.hp_atual, player.hp_max
+    mana_atual, mana_max = player.mana_atual, player.mana_max
     nome_monstro, papel_monstro, nivel_monstro = monstro.nome, monstro.papel, monstro.nivel
+    efeito_monstro_txt = _formata_efeito(player.em_combate_efeito_monstro, player.em_combate_efeito_monstro_turnos)
+    efeito_jogador_txt = _formata_efeito(player.em_combate_efeito_jogador, player.em_combate_efeito_jogador_turnos)
     session.close()
+
+    botoes = [[InlineKeyboardButton("⚔️ Atacar", callback_data="atacar")]]
+    if verificar_pode_poupar(monstro, hp_monstro, hp_monstro_max):
+        botoes.append([InlineKeyboardButton("🕊️ Poupar", callback_data="poupar")])
+    if mana_max:
+        botoes[0].append(InlineKeyboardButton("✨ Magias", callback_data="menu_magias"))
+    botoes.append([InlineKeyboardButton("🏃 Fugir", callback_data="fugir")])
+
     await query.edit_message_text(
-        f"{icone_papel} *{nome_monstro}* Nv.{nivel_monstro} ({papel_monstro})\n"
+        f"{icone_papel} *{nome_monstro}* Nv.{nivel_monstro} ({papel_monstro}){efeito_monstro_txt}\n"
         f"❤️ {hp_monstro}/{hp_monstro_max}\n{_barra(hp_monstro, hp_monstro_max, cheio='🟥')}\n\n"
         + "\n".join(linhas) +
-        f"\n\n🧍 Você\n❤️ {hp_jogador}/{hp_jogador_max}\n{_barra(hp_jogador, hp_jogador_max)}",
+        f"\n\n🧍 Você{efeito_jogador_txt}\n❤️ {hp_jogador}/{hp_jogador_max}\n{_barra(hp_jogador, hp_jogador_max)}"
+        + (f"\n🔷 Mana: {mana_atual}/{mana_max}" if mana_max else ""),
+        parse_mode="Markdown",
+        reply_markup=InlineKeyboardMarkup(botoes),
+    )
+
+
+def _formata_efeito(nome, turnos):
+    if not nome or not turnos:
+        return ""
+    icone = ICONE_EFEITO.get(nome, "🔸")
+    return f"  [{icone} {turnos}t]"
+
+
+async def _vitoria(session, query, player, monstro, linhas):
+    import json
+    from db.models import CurvaMestra
+    from game.loot import resolver_loot
+
+    curva = session.query(CurvaMestra).filter_by(nivel=player.nivel).first()
+    xp_ganho, ouro_ganho, materiais = resolver_loot(session, player, monstro, curva)
+
+    player.xp_atual += xp_ganho
+    player.ouro += ouro_ganho
+    player.em_combate_monstro_id = None
+    player.em_combate_hp_monstro = None
+    player.em_combate_efeito_monstro = None
+    player.em_combate_efeito_monstro_turnos = None
+    player.em_combate_efeito_jogador = None
+    player.em_combate_efeito_jogador_turnos = None
+    player.loot_pendente = json.dumps(materiais, ensure_ascii=False)
+
+    session.commit()
+    nome_derrotado, ouro_total, xp_total = monstro.nome, player.ouro, player.xp_atual
+    session.close()
+
+    botoes = [[InlineKeyboardButton(
+        f"🎁 Lootear{' (' + str(len(materiais)) + ')' if materiais else ' (nada)'}",
+        callback_data="lootear",
+    )], [InlineKeyboardButton("⬅️ Voltar", callback_data="menu_status")]]
+
+    await query.edit_message_text(
+        "\n".join(linhas) +
+        f"\n\n🏆 *Você derrotou {nome_derrotado}!*\n\n"
+        f"✨ +{xp_ganho} XP (total: {xp_total})\n"
+        f"💰 +{ouro_ganho} Ouro (total: {ouro_total})",
+        parse_mode="Markdown",
+        reply_markup=InlineKeyboardMarkup(botoes),
+    )
+
+
+async def _derrota(session, query, player, linhas):
+    player.hp_atual = 1
+    player.em_combate_monstro_id = None
+    player.em_combate_hp_monstro = None
+    player.em_combate_efeito_monstro = None
+    player.em_combate_efeito_monstro_turnos = None
+    player.em_combate_efeito_jogador = None
+    player.em_combate_efeito_jogador_turnos = None
+    session.commit()
+    session.close()
+    await query.edit_message_text(
+        "\n".join(linhas) + "\n\n☠️ *Você quase morreu* e recua do combate, ferido.",
         parse_mode="Markdown",
         reply_markup=InlineKeyboardMarkup(
-            [[InlineKeyboardButton("⚔️ Atacar", callback_data="atacar"),
-              InlineKeyboardButton("🏃 Fugir", callback_data="fugir")]]
+            [[InlineKeyboardButton("⬅️ Voltar", callback_data="menu_status")]]
         ),
+    )
+
+
+async def voltar_combate(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Botao 'Voltar ao combate' do menu de Magias - so redesenha a tela atual."""
+    query = update.callback_query
+    await query.answer()
+    session = get_session()
+    tg_id = str(update.effective_user.id)
+    player = session.query(Player).filter_by(telegram_id=tg_id).first()
+    monstro = session.get(Monstro, player.em_combate_monstro_id) if player.em_combate_monstro_id else None
+    if monstro is None:
+        session.close()
+        await query.edit_message_text(
+            "Esse combate não está mais ativo.",
+            reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("⬅️ Voltar", callback_data="menu_status")]]),
+        )
+        return
+    icone_papel = ICONE_PAPEL.get(monstro.papel, "⚪")
+    hp_m, hp_m_max = player.em_combate_hp_monstro, monstro.hp
+    hp_j, hp_j_max = player.hp_atual, player.hp_max
+    mana_atual, mana_max = player.mana_atual, player.mana_max
+    nome_monstro, papel_monstro, nivel_monstro = monstro.nome, monstro.papel, monstro.nivel
+    session.close()
+    botoes = [[InlineKeyboardButton("⚔️ Atacar", callback_data="atacar")]]
+    if verificar_pode_poupar(monstro, hp_m, hp_m_max):
+        botoes.append([InlineKeyboardButton("🕊️ Poupar", callback_data="poupar")])
+    if mana_max:
+        botoes[0].append(InlineKeyboardButton("✨ Magias", callback_data="menu_magias"))
+    botoes.append([InlineKeyboardButton("🏃 Fugir", callback_data="fugir")])
+    await query.edit_message_text(
+        f"{icone_papel} *{nome_monstro}* Nv.{nivel_monstro} ({papel_monstro})\n"
+        f"❤️ {hp_m}/{hp_m_max}\n{_barra(hp_m, hp_m_max, cheio='🟥')}\n\n"
+        f"🧍 Você\n❤️ {hp_j}/{hp_j_max}\n{_barra(hp_j, hp_j_max)}"
+        + (f"\n🔷 Mana: {mana_atual}/{mana_max}" if mana_max else ""),
+        parse_mode="Markdown",
+        reply_markup=InlineKeyboardMarkup(botoes),
     )
 
 
@@ -355,5 +481,87 @@ async def fugir(update: Update, context: ContextTypes.DEFAULT_TYPE):
         reply_markup=InlineKeyboardMarkup(
             [[InlineKeyboardButton("⚔️ Atacar", callback_data="atacar"),
               InlineKeyboardButton("🏃 Fugir", callback_data="fugir")]]
+        ),
+    )
+
+
+async def lootear(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    import json
+    from game.loot import aplicar_loot_no_inventario
+
+    query = update.callback_query
+    await query.answer()
+    session = get_session()
+    tg_id = str(update.effective_user.id)
+    player = session.query(Player).filter_by(telegram_id=tg_id).first()
+
+    materiais = json.loads(player.loot_pendente) if player.loot_pendente else []
+    if not materiais:
+        await query.answer("Não há nada pra lootear.", show_alert=True)
+        session.close()
+        return
+
+    aplicar_loot_no_inventario(session, player, materiais)
+    player.loot_pendente = None
+    session.commit()
+
+    linhas_loot = "\n".join(f"📦 +{qtd}x {nome}" for nome, qtd in materiais)
+    session.close()
+
+    await query.edit_message_text(
+        f"🎁 *Você lootou:*\n\n{linhas_loot}",
+        parse_mode="Markdown",
+        reply_markup=InlineKeyboardMarkup(
+            [[InlineKeyboardButton("⬅️ Voltar", callback_data="menu_status")]]
+        ),
+    )
+
+
+async def poupar(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    query = update.callback_query
+    await query.answer()
+    session = get_session()
+    tg_id = str(update.effective_user.id)
+    player = session.query(Player).filter_by(telegram_id=tg_id).first()
+    monstro = session.query(Monstro).filter_by(id=player.em_combate_monstro_id).first()
+
+    if not monstro or not verificar_pode_poupar(
+        monstro, player.em_combate_hp_monstro or monstro.hp, monstro.hp
+    ):
+        await query.answer("Não é possível poupar agora.", show_alert=True)
+        session.close()
+        return
+
+    nome_poupado = monstro.nome
+    nome_curto_poupado = nome_poupado.split(",")[0].strip()
+    gancho = monstro.interacao_ambiental or ""
+
+    from game.titulos import verificar_titulo_por_poupar
+    titulos_ganhos = verificar_titulo_por_poupar(session, player, nome_poupado)
+
+    existentes = (player.monstros_poupados or "").split("|") if player.monstros_poupados else []
+    if nome_curto_poupado not in existentes:
+        existentes.append(nome_curto_poupado)
+    player.monstros_poupados = "|".join(filter(None, existentes))
+
+    player.em_combate_monstro_id = None
+    player.em_combate_hp_monstro = None
+    player.em_combate_efeito_monstro = None
+    player.em_combate_efeito_monstro_turnos = None
+    player.em_combate_efeito_jogador = None
+    player.em_combate_efeito_jogador_turnos = None
+    session.commit()
+    session.close()
+
+    texto = f"🕊️ *Você poupou {nome_poupado}.*\n\n_{gancho}_"
+    if titulos_ganhos:
+        for t in titulos_ganhos:
+            texto += f"\n\n🏆 *Título conquistado: {t.nome}*"
+
+    await query.edit_message_text(
+        texto,
+        parse_mode="Markdown",
+        reply_markup=InlineKeyboardMarkup(
+            [[InlineKeyboardButton("⬅️ Voltar", callback_data="menu_status")]]
         ),
     )
