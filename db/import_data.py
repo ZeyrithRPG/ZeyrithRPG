@@ -56,7 +56,7 @@ def migrar_colunas_novas():
     for tabela in Base.metadata.tables.values():
         if not inspector.has_table(tabela.name):
             continue
-        colunas_existentes = {c["name"] for c in inspector.get_columns(tabela.name)}
+        colunas_existentes = {c["name"]: c for c in inspector.get_columns(tabela.name)}
         for coluna in tabela.columns:
             if coluna.name not in colunas_existentes:
                 tipo_sql = coluna.type.compile(engine.dialect)
@@ -65,6 +65,22 @@ def migrar_colunas_novas():
                         f'ALTER TABLE {tabela.name} ADD COLUMN {coluna.name} {tipo_sql}'
                     ))
                 print(f"Coluna nova adicionada: {tabela.name}.{coluna.name}")
+                continue
+
+            # coluna ja existe -- confere se o TIPO bate com o modelo atual.
+            # So corrige a direcao segura (banco mais estreito que o modelo quer,
+            # ex: Integer quando o modelo pede Text) -- qualquer int cabe em texto
+            # sem perda. Nunca estreita (Text -> Integer) sozinho, isso pode falhar
+            # com dado real e precisa de decisao humana.
+            tipo_real = colunas_existentes[coluna.name]["type"]
+            modelo_quer_text = str(coluna.type).upper() in ("TEXT", "VARCHAR")
+            banco_tem_numero = "INT" in str(tipo_real).upper() or "NUMERIC" in str(tipo_real).upper()
+            if modelo_quer_text and banco_tem_numero and engine.dialect.name == "postgresql":
+                with engine.begin() as conn:
+                    conn.execute(text(
+                        f'ALTER TABLE {tabela.name} ALTER COLUMN {coluna.name} TYPE TEXT USING {coluna.name}::TEXT'
+                    ))
+                print(f"Tipo de coluna corrigido: {tabela.name}.{coluna.name} ({tipo_real} -> TEXT)")
 
 
 def preencher_padroes_faltando():
@@ -137,6 +153,15 @@ def importar():
             item_limpo = {k: v for k, v in item.items() if k in campos_validos}
             if "preco_base" in item_limpo:
                 item_limpo["preco_base"] = _texto_pra_numero(item_limpo["preco_base"])
+            # SQLAlchemy 2.0 se confunde ao inserir em lote quando a MESMA coluna Text
+            # recebe tipo Python misto (int numa linha, str noutra) -- normaliza pra
+            # sempre string em qualquer campo que o modelo declara como Text/String
+            # mas que pode vir como numero da planilha (ex: recompensa).
+            for campo, valor in list(item_limpo.items()):
+                if valor is not None and not isinstance(valor, (str, bool)):
+                    coluna_modelo = Modelo.__table__.columns.get(campo)
+                    if coluna_modelo is not None and str(coluna_modelo.type).upper() in ("TEXT", "VARCHAR"):
+                        item_limpo[campo] = str(valor)
             session.add(Modelo(**item_limpo))
         novos_hashes[chave] = hash_atual
         algo_novo = True
