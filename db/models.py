@@ -118,6 +118,9 @@ class Monstro(Base):
     motivacao = Column(Text)
     fraqueza = Column(Text)
     materiais_dropados = Column(Text)
+    papel_combate = Column(String)  # DPS/Tanque/Suporte/Nao-hostil/Necrofago/etc
+    interacao_ambiental = Column(Text)  # "Se abordado em paz, pode ser poupado..."
+    loot_unico = Column(Text)  # item exclusivo de Boss/Nomeado
 
 
 class Missao(Base):
@@ -130,6 +133,14 @@ class Missao(Base):
     recompensa = Column(Text)
     faccao_afetada = Column(String)
     pontos_reputacao = Column(String)
+    is_principal = Column(Boolean, default=False)  # fecha o tier e libera o proximo
+    nivel_sugerido = Column(Integer)
+    recompensa_xp = Column(Integer)
+    categoria = Column(String)  # Combate/Coleta/Elite/Social/Exploracao/Crafting
+    requisito_honra = Column(String)  # Comum (0) / Veterano (50) / Lendario (100)
+    npc_fonte = Column(String)  # quem da a missao
+    requisito_especial = Column(Text)  # ex: "Completar X antes"
+    recompensa_extra = Column(Text)  # alem do Ouro
 
 
 class Material(Base):
@@ -143,17 +154,35 @@ class Material(Base):
     preco_base = Column(Integer)
     lore = Column(Text)
     icone = Column(String)
+    raridade = Column(String)  # ex: "Comum (Alto rendimento)"
+    uso_principal = Column(Text)  # receita que usa, ou "Venda (sem receita)"
 
 
 class Local(Base):
     __tablename__ = "ref_locais"
     id = Column(Integer, primary_key=True)
     nome = Column(String, unique=True, nullable=False)
-    tipo = Column(String)
+    tipo = Column(String)  # Cidade / Covil de Boss / Local Secreto / Estrada Perigosa / etc
     cidade_proxima = Column(String)
     nivel_ref = Column(Integer)
     descricao = Column(Text)
     perigo = Column(Integer)
+    o_que_tem = Column(Text)  # monstros/materiais/gatilho de descoberta associados
+
+
+class Receita(Base):
+    __tablename__ = "ref_receitas"
+    id = Column(Integer, primary_key=True)
+    tier = Column(String)
+    tipo_slot = Column(String, nullable=False)  # ex: "Espada", "Amuleto do Uivo"
+    material_base_1 = Column(String)
+    material_base_2 = Column(String)
+    custo_base_ouro = Column(Integer)
+    essencia_nivel2 = Column(String)
+    custo_nivel2_ouro = Column(Integer)
+    artesao_mestre = Column(String)
+    categoria = Column(String)  # Arma/Armadura ou Acessório
+    efeito = Column(Text)  # Acessorio: efeito do item. Arma/Armadura: local de forja (ex: "Forja")
 
 
 class Magia(Base):
@@ -188,11 +217,25 @@ class Player(Base):
     mana_atual = Column(Integer)
     mana_max = Column(Integer)
     ouro = Column(Integer, default=0)
+    atributo_for = Column(Integer, default=10)
+    atributo_des = Column(Integer, default=10)
+    atributo_con = Column(Integer, default=10)
+    atributo_int = Column(Integer, default=10)
+    atributo_sab = Column(Integer, default=10)
+    atributo_car = Column(Integer, default=10)
+    pontos_atributo_disponiveis = Column(Integer, default=0)  # pro sistema de distribuicao manual, futuro
     tier_mais_alto_alcancado = Column(Integer, default=1)
     hora_do_mundo = Column(Integer, default=8)  # relogio do sistema de Tempo, 0-23
+    corrupcao = Column(Integer, default=0)  # 0-100, Estagios da Infeccao
     local_atual = Column(String, default="Vila Inicial")
     em_combate_monstro_id = Column(Integer, nullable=True)
     em_combate_hp_monstro = Column(Integer, nullable=True)
+    em_combate_efeito_monstro = Column(String, nullable=True)
+    em_combate_efeito_monstro_turnos = Column(Integer, nullable=True)
+    em_combate_efeito_jogador = Column(String, nullable=True)
+    em_combate_efeito_jogador_turnos = Column(Integer, nullable=True)
+    loot_pendente = Column(Text, nullable=True)  # JSON com materiais esperando "Lootear"
+    monstros_poupados = Column(Text, nullable=True)  # nomes curtos separados por "|"
     criado_em = Column(DateTime, default=datetime.utcnow)
 
     classe = relationship("Classe")
@@ -256,3 +299,20 @@ class PlayerKnowledge(Base):
     monstro_id = Column(Integer, ForeignKey("ref_bestiario.id"))
     nivel_knowledge = Column(Integer, default=0)
     __table_args__ = (UniqueConstraint("player_id", "monstro_id"),)
+
+
+class Titulo(Base):
+    __tablename__ = "ref_titulos"
+    id = Column(Integer, primary_key=True)
+    nome = Column(String, unique=True, nullable=False)
+    condicao = Column(Text)
+    bonus = Column(Text)
+
+
+class PlayerTitulo(Base):
+    __tablename__ = "player_titulos"
+    id = Column(Integer, primary_key=True)
+    player_id = Column(Integer, ForeignKey("players.id"))
+    titulo_id = Column(Integer, ForeignKey("ref_titulos.id"))
+    data_conquista = Column(DateTime, default=datetime.utcnow)
+    __table_args__ = (UniqueConstraint("player_id", "titulo_id"),)

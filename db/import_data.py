@@ -12,8 +12,32 @@ from sqlalchemy import inspect, text
 from db.connection import engine, get_session
 from db.models import (
     Base, Tier, CurvaMestra, Classe, TalentoClasse, Arma, Armadura,
-    Monstro, Missao, Material, Magia, Local,
+    Monstro, Missao, Material, Magia, Local, Receita, Titulo,
 )
+import re
+
+import hashlib
+
+_CAMPOS_MISSAO = {c.name for c in Missao.__table__.columns}
+_CAMPOS_MATERIAL = {c.name for c in Material.__table__.columns}
+_CAMPOS_LOCAL = {c.name for c in Local.__table__.columns}
+
+
+def _hash_lista(itens):
+    bruto = json.dumps(itens, sort_keys=True, ensure_ascii=False)
+    return hashlib.sha256(bruto.encode("utf-8")).hexdigest()[:16]
+
+
+def _hash_salvo_path():
+    return os.path.join(os.path.dirname(__file__), "..", "data", "_ultimo_hash_importado.json")
+
+
+def _texto_pra_numero(valor):
+    """Recompensa/preco na planilha as vezes vem como texto tipo '144 Ouro' -- extrai o numero."""
+    if isinstance(valor, (int, float)) or valor is None:
+        return valor
+    m = re.search(r"-?\d+", str(valor))
+    return int(m.group()) if m else None
 
 CAMINHO_JSON = os.path.join(os.path.dirname(__file__), "..", "data", "game_data.json")
 
@@ -84,20 +108,44 @@ def importar():
     tabelas_e_dados = [
         (Tier, "tiers"), (CurvaMestra, "curva_mestra"), (Arma, "armas"),
         (Armadura, "armaduras"), (Monstro, "bestiario"), (Classe, "classes"),
-        (TalentoClasse, "talentos_classe"), (Local, "locais"),
+        (TalentoClasse, "talentos_classe"), (Local, "locais"), (Magia, "magias"),
+        (Missao, "missoes"), (Material, "materiais"), (Receita, "receitas"),
+        (Titulo, "titulos"),
     ]
 
     with open(CAMINHO_JSON, encoding="utf-8") as f:
         dados = json.load(f)
 
+    hashes_salvos = {}
+    if os.path.exists(_hash_salvo_path()):
+        with open(_hash_salvo_path(), encoding="utf-8") as f:
+            hashes_salvos = json.load(f)
+
+    novos_hashes = dict(hashes_salvos)
     algo_novo = False
     for Modelo, chave in tabelas_e_dados:
-        if session.query(Modelo).count() > 0:
-            continue  # essa tabela especifica ja tem dado, nao mexe nela
-        for item in dados.get(chave, []):
-            session.add(Modelo(**item))
+        itens_json = dados.get(chave, [])
+        hash_atual = _hash_lista(itens_json)
+        if hashes_salvos.get(chave) == hash_atual and session.query(Modelo).count() > 0:
+            continue  # conteudo identico ao ultimo import, nao mexe
+        # Tabela de REFERENCIA (nunca escrita durante o jogo) — seguro substituir por completo
+        # sempre que a planilha mudar (rebalanceamento), detectado por hash de conteudo.
+        qtd_antes = session.query(Modelo).count()
+        session.query(Modelo).delete()
+        campos_validos = {c.name for c in Modelo.__table__.columns}
+        for item in itens_json:
+            item_limpo = {k: v for k, v in item.items() if k in campos_validos}
+            if "preco_base" in item_limpo:
+                item_limpo["preco_base"] = _texto_pra_numero(item_limpo["preco_base"])
+            session.add(Modelo(**item_limpo))
+        novos_hashes[chave] = hash_atual
         algo_novo = True
-        print(f"Tabela de referência preenchida: {chave}")
+        print(f"Tabela de referência sincronizada: {chave} ({qtd_antes} -> {len(itens_json)})")
+
+    if algo_novo:
+        os.makedirs(os.path.dirname(_hash_salvo_path()), exist_ok=True)
+        with open(_hash_salvo_path(), "w", encoding="utf-8") as f:
+            json.dump(novos_hashes, f)
 
     if algo_novo:
         session.commit()
