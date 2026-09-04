@@ -16,7 +16,16 @@ from dotenv import load_dotenv
 from db.connection import get_session
 from db.models import Player, Classe, CurvaMestra
 from db.import_data import importar as importar_dados_do_jogo
-from handlers.aventura import menu_aventura, explorar, atacar, fugir
+from game.ui_utils import barra
+from handlers.aventura import menu_aventura, explorar, atacar, fugir, voltar_combate, lootear, poupar
+from handlers.magias import menu_magias, conjurar
+from handlers.comercio import (
+    menu_comercio, listar_compra, confirmar_compra, listar_venda, confirmar_venda,
+    menu_crafting, confirmar_forja,
+)
+from handlers.inventario import menu_inventario, alternar_equipar
+from handlers.missoes import menu_missoes, cb_aceitar_missao, cb_entregar_missao, menu_faccoes
+from handlers.mapa import menu_mapa, viajar_local
 
 load_dotenv()
 logging.basicConfig(level=logging.INFO)
@@ -102,6 +111,8 @@ async def receber_classe(update: Update, context: ContextTypes.DEFAULT_TYPE):
         ouro=100,
         tier_mais_alto_alcancado=1,
     )
+    from game.atributos import aplicar_atributos_iniciais
+    aplicar_atributos_iniciais(novo_player, classe)
     session.add(novo_player)
     session.commit()
 
@@ -121,11 +132,6 @@ async def receber_classe(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 
 # ---------- HUD de status ----------
-
-def barra(atual, maximo, tamanho=10, cheio="🟩"):
-    cheio_n = round(tamanho * max(0, min(atual, maximo)) / maximo) if maximo else 0
-    return cheio * cheio_n + "⬛" * (tamanho - cheio_n)
-
 
 ICONE_CLASSE = {
     "Guerreiro da Forja": "🛡️", "Inquisidor de Prata": "✨", "Conjurador de Sangue (Hemomante)": "🩸",
@@ -147,6 +153,11 @@ async def mostrar_hud(update: Update, context: ContextTypes.DEFAULT_TYPE):
     classe = session.get(Classe, player.classe_id) if player.classe_id else None
     nome_classe = classe.nome if classe else "Sem classe"
 
+    from game.atributos import player_precisa_de_atributos, aplicar_atributos_iniciais
+    if player_precisa_de_atributos(player):
+        aplicar_atributos_iniciais(player, classe)
+        session.commit()
+
     # protege contra personagem antigo com campo vazio (evita quebrar a barra)
     hp_max = player.hp_max or 24
     vig_max = player.vig_max or 60
@@ -163,20 +174,28 @@ async def mostrar_hud(update: Update, context: ContextTypes.DEFAULT_TYPE):
     texto = (
         f"{icone_classe} *{player.nome_personagem}* — {nome_classe}\n"
         f"🎖️ Nível {player.nivel or 1}  ·  🏔️ Tier {tier_atual}\n\n"
-        f"❤️ HP: {hp_atual}/{hp_max}\n{barra(hp_atual, hp_max)}\n\n"
-        f"⚡ Vigor: {vig_atual}/{vig_max}\n{barra(vig_atual, vig_max)}\n\n"
+        f"❤️ HP: {hp_atual}/{hp_max}\n{barra(hp_atual, hp_max)}\n"
+        f"⚡ Vigor: {vig_atual}/{vig_max}\n{barra(vig_atual, vig_max)}\n"
     )
     if mana_max:
-        texto += f"🔷 Mana: {mana_atual}/{mana_max}\n{barra(mana_atual, mana_max, cheio='🟦')}\n\n"
+        texto += f"🔷 Mana: {mana_atual}/{mana_max}\n{barra(mana_atual, mana_max, cheio='🟦')}\n"
     texto += (
         f"✨ XP: {xp_atual}/{xp_prox}\n{barra(xp_atual, xp_prox, cheio='🟨')}\n\n"
+        f"💪 FOR: {player.atributo_for}   🏃 DES: {player.atributo_des}   🛡️ CON: {player.atributo_con}\n"
+        f"🧠 INT: {player.atributo_int}   🦉 SAB: {player.atributo_sab}   💬 CAR: {player.atributo_car}\n\n"
         f"💰 Ouro: {player.ouro or 0}"
     )
+    corrupcao = player.corrupcao or 0
+    if corrupcao > 0:
+        estagio = min(5, corrupcao // 20 + 1)
+        texto += f"\n\n👁️ Corrupção: {corrupcao}/100 (Estágio {estagio})"
     botoes = [
         [InlineKeyboardButton("⚔️ Aventura", callback_data="menu_aventura"),
          InlineKeyboardButton("🎒 Inventário", callback_data="menu_inventario")],
         [InlineKeyboardButton("🗺️ Mapa", callback_data="menu_mapa"),
          InlineKeyboardButton("🏪 Comércio", callback_data="menu_comercio")],
+        [InlineKeyboardButton("📜 Missões", callback_data="menu_missoes"),
+         InlineKeyboardButton("🏛️ Facções", callback_data="menu_faccoes")],
     ]
     session.close()
 
@@ -269,6 +288,26 @@ def main():
     app.add_handler(CallbackQueryHandler(explorar, pattern=r"^explorar$"))
     app.add_handler(CallbackQueryHandler(atacar, pattern=r"^atacar$"))
     app.add_handler(CallbackQueryHandler(fugir, pattern=r"^fugir$"))
+    app.add_handler(CallbackQueryHandler(menu_magias, pattern=r"^menu_magias$"))
+    app.add_handler(CallbackQueryHandler(menu_comercio, pattern=r"^menu_comercio$"))
+    app.add_handler(CallbackQueryHandler(listar_compra, pattern=r"^loja_comprar_(arma|armadura)$"))
+    app.add_handler(CallbackQueryHandler(confirmar_compra, pattern=r"^loja_comprarid_"))
+    app.add_handler(CallbackQueryHandler(listar_venda, pattern=r"^loja_vender$"))
+    app.add_handler(CallbackQueryHandler(confirmar_venda, pattern=r"^loja_venderid_"))
+    app.add_handler(CallbackQueryHandler(menu_crafting, pattern=r"^loja_crafting(_\w+)?$"))
+    app.add_handler(CallbackQueryHandler(confirmar_forja, pattern=r"^loja_forjar_"))
+    app.add_handler(CallbackQueryHandler(menu_inventario, pattern=r"^menu_inventario$"))
+    app.add_handler(CallbackQueryHandler(alternar_equipar, pattern=r"^inv_(equipar|desequipar)_"))
+    app.add_handler(CallbackQueryHandler(lootear, pattern=r"^lootear$"))
+    app.add_handler(CallbackQueryHandler(poupar, pattern=r"^poupar$"))
+    app.add_handler(CallbackQueryHandler(menu_missoes, pattern=r"^menu_missoes$"))
+    app.add_handler(CallbackQueryHandler(cb_aceitar_missao, pattern=r"^miss_aceitar_"))
+    app.add_handler(CallbackQueryHandler(cb_entregar_missao, pattern=r"^miss_entregar_"))
+    app.add_handler(CallbackQueryHandler(menu_faccoes, pattern=r"^menu_faccoes$"))
+    app.add_handler(CallbackQueryHandler(menu_mapa, pattern=r"^menu_mapa$"))
+    app.add_handler(CallbackQueryHandler(viajar_local, pattern=r"^mapa_ir_"))
+    app.add_handler(CallbackQueryHandler(conjurar, pattern=r"^magia_\d+$"))
+    app.add_handler(CallbackQueryHandler(voltar_combate, pattern=r"^voltar_combate$"))
     app.add_handler(CallbackQueryHandler(botao_em_construcao, pattern=r"^menu_"))
     app.add_error_handler(tratar_erro)
 
