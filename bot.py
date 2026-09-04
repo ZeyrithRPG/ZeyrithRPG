@@ -14,7 +14,7 @@ from telegram.ext import (
 from dotenv import load_dotenv
 
 from db.connection import get_session
-from db.models import Player, Classe, CurvaMestra
+from db.models import Player, Classe, CurvaMestra, Narrativa
 from db.import_data import importar as importar_dados_do_jogo
 from game.ui_utils import barra
 from handlers.aventura import menu_aventura, explorar, atacar, fugir, voltar_combate, lootear, poupar
@@ -24,8 +24,12 @@ from handlers.comercio import (
     menu_crafting, confirmar_forja,
 )
 from handlers.inventario import menu_inventario, alternar_equipar
-from handlers.missoes import menu_missoes, cb_aceitar_missao, cb_entregar_missao, menu_faccoes
+from handlers.missoes import menu_missoes, cb_aceitar_missao, cb_entregar_missao, menu_faccoes, menu_titulos
 from handlers.mapa import menu_mapa, viajar_local
+from handlers.codex import (
+    menu_codex, codex_bestiario_tiers, codex_bestiario_lista, codex_monstro_detalhe,
+    codex_locais, codex_materiais,
+)
 
 load_dotenv()
 logging.basicConfig(level=logging.INFO)
@@ -46,8 +50,13 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await mostrar_hud(update, context)
         return ConversationHandler.END
 
+    session2 = get_session()
+    abertura = session2.query(Narrativa).filter_by(tipo="Abertura").first()
+    session2.close()
+    if abertura:
+        await update.message.reply_text(f"🌍 *{abertura.titulo}*\n\n{abertura.texto}", parse_mode="Markdown")
+
     await update.message.reply_text(
-        "🌍 *A Infecção que Segura o Mundo*\n\n"
         "Antes de começar, como se chama seu personagem?",
         parse_mode="Markdown",
     )
@@ -150,6 +159,27 @@ async def mostrar_hud(update: Update, context: ContextTypes.DEFAULT_TYPE):
         session.close()
         return
 
+    from game.narrativa import checar_narracao_pendente, sincronizar_tier
+    sincronizar_tier(session, player)
+    narrativa_pendente = checar_narracao_pendente(session, player)
+    if narrativa_pendente:
+        session.commit()
+        await context.bot.send_message(
+            chat_id=update.effective_chat.id,
+            text=f"📖 *{narrativa_pendente.titulo}*\n\n{narrativa_pendente.texto}",
+            parse_mode="Markdown",
+        )
+
+    from game.login_diario import checar_e_aplicar_login
+    resultado_login = checar_e_aplicar_login(session, player)
+    if resultado_login:
+        bonus, streak = resultado_login
+        await context.bot.send_message(
+            chat_id=update.effective_chat.id,
+            text=f"🎁 *Login Diário!* Dia {streak} da sequência: +{bonus} Ouro",
+            parse_mode="Markdown",
+        )
+
     classe = session.get(Classe, player.classe_id) if player.classe_id else None
     nome_classe = classe.nome if classe else "Sem classe"
 
@@ -196,6 +226,7 @@ async def mostrar_hud(update: Update, context: ContextTypes.DEFAULT_TYPE):
          InlineKeyboardButton("🏪 Comércio", callback_data="menu_comercio")],
         [InlineKeyboardButton("📜 Missões", callback_data="menu_missoes"),
          InlineKeyboardButton("🏛️ Facções", callback_data="menu_faccoes")],
+        [InlineKeyboardButton("📖 Codex", callback_data="menu_codex")],
     ]
     session.close()
 
@@ -290,7 +321,7 @@ def main():
     app.add_handler(CallbackQueryHandler(fugir, pattern=r"^fugir$"))
     app.add_handler(CallbackQueryHandler(menu_magias, pattern=r"^menu_magias$"))
     app.add_handler(CallbackQueryHandler(menu_comercio, pattern=r"^menu_comercio$"))
-    app.add_handler(CallbackQueryHandler(listar_compra, pattern=r"^loja_comprar_(arma|armadura)$"))
+    app.add_handler(CallbackQueryHandler(listar_compra, pattern=r"^loja_comprar_(arma|armadura)(_.+)?$"))
     app.add_handler(CallbackQueryHandler(confirmar_compra, pattern=r"^loja_comprarid_"))
     app.add_handler(CallbackQueryHandler(listar_venda, pattern=r"^loja_vender$"))
     app.add_handler(CallbackQueryHandler(confirmar_venda, pattern=r"^loja_venderid_"))
@@ -300,10 +331,17 @@ def main():
     app.add_handler(CallbackQueryHandler(alternar_equipar, pattern=r"^inv_(equipar|desequipar)_"))
     app.add_handler(CallbackQueryHandler(lootear, pattern=r"^lootear$"))
     app.add_handler(CallbackQueryHandler(poupar, pattern=r"^poupar$"))
-    app.add_handler(CallbackQueryHandler(menu_missoes, pattern=r"^menu_missoes$"))
+    app.add_handler(CallbackQueryHandler(menu_missoes, pattern=r"^menu_missoes(_.+)?$"))
     app.add_handler(CallbackQueryHandler(cb_aceitar_missao, pattern=r"^miss_aceitar_"))
     app.add_handler(CallbackQueryHandler(cb_entregar_missao, pattern=r"^miss_entregar_"))
-    app.add_handler(CallbackQueryHandler(menu_faccoes, pattern=r"^menu_faccoes$"))
+    app.add_handler(CallbackQueryHandler(menu_faccoes, pattern=r"^menu_faccoes(_.+)?$"))
+    app.add_handler(CallbackQueryHandler(menu_titulos, pattern=r"^menu_titulos$"))
+    app.add_handler(CallbackQueryHandler(menu_codex, pattern=r"^menu_codex$"))
+    app.add_handler(CallbackQueryHandler(codex_bestiario_tiers, pattern=r"^codex_bestiario$"))
+    app.add_handler(CallbackQueryHandler(codex_bestiario_lista, pattern=r"^codex_bestiario_\d+$"))
+    app.add_handler(CallbackQueryHandler(codex_monstro_detalhe, pattern=r"^codex_monstro_"))
+    app.add_handler(CallbackQueryHandler(codex_locais, pattern=r"^codex_locais$"))
+    app.add_handler(CallbackQueryHandler(codex_materiais, pattern=r"^codex_materiais$"))
     app.add_handler(CallbackQueryHandler(menu_mapa, pattern=r"^menu_mapa$"))
     app.add_handler(CallbackQueryHandler(viajar_local, pattern=r"^mapa_ir_"))
     app.add_handler(CallbackQueryHandler(conjurar, pattern=r"^magia_\d+$"))

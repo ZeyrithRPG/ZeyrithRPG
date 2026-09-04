@@ -21,9 +21,18 @@ def _tier_do_player(session, player):
 
 # ---------- Menu de Missões ----------
 
+ICONE_CATEGORIA_MISSAO = {
+    "Combate (Grind)": "⚔️", "Coleta": "🧺", "Elite": "🐲",
+    "Social": "🗣️", "Exploração": "🗺️", "Crafting": "🔨",
+}
+
+
 async def menu_missoes(update: Update, context: ContextTypes.DEFAULT_TYPE):
     query = update.callback_query
     await query.answer()
+    dados = query.data.split("_", 2)
+    categoria_filtro = dados[2] if len(dados) > 2 else None
+
     session = get_session()
     tg_id = str(update.effective_user.id)
     player = session.query(Player).filter_by(telegram_id=tg_id).first()
@@ -38,29 +47,65 @@ async def menu_missoes(update: Update, context: ContextTypes.DEFAULT_TYPE):
         .all()
     )
 
-    texto = f"📜 *Missões — {tier_nome}*\n🏛️ Honra com {faccao}: {honra}\n\n"
+    principais = [m for m in disponiveis if m.is_principal]
+    secundarias = [m for m in disponiveis if not m.is_principal]
+    por_categoria = {}
+    for m in secundarias:
+        por_categoria.setdefault(m.categoria or "Outras", []).append(m)
+
+    if not categoria_filtro:
+        texto = f"📜 *Missões — {tier_nome}*\n🏛️ Honra com {faccao}: {honra}\n"
+        botoes = []
+
+        if em_andamento:
+            texto += "\n*Em andamento:*\n"
+            for pq in em_andamento:
+                m = session.query(Missao).filter_by(id=pq.quest_id).first()
+                if not m:
+                    continue
+                texto += f"🔸 {m.nome}\n"
+                botoes.append([InlineKeyboardButton(f"✅ Entregar: {m.nome}", callback_data=f"miss_entregar_{m.id}")])
+
+        if principais:
+            texto += "\n*Missão Principal:*\n"
+            for m in principais:
+                texto += f"⭐ {m.nome}\n_{m.objetivo}_\n"
+                botoes.append([InlineKeyboardButton(f"⭐ Aceitar: {m.nome}", callback_data=f"miss_aceitar_{m.id}")])
+
+        texto += "\n*Categorias:*"
+        for cat, lista in sorted(por_categoria.items()):
+            icone_cat = ICONE_CATEGORIA_MISSAO.get(cat, "📋")
+            botoes.append([InlineKeyboardButton(
+                f"{icone_cat} {cat} ({len(lista)})", callback_data=f"menu_missoes_{cat}",
+            )])
+
+        botoes.append([InlineKeyboardButton("⬅️ Voltar", callback_data="menu_status")])
+        session.close()
+        await query.edit_message_text(texto, parse_mode="Markdown", reply_markup=InlineKeyboardMarkup(botoes))
+        return
+
+    lista_cat = por_categoria.get(categoria_filtro, [])
+    icone_cat = ICONE_CATEGORIA_MISSAO.get(categoria_filtro, "📋")
+    texto = f"{icone_cat} *{categoria_filtro} — {tier_nome}*\n🏛️ Honra com {faccao}: {honra}\n"
     botoes = []
-
-    if em_andamento:
-        texto += "*Em andamento:*\n"
-        for pq in em_andamento:
-            m = session.query(Missao).filter_by(id=pq.quest_id).first()
-            if not m:
-                continue
-            texto += f"🔸 {m.nome}\n"
-            botoes.append([InlineKeyboardButton(f"✅ Entregar: {m.nome}", callback_data=f"miss_entregar_{m.id}")])
-
-    if disponiveis:
-        texto += "\n*Disponíveis:*\n"
-        for m in disponiveis[:10]:
-            marca = "⭐" if m.is_principal else ""
-            texto += f"{marca} {m.nome} ({m.categoria or 'Principal'})\n"
-            botoes.append([InlineKeyboardButton(f"Aceitar: {m.nome}", callback_data=f"miss_aceitar_{m.id}")])
-
-    if not em_andamento and not disponiveis:
-        texto += "Nenhuma missão nova disponível aqui agora."
-
-    botoes.append([InlineKeyboardButton("⬅️ Voltar", callback_data="menu_status")])
+    for m in lista_cat:
+        texto += f"\n➖➖➖➖➖➖➖➖➖➖\n📜 *{m.nome}*\n"
+        texto += f"_{m.objetivo}_\n"
+        if m.requisito_honra:
+            texto += f"🏛️ {m.requisito_honra}\n"
+        if m.npc_fonte:
+            texto += f"🗣️ Fonte: {m.npc_fonte}\n"
+        recompensa_txt = str(m.recompensa) if m.recompensa else "0"
+        texto += f"💰 {recompensa_txt}"
+        if not any(c.isdigit() for c in recompensa_txt):
+            pass
+        elif "Ouro" not in recompensa_txt:
+            texto += " Ouro"
+        texto += "\n"
+        if m.recompensa_extra:
+            texto += f"🎁 {m.recompensa_extra}\n"
+        botoes.append([InlineKeyboardButton(f"Aceitar: {m.nome}", callback_data=f"miss_aceitar_{m.id}")])
+    botoes.append([InlineKeyboardButton("⬅️ Voltar", callback_data="menu_missoes")])
     session.close()
     await query.edit_message_text(texto, parse_mode="Markdown", reply_markup=InlineKeyboardMarkup(botoes))
 
@@ -112,29 +157,82 @@ async def cb_entregar_missao(update: Update, context: ContextTypes.DEFAULT_TYPE)
 async def menu_faccoes(update: Update, context: ContextTypes.DEFAULT_TYPE):
     query = update.callback_query
     await query.answer()
+    dados = query.data.split("_", 2)
+    faccao_filtro = dados[2] if len(dados) > 2 else None
+
     session = get_session()
     tg_id = str(update.effective_user.id)
     player = session.query(Player).filter_by(telegram_id=tg_id).first()
 
-    from db.models import PlayerReputacaoFaccao
-    reps = session.query(PlayerReputacaoFaccao).filter_by(player_id=player.id).all()
-    titulos = listar_titulos_do_player(session, player)
+    from db.models import PlayerReputacaoFaccao, Faccao
+    todas_faccoes = session.query(Faccao).order_by(Faccao.id).all()
+    reps = {r.faccao: r.pontos for r in session.query(PlayerReputacaoFaccao).filter_by(player_id=player.id).all()}
 
-    texto = "🏛️ *Facções & Títulos*\n\n*Reputação:*\n"
-    if reps:
-        for r in reps:
-            texto += f"  {r.faccao}: {r.pontos}\n"
+    if not faccao_filtro:
+        titulos = listar_titulos_do_player(session, player)
+        texto = "🏛️ *Facções*\n\nEscolha uma pra ver detalhes:"
+        botoes = []
+        for f in todas_faccoes:
+            honra = reps.get(f.faccao_dominante, 0)
+            botoes.append([InlineKeyboardButton(
+                f"{f.faccao_dominante} (Honra: {honra})", callback_data=f"menu_faccoes_{f.id}",
+            )])
+        botoes.append([InlineKeyboardButton("🏆 Ver Títulos", callback_data="menu_titulos")])
+        botoes.append([InlineKeyboardButton("⬅️ Voltar", callback_data="menu_status")])
+        session.close()
+        await query.edit_message_text(texto, parse_mode="Markdown", reply_markup=InlineKeyboardMarkup(botoes))
+        return
+
+    f = session.query(Faccao).filter_by(id=int(faccao_filtro)).first()
+    session.close()
+    if not f:
+        await query.answer("Facção não encontrada.", show_alert=True)
+        return
+
+    honra = reps.get(f.faccao_dominante, 0)
+    texto = (
+        f"🏛️ *{f.faccao_dominante}*\n"
+        f"_{f.reino_provincia} · {f.tiers_cobertos}_\n\n"
+        f"👑 Capital: {f.capital}\n"
+        f"🎖️ Líder: {f.lider}\n"
+        f"🐺 Ameaça local: {f.culto_ameaca}\n"
+        f"🏛️ Sua Honra: {honra}\n"
+    )
+    if honra >= 50:
+        texto += f"\n🔓 _Segredo revelado: {f.segredo}_"
     else:
-        texto += "  Nenhuma reputação ainda.\n"
+        texto += "\n🔒 _Segredo bloqueado — precisa de Honra 50+ pra revelar._"
 
-    texto += "\n*Títulos conquistados:*\n"
+    await query.edit_message_text(
+        texto, parse_mode="Markdown",
+        reply_markup=InlineKeyboardMarkup(
+            [[InlineKeyboardButton("⬅️ Voltar", callback_data="menu_faccoes")]]
+        ),
+    )
+
+
+async def menu_titulos(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    query = update.callback_query
+    await query.answer()
+    session = get_session()
+    tg_id = str(update.effective_user.id)
+    player = session.query(Player).filter_by(telegram_id=tg_id).first()
+    titulos = listar_titulos_do_player(session, player)
+    session.close()
+
+    texto = "🏆 *Títulos Conquistados*\n\n"
     if titulos:
         for t in titulos:
-            texto += f"  🏆 {t.nome}\n"
+            texto += f"🏆 *{t.nome}*\n_{t.bonus}_\n\n"
     else:
-        texto += "  Nenhum título ainda.\n"
+        texto += "Nenhum título ainda."
 
-    session.close()
+    await query.edit_message_text(
+        texto, parse_mode="Markdown",
+        reply_markup=InlineKeyboardMarkup(
+            [[InlineKeyboardButton("⬅️ Voltar", callback_data="menu_faccoes")]]
+        ),
+    )
     await query.edit_message_text(
         texto, parse_mode="Markdown",
         reply_markup=InlineKeyboardMarkup(

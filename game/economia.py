@@ -6,8 +6,19 @@ import re
 from db.models import Arma, Armadura, Receita, PlayerInventario
 
 
+import unicodedata
+
+
 class ErroEconomia(Exception):
     pass
+
+
+def _normalizar(texto):
+    """Remove acento pra comparar nomes que vieram de abas diferentes da planilha
+    e podem ter sido digitados com/sem acento (ex: 'Maça' vs 'Maca')."""
+    if not texto:
+        return texto
+    return "".join(c for c in unicodedata.normalize("NFD", texto) if unicodedata.category(c) != "Mn")
 
 
 def _parse_qtd(texto_material):
@@ -117,10 +128,31 @@ def forjar_item(session, player, receita_id):
 
     player.ouro -= (receita.custo_base_ouro or 0)
 
+    nome_item = receita.tipo_slot
+    item_ref_final = receita.id
+    tipo_final = "acessorio" if receita.categoria == "Acessório" else "arma_armadura_forjada"
+
+    if receita.categoria != "Acessório":
+        from db.models import Arma, Armadura
+        eh_armadura = receita.tipo_slot in (
+            "Peitoral", "Escudo", "Elmo", "Luvas", "Bota", "Calça", "Manopla"
+        )
+        item_real = None
+        if eh_armadura:
+            candidatos = session.query(Armadura).filter_by(tier=receita.tier).order_by(Armadura.id).all()
+            item_real = next((a for a in candidatos if _normalizar(a.slot) == _normalizar(receita.tipo_slot)), None)
+        else:
+            candidatos = session.query(Arma).filter_by(tier=receita.tier).order_by(Arma.id).all()
+            item_real = next((a for a in candidatos if _normalizar(a.tipo) == _normalizar(receita.tipo_slot)), None)
+        if item_real:
+            nome_item = item_real.variacao
+            item_ref_final = item_real.id
+            tipo_final = "armadura" if eh_armadura else "arma"
+
     novo = PlayerInventario(
         player_id=player.id,
-        tipo_item="acessorio" if receita.categoria == "Acessório" else "arma_armadura_forjada",
-        item_ref_id=receita.id, nome_item=receita.tipo_slot, quantidade=1, equipado=False,
+        tipo_item=tipo_final,
+        item_ref_id=item_ref_final, nome_item=nome_item, quantidade=1, equipado=False,
     )
     session.add(novo)
     session.commit()

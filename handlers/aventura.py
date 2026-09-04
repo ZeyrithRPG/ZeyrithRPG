@@ -119,6 +119,27 @@ async def explorar(update: Update, context: ContextTypes.DEFAULT_TYPE):
         return
 
     player.vig_atual -= custo
+
+    from game.eventos import evento_aleatorio
+    evento = evento_aleatorio(session, player)
+    if evento:
+        session.commit()
+        nome_local, vig_atual, vig_max = local.nome, player.vig_atual, player.vig_max
+        icone_local = ICONE_TIPO_LOCAL.get(local.tipo, "📍")
+        nome_evento, categoria_evento = evento.nome, evento.categoria
+        session.close()
+        await query.edit_message_text(
+            f"{icone_local} *{nome_local}*\n\n"
+            f"🌫️ *{nome_evento}*\n_{categoria_evento}_\n\n"
+            f"⚡ Vigor: {vig_atual}/{vig_max}\n{_barra(vig_atual, vig_max)}",
+            parse_mode="Markdown",
+            reply_markup=InlineKeyboardMarkup(
+                [[InlineKeyboardButton("🔍 Explorar de novo", callback_data="explorar")],
+                 [InlineKeyboardButton("⬅️ Voltar", callback_data="menu_aventura")]]
+            ),
+        )
+        return
+
     resultado = rolar_exploracao(local.perigo)
     icone_local = ICONE_TIPO_LOCAL.get(local.tipo, "📍")
 
@@ -185,6 +206,8 @@ async def explorar(update: Update, context: ContextTypes.DEFAULT_TYPE):
     monstro = random.choice(candidatos)
 
     player.em_combate_monstro_id = monstro.id
+    from game.codex import registrar_encontro
+    registrar_encontro(session, player, monstro.id)
     player.em_combate_hp_monstro = monstro.hp
     session.commit()
 
@@ -196,6 +219,10 @@ async def explorar(update: Update, context: ContextTypes.DEFAULT_TYPE):
         f"{icone_local} {local.nome}\n\n"
         f"{icone_papel} *{monstro.nome}* — Nv.{monstro.nivel} ({monstro.papel})\n"
         f"❤️ {monstro.hp}/{monstro.hp}\n{_barra(monstro.hp, monstro.hp, cheio='🟥')}\n\n"
+    )
+    if monstro.motivacao:
+        texto += f"_{monstro.motivacao}_\n\n"
+    texto += (
         f"🗡️ Golpe: {monstro.golpe_especial}\n\n"
         f"⚡ Seu Vigor: {vig_atual}/{vig_max}"
         + (f"\n🔷 Mana: {mana_atual}/{mana_max}" if mana_max else "")
@@ -347,6 +374,9 @@ async def _vitoria(session, query, player, monstro, linhas):
 
     curva = session.query(CurvaMestra).filter_by(nivel=player.nivel).first()
     xp_ganho, ouro_ganho, materiais = resolver_loot(session, player, monstro, curva)
+
+    from game.codex import registrar_vitoria
+    registrar_vitoria(session, player, monstro.id)
 
     player.xp_atual += xp_ganho
     player.ouro += ouro_ganho

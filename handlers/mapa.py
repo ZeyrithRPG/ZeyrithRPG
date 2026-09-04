@@ -74,6 +74,10 @@ async def viajar_local(update: Update, context: ContextTypes.DEFAULT_TYPE):
         return
 
     player.local_atual = local.nome
+    visitados = (player.locais_visitados or "").split("|") if player.locais_visitados else []
+    if local.nome not in visitados:
+        visitados.append(local.nome)
+    player.locais_visitados = "|".join(filter(None, visitados))
     session.commit()
 
     if local.tipo == "Covil de Boss":
@@ -110,6 +114,8 @@ async def _entrar_covil(session, query, player, local):
         return
 
     player.em_combate_monstro_id = monstro.id
+    from game.codex import registrar_encontro
+    registrar_encontro(session, player, monstro.id)
     player.em_combate_hp_monstro = monstro.hp
     session.commit()
 
@@ -120,6 +126,10 @@ async def _entrar_covil(session, query, player, local):
         f"⚔️ *CONFRONTO DE BOSS*\n\n"
         f"🔴 *{monstro.nome}* — Nv.{monstro.nivel} ({monstro.papel})\n"
         f"❤️ {monstro.hp}/{monstro.hp}\n{_barra_hp(monstro.hp, monstro.hp, cheio='🟥')}\n\n"
+    )
+    if monstro.motivacao:
+        texto += f"_{monstro.motivacao}_\n\n"
+    texto += (
         f"🗡️ Golpe: {monstro.golpe_especial}\n\n"
         f"⚡ Seu Vigor: {vig_atual}/{vig_max}"
         + (f"\n🔷 Mana: {mana_atual}/{mana_max}" if mana_max else "")

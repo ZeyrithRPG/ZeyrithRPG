@@ -236,6 +236,10 @@ class Player(Base):
     em_combate_efeito_jogador_turnos = Column(Integer, nullable=True)
     loot_pendente = Column(Text, nullable=True)  # JSON com materiais esperando "Lootear"
     monstros_poupados = Column(Text, nullable=True)  # nomes curtos separados por "|"
+    maior_ato_narrado = Column(Integer, default=0)  # 0=nenhum ainda, 1-5 = Ato ja mostrado
+    locais_visitados = Column(Text, nullable=True)  # nomes separados por "|", pro Codex
+    ultimo_login_data = Column(String, nullable=True)  # 'YYYY-MM-DD'
+    streak_login = Column(Integer, default=0)
     criado_em = Column(DateTime, default=datetime.utcnow)
 
     classe = relationship("Classe")
@@ -299,6 +303,67 @@ class PlayerKnowledge(Base):
     monstro_id = Column(Integer, ForeignKey("ref_bestiario.id"))
     nivel_knowledge = Column(Integer, default=0)
     __table_args__ = (UniqueConstraint("player_id", "monstro_id"),)
+
+
+class Narrativa(Base):
+    __tablename__ = "ref_narrativa"
+    id = Column(Integer, primary_key=True)
+    tipo = Column(String)  # Abertura / Transicao de Ato / etc
+    gatilho = Column(Text)
+    titulo = Column(String)
+    texto = Column(Text)
+
+
+class Faccao(Base):
+    __tablename__ = "ref_faccoes"
+    id = Column(Integer, primary_key=True)
+    polo = Column(String)
+    reino_provincia = Column(String, unique=True)
+    tiers_cobertos = Column(String)
+    capital = Column(String)
+    faccao_dominante = Column(String)
+    lider = Column(String)
+    culto_ameaca = Column(Text)
+    segredo = Column(Text)
+
+
+class Cidade(Base):
+    __tablename__ = "ref_cidades"
+    id = Column(Integer, primary_key=True)
+    nome = Column(String, unique=True)  # nome tecnico, ex "Vila Inicial"
+    nome_oficial = Column(String)  # ex "Valória"
+    tiers_cobertos = Column(String)
+    nivel_min = Column(Integer)
+    nivel_max = Column(Integer)
+    descricao = Column(Text)
+    custo_descanso = Column(Integer)
+    disponibilidade = Column(Text)
+    estado_economico = Column(Text)
+    pontos_interesse = Column(Text)
+    monstros_associados = Column(Text)
+    recursos_regiao = Column(Text)
+    faccoes_presentes = Column(Text)
+
+
+class NPC(Base):
+    __tablename__ = "ref_npcs"
+    id = Column(Integer, primary_key=True)
+    nome = Column(String)
+    titulo_ocupacao = Column(String)
+    cidade = Column(String)
+    faccao = Column(String)
+    servicos = Column(Text)
+    missao_recompensa = Column(Text)
+    segredo = Column(Text)
+    citacao = Column(Text)
+
+
+class EventoViagem(Base):
+    __tablename__ = "ref_eventos_viagem"
+    id = Column(Integer, primary_key=True)
+    nome = Column(String)
+    categoria = Column(String)
+    regioes_atos = Column(Text)
 
 
 class Titulo(Base):

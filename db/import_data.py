@@ -12,7 +12,8 @@ from sqlalchemy import inspect, text
 from db.connection import engine, get_session
 from db.models import (
     Base, Tier, CurvaMestra, Classe, TalentoClasse, Arma, Armadura,
-    Monstro, Missao, Material, Magia, Local, Receita, Titulo,
+    Monstro, Missao, Material, Magia, Local, Receita, Titulo, Narrativa,
+    Faccao, Cidade, NPC, EventoViagem,
 )
 import re
 
@@ -126,7 +127,9 @@ def importar():
         (Armadura, "armaduras"), (Monstro, "bestiario"), (Classe, "classes"),
         (TalentoClasse, "talentos_classe"), (Local, "locais"), (Magia, "magias"),
         (Missao, "missoes"), (Material, "materiais"), (Receita, "receitas"),
-        (Titulo, "titulos"),
+        (Titulo, "titulos"), (Narrativa, "narrativa"),
+        (Faccao, "faccoes"), (Cidade, "cidades"), (NPC, "npcs"),
+        (EventoViagem, "eventos_viagem"),
     ]
 
     with open(CAMINHO_JSON, encoding="utf-8") as f:
