@@ -64,6 +64,14 @@ def _local_do_player(session, player):
 async def menu_aventura(update: Update, context: ContextTypes.DEFAULT_TYPE):
     query = update.callback_query
     await query.answer()
+    await _redesenhar_menu_aventura(query, update)
+
+
+async def _redesenhar_menu_aventura(query, update):
+    """Corpo de menu_aventura sem chamar query.answer() -- usado tanto pelo callback
+    normal quanto por handlers que já responderam o clique (ex: descansar_handler),
+    porque o Telegram só aceita 1 answer() por clique (a segunda chamada é ignorada
+    ou pode falhar -- ver ARMADILHAS no resumo do projeto)."""
     session = get_session()
     tg_id = str(update.effective_user.id)
     player = session.query(Player).filter_by(telegram_id=tg_id).first()
@@ -108,7 +116,7 @@ async def descansar_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
     except ErroDescanso as e:
         await query.answer(f"❌ {e}", show_alert=True)
     session.close()
-    await menu_aventura(update, context)
+    await _redesenhar_menu_aventura(query, update)
 
 
 # ---------- Explorar ----------
@@ -326,7 +334,7 @@ async def atacar(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await _vitoria(session, query, player, monstro, linhas)
         return
     if player.hp_atual <= 0:
-        await _derrota(session, query, player, linhas)
+        await _derrota(session, query, player, linhas, monstro)
         return
 
     # --- 2) ataque do jogador ---
@@ -385,7 +393,7 @@ async def atacar(update: Update, context: ContextTypes.DEFAULT_TYPE):
         linhas.append(f"💨 {monstro.nome} errou o ataque.")
 
     if player.hp_atual <= 0:
-        await _derrota(session, query, player, linhas)
+        await _derrota(session, query, player, linhas, monstro)
         return
 
     session.commit()
@@ -432,6 +440,13 @@ async def _vitoria(session, query, player, monstro, linhas):
 
     from game.codex import registrar_vitoria
     registrar_vitoria(session, player, monstro.id)
+
+    if monstro.papel in ("Boss", "Cosmico"):
+        from game.economia import _normalizar
+        derrotados = (player.bosses_derrotados or "").split("|") if player.bosses_derrotados else []
+        if not any(_normalizar(d) == _normalizar(monstro.nome) for d in derrotados):
+            derrotados.append(monstro.nome)
+        player.bosses_derrotados = "|".join(filter(None, derrotados))
 
     player.xp_atual += xp_ganho
     player.ouro += ouro_ganho
@@ -482,8 +497,28 @@ async def _vitoria(session, query, player, monstro, linhas):
     )
 
 
-async def _derrota(session, query, player, linhas):
+async def _derrota(session, query, player, linhas, monstro):
+    from game.combat import resolver_derrota
+    from game.mapa import cidade_polo_do_local
+
+    local_atual = session.query(Local).filter_by(nome=player.local_atual).first()
+    tipo_local_atual = local_atual.tipo if local_atual else None
+    cidade = cidade_polo_do_local(session, player.local_atual)
+    nome_cidade_destino = cidade.nome if cidade else (player.local_atual or "Vila Inicial")
+
+    resultado = resolver_derrota(
+        player.ouro, player.corrupcao, player.hora_do_mundo,
+        monstro.papel if monstro else "Comum", tipo_local_atual,
+    )
+
+    nome_monstro = monstro.nome if monstro else "algo nas sombras"
+
     player.hp_atual = 1
+    player.vig_atual = 0
+    player.ouro = resultado["ouro_novo"]
+    player.corrupcao = resultado["corrupcao_nova"]
+    player.hora_do_mundo = resultado["hora_nova"]
+    player.local_atual = nome_cidade_destino
     player.em_combate_monstro_id = None
     player.em_combate_hp_monstro = None
     player.em_combate_efeito_monstro = None
@@ -492,11 +527,28 @@ async def _derrota(session, query, player, linhas):
     player.em_combate_efeito_jogador_turnos = None
     session.commit()
     session.close()
+
+    texto = (
+        "\n".join(linhas) + "\n\n"
+        f"☠️ *Fim de Combate — Derrota*\n"
+        f"📍 Despertou em: {nome_cidade_destino}\n"
+        f"══════════════════════\n\n"
+        f"🩸 Superado por: {nome_monstro}\n"
+        f"↳ Condição Crítica: 1 HP  |  0 Vigor\n\n"
+        f"──────────────────────\n"
+        f"💀 SEQUELAS DA QUEDA\n"
+        f"──────────────────────\n"
+        f"🩸 Infecção Carmesim: +{resultado['pontos_infeccao']} Pontos [Total: {resultado['corrupcao_nova']}/100]\n"
+        f"💰 Perda de Recursos: -{resultado['ouro_perdido']} Ouro (10%)\n"
+        f"🚪 Posição no Mapa: Expulso para {nome_cidade_destino}\n"
+        f"⏳ Avanço do Tempo: +4 Horas decorridas\n\n"
+        f"_{resultado['frase_narrativa']}_"
+    )
     await query.edit_message_text(
-        "\n".join(linhas) + "\n\n☠️ *Você quase morreu* e recua do combate, ferido.",
-        parse_mode="Markdown",
+        texto, parse_mode="Markdown",
         reply_markup=InlineKeyboardMarkup(
-            [[InlineKeyboardButton("⬅️ Voltar", callback_data="menu_status")]]
+            [[InlineKeyboardButton("🛏️ Descansar na Estalagem", callback_data="descansar")],
+             [InlineKeyboardButton("🏛️ Ir para o Centro da Cidade", callback_data="menu_status")]]
         ),
     )
 

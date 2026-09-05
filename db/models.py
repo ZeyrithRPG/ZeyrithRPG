@@ -240,6 +240,7 @@ class Player(Base):
     em_combate_proficiencia_ganha = Column(Integer, default=0)
     loot_pendente = Column(Text, nullable=True)  # JSON com materiais esperando "Lootear"
     monstros_poupados = Column(Text, nullable=True)  # nomes curtos separados por "|"
+    bosses_derrotados = Column(Text, nullable=True)  # nomes de Boss/Cosmico ja vencidos, separados por "|" (usado no Portao Regional)
     maior_ato_narrado = Column(Integer, default=0)  # 0=nenhum ainda, 1-5 = Ato ja mostrado
     locais_visitados = Column(Text, nullable=True)  # nomes separados por "|", pro Codex
     ultimo_login_data = Column(String, nullable=True)  # 'YYYY-MM-DD'

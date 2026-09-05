@@ -25,7 +25,7 @@ from handlers.comercio import (
 )
 from handlers.inventario import menu_inventario, alternar_equipar
 from handlers.missoes import menu_missoes, cb_aceitar_missao, cb_entregar_missao, menu_faccoes, menu_titulos
-from handlers.mapa import menu_mapa, viajar_local
+from handlers.mapa import menu_mapa, viajar_local, mapa_regional, mapa_global, mapa_ir_cidade, mapa_atravessar_portao
 from handlers.codex import (
     menu_codex, codex_bestiario_tiers, codex_bestiario_lista, codex_monstro_detalhe,
     codex_locais, codex_materiais,
@@ -446,7 +446,11 @@ def main():
     app.add_handler(CallbackQueryHandler(codex_locais, pattern=r"^codex_locais$"))
     app.add_handler(CallbackQueryHandler(codex_materiais, pattern=r"^codex_materiais$"))
     app.add_handler(CallbackQueryHandler(menu_mapa, pattern=r"^menu_mapa$"))
-    app.add_handler(CallbackQueryHandler(viajar_local, pattern=r"^mapa_ir_"))
+    app.add_handler(CallbackQueryHandler(mapa_regional, pattern=r"^mapa_regional$"))
+    app.add_handler(CallbackQueryHandler(mapa_global, pattern=r"^mapa_global$"))
+    app.add_handler(CallbackQueryHandler(mapa_atravessar_portao, pattern=r"^mapa_portao$"))
+    app.add_handler(CallbackQueryHandler(mapa_ir_cidade, pattern=r"^mapa_ir_cidade_\d+$"))
+    app.add_handler(CallbackQueryHandler(viajar_local, pattern=r"^mapa_ir_\d+$"))
     app.add_handler(CallbackQueryHandler(conjurar, pattern=r"^magia_\d+$"))
     app.add_handler(CallbackQueryHandler(voltar_combate, pattern=r"^voltar_combate$"))
     app.add_handler(CallbackQueryHandler(botao_em_construcao, pattern=r"^menu_"))
