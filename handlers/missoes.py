@@ -112,7 +112,6 @@ async def menu_missoes(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 async def cb_aceitar_missao(update: Update, context: ContextTypes.DEFAULT_TYPE):
     query = update.callback_query
-    await query.answer()
     missao_id = int(query.data.split("_")[-1])
     session = get_session()
     tg_id = str(update.effective_user.id)
@@ -123,23 +122,26 @@ async def cb_aceitar_missao(update: Update, context: ContextTypes.DEFAULT_TYPE):
     except ErroMissao as e:
         await query.answer(f"❌ {e}", show_alert=True)
     session.close()
+    query.data = "menu_missoes"  # evita que o ID da missao seja lido como categoria
     await menu_missoes(update, context)
 
 
 async def cb_entregar_missao(update: Update, context: ContextTypes.DEFAULT_TYPE):
     query = update.callback_query
-    await query.answer()
     missao_id = int(query.data.split("_")[-1])
     session = get_session()
     tg_id = str(update.effective_user.id)
     player = session.query(Player).filter_by(telegram_id=tg_id).first()
     try:
-        ouro, honra_ganha, faccao, recompensa_extra = completar_missao(session, player, missao_id)
+        ouro, honra_ganha, faccao, recompensa_extra, niveis_subidos = completar_missao(session, player, missao_id)
+        await query.answer()
         texto = f"✅ *Missão concluída!*\n\n💰 +{ouro} Ouro"
         if honra_ganha:
             texto += f"\n🏛️ +{honra_ganha} Honra com {faccao}"
         if recompensa_extra:
             texto += f"\n🎁 {recompensa_extra}"
+        if niveis_subidos:
+            texto += f"\n\n🎉 *LEVEL UP! Você chegou ao Nível {niveis_subidos[-1]}!*"
         session.close()
         await query.edit_message_text(
             texto, parse_mode="Markdown",
@@ -156,7 +158,6 @@ async def cb_entregar_missao(update: Update, context: ContextTypes.DEFAULT_TYPE)
 
 async def menu_faccoes(update: Update, context: ContextTypes.DEFAULT_TYPE):
     query = update.callback_query
-    await query.answer()
     dados = query.data.split("_", 2)
     faccao_filtro = dados[2] if len(dados) > 2 else None
 
@@ -169,6 +170,7 @@ async def menu_faccoes(update: Update, context: ContextTypes.DEFAULT_TYPE):
     reps = {r.faccao: r.pontos for r in session.query(PlayerReputacaoFaccao).filter_by(player_id=player.id).all()}
 
     if not faccao_filtro:
+        await query.answer()
         titulos = listar_titulos_do_player(session, player)
         texto = "🏛️ *Facções*\n\nEscolha uma pra ver detalhes:"
         botoes = []
@@ -189,6 +191,7 @@ async def menu_faccoes(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await query.answer("Facção não encontrada.", show_alert=True)
         return
 
+    await query.answer()
     honra = reps.get(f.faccao_dominante, 0)
     texto = (
         f"🏛️ *{f.faccao_dominante}*\n"

@@ -17,7 +17,7 @@ from db.connection import get_session
 from db.models import Player, Classe, CurvaMestra, Narrativa
 from db.import_data import importar as importar_dados_do_jogo
 from game.ui_utils import barra
-from handlers.aventura import menu_aventura, explorar, atacar, fugir, voltar_combate, lootear, poupar
+from handlers.aventura import menu_aventura, explorar, atacar, fugir, voltar_combate, lootear, poupar, descansar_handler
 from handlers.magias import menu_magias, conjurar
 from handlers.comercio import (
     menu_comercio, listar_compra, confirmar_compra, listar_venda, confirmar_venda,
@@ -98,12 +98,93 @@ async def receber_classe(update: Update, context: ContextTypes.DEFAULT_TYPE):
         )
         return ConversationHandler.END
 
+    from game.atributos import calcular_atributos_iniciais
+    atributos = calcular_atributos_iniciais(classe)
+
+    from handlers.comercio import _icone_tipo
+    from db.models import Arma, Armadura
+    kit_linhas = []
+    for nome_item in (classe.kit_inicial or "").split(" + "):
+        nome_item = nome_item.strip()
+        item_real = session.query(Arma).filter_by(variacao=nome_item).first()
+        stat_txt = None
+        if item_real:
+            stat_txt = f"⚔️ Dano {item_real.dano_comum}"
+        else:
+            item_real = session.query(Armadura).filter_by(variacao=nome_item).first()
+            if item_real:
+                stat_txt = f"🛡️ Defesa {item_real.defesa_comum}"
+        tipo_item = item_real.tipo if hasattr(item_real, "tipo") else (item_real.slot if item_real else None)
+        icone_item = _icone_tipo(tipo_item) if tipo_item else "❔"
+        linha = f"{icone_item} {nome_item}"
+        if stat_txt:
+            linha += f" — {stat_txt}"
+        kit_linhas.append(linha)
+    kit_texto = "\n".join(kit_linhas) if kit_linhas else classe.kit_inicial
+
+    texto = (
+        f"⚔️ *{classe.nome}*\n"
+        f"_{classe.historia_origem or ''}_\n\n"
+        f"✨ *Passiva:* {classe.passiva_unica}\n\n"
+        f"🎒 *Kit Inicial:*\n{kit_texto}\n\n"
+        f"💪 FOR {atributos['atributo_for']}  🏃 DES {atributos['atributo_des']}  "
+        f"🛡️ CON {atributos['atributo_con']}\n"
+        f"🧠 INT {atributos['atributo_int']}  🦉 SAB {atributos['atributo_sab']}  "
+        f"💬 CAR {atributos['atributo_car']}\n\n"
+        f"✅ *Vantagem:* {classe.vantagem}\n"
+        f"❌ *Desvantagem:* {classe.desvantagem}"
+    )
+    session.close()
+    await query.edit_message_text(
+        texto, parse_mode="Markdown",
+        reply_markup=InlineKeyboardMarkup([
+            [InlineKeyboardButton(f"✅ Confirmar {classe.nome}", callback_data=f"confirmar_classe_{classe_id}")],
+            [InlineKeyboardButton("⬅️ Ver outras classes", callback_data="voltar_classes")],
+        ]),
+    )
+    return CLASSE
+
+
+async def voltar_classes(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    query = update.callback_query
+    await query.answer()
+    session = get_session()
+    classes = session.query(Classe).all()
+    botoes = [[InlineKeyboardButton(c.nome, callback_data=f"classe_{c.id}")] for c in classes]
+    session.close()
+    await query.edit_message_text(
+        f"Bem-vindo, {context.user_data['nome_personagem']}. Escolha sua classe:",
+        reply_markup=InlineKeyboardMarkup(botoes),
+    )
+    return CLASSE
+
+
+async def confirmar_criacao(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    query = update.callback_query
+    await query.answer()
+    classe_id = int(query.data.split("_")[-1])
+
+    session = get_session()
+    classe = session.get(Classe, classe_id)
+    tg_id = str(update.effective_user.id)
+
+    ja_existe = session.query(Player).filter_by(telegram_id=tg_id).first()
+    if ja_existe:
+        session.close()
+        await query.edit_message_text(
+            "Você já tem um personagem criado. Use /status pra ver a ficha."
+        )
+        return ConversationHandler.END
+
     curva_nv1 = session.query(CurvaMestra).filter_by(nivel=1).first()
 
-    # status iniciais: usa a Curva Mestra nivel 1 como base
-    hp_max = curva_nv1.hp if curva_nv1 else 24
+    from game.atributos import calcular_atributos_iniciais, bonus_hp_por_con, bonus_vigor_por_con
+    atributos_iniciais = calcular_atributos_iniciais(classe)
+    con_inicial = atributos_iniciais.get("atributo_con", 10)
+
+    hp_max = (curva_nv1.hp if curva_nv1 else 24) + bonus_hp_por_con(con_inicial)
     mana_max = curva_nv1.mana if curva_nv1 and curva_nv1.mana else 15
-    vig_max = 60  # 60 + (CON-3)*10, CON=3 por padrão até a ficha de atributos existir
+    vig_max = 60 + bonus_vigor_por_con(con_inicial)
 
     novo_player = Player(
         telegram_id=tg_id,
@@ -201,9 +282,13 @@ async def mostrar_hud(update: Update, context: ContextTypes.DEFAULT_TYPE):
     tier_atual = player.tier_mais_alto_alcancado or 1
     icone_classe = ICONE_CLASSE.get(nome_classe, "🧍")
 
+    from game.relogio import periodo_texto, ICONE_HORA, ICONE_CLIMA
+    periodo = periodo_texto(player.hora_do_mundo or 8)
+    clima = player.clima_atual or "Ensolarado"
     texto = (
         f"{icone_classe} *{player.nome_personagem}* — {nome_classe}\n"
-        f"🎖️ Nível {player.nivel or 1}  ·  🏔️ Tier {tier_atual}\n\n"
+        f"🎖️ Nível {player.nivel or 1}  ·  🏔️ Tier {tier_atual}\n"
+        f"{ICONE_HORA[periodo]} {player.hora_do_mundo or 8}h ({periodo}) · {ICONE_CLIMA.get(clima,'☀️')} {clima}\n\n"
         f"❤️ HP: {hp_atual}/{hp_max}\n{barra(hp_atual, hp_max)}\n"
         f"⚡ Vigor: {vig_atual}/{vig_max}\n{barra(vig_atual, vig_max)}\n"
     )
@@ -215,6 +300,19 @@ async def mostrar_hud(update: Update, context: ContextTypes.DEFAULT_TYPE):
         f"🧠 INT: {player.atributo_int}   🦉 SAB: {player.atributo_sab}   💬 CAR: {player.atributo_car}\n\n"
         f"💰 Ouro: {player.ouro or 0}"
     )
+
+    from db.models import PlayerProficiencia
+    from game.proficiencia import nivel_e_progresso
+    proficiencias = session.query(PlayerProficiencia).filter_by(player_id=player.id).all()
+    proficiencias_com_nivel = []
+    for p in proficiencias:
+        nivel, atual, proximo = nivel_e_progresso(p.valor)
+        if nivel > 0:
+            proficiencias_com_nivel.append((p.tipo_arma, nivel, atual, proximo))
+    if proficiencias_com_nivel:
+        texto += "\n\n🗡️ *Proficiência:*"
+        for tipo_arma, nivel, atual, proximo in proficiencias_com_nivel:
+            texto += f"\n{tipo_arma}: Nv.{nivel} ({atual}/{proximo})" if proximo else f"\n{tipo_arma}: Nv.{nivel} (MÁX)"
     corrupcao = player.corrupcao or 0
     if corrupcao > 0:
         estagio = min(5, corrupcao // 20 + 1)
@@ -308,7 +406,11 @@ def main():
         entry_points=[CommandHandler("start", start)],
         states={
             NOME: [MessageHandler(filters.TEXT & ~filters.COMMAND, receber_nome)],
-            CLASSE: [CallbackQueryHandler(receber_classe, pattern=r"^classe_")],
+            CLASSE: [
+                CallbackQueryHandler(receber_classe, pattern=r"^classe_"),
+                CallbackQueryHandler(confirmar_criacao, pattern=r"^confirmar_classe_"),
+                CallbackQueryHandler(voltar_classes, pattern=r"^voltar_classes$"),
+            ],
         },
         fallbacks=[],
     )
@@ -317,6 +419,7 @@ def main():
     app.add_handler(CallbackQueryHandler(menu_status_callback, pattern=r"^menu_status$"))
     app.add_handler(CallbackQueryHandler(menu_aventura, pattern=r"^menu_aventura$"))
     app.add_handler(CallbackQueryHandler(explorar, pattern=r"^explorar$"))
+    app.add_handler(CallbackQueryHandler(descansar_handler, pattern=r"^descansar$"))
     app.add_handler(CallbackQueryHandler(atacar, pattern=r"^atacar$"))
     app.add_handler(CallbackQueryHandler(fugir, pattern=r"^fugir$"))
     app.add_handler(CallbackQueryHandler(menu_magias, pattern=r"^menu_magias$"))

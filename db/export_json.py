@@ -84,7 +84,7 @@ def extrair_bestiario(wb):
             "efeito_mecanico": v(ws, r, 10), "motivacao": v(ws, r, 11),
             "fraqueza": v(ws, r, 21), "materiais_dropados": v(ws, r, 20),
             "papel_combate": v(ws, r, 22), "interacao_ambiental": v(ws, r, 25),
-            "loot_unico": v(ws, r, 27),
+            "loot_unico": v(ws, r, 27), "condicao_spawn": v(ws, r, 23),
         })
     return out
 
@@ -136,6 +136,7 @@ def extrair_classes(wb):
             "passiva_unica": v(ws, r, 6), "status_iniciais": v(ws, r, 11),
             "kit_inicial": v(ws, r, 12), "proficiencia_inicial": v(ws, r, 13),
             "vantagem": v(ws, r, 15), "desvantagem": v(ws, r, 16),
+            "historia_origem": v(ws, r, 10),
         })
     return out
 

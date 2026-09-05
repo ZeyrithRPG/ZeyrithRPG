@@ -61,3 +61,19 @@ def player_precisa_de_atributos(player):
         and player.atributo_con == 10 and player.atributo_int == 10
         and player.atributo_sab == 10 and player.atributo_car == 10
     )
+
+
+def bonus_hp_por_con(con):
+    return max(0, (con - 10)) * 5
+
+
+def bonus_vigor_por_con(con):
+    return max(0, (con - 10)) * 3
+
+
+def bonus_dano_por_for(forca):
+    return max(0, (forca - 10)) // 2
+
+
+def bonus_critico_por_des(des):
+    return max(0, des - 10)  # em % -- 1% por ponto acima de 10

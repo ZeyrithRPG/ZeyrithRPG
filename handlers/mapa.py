@@ -53,7 +53,6 @@ async def menu_mapa(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 async def viajar_local(update: Update, context: ContextTypes.DEFAULT_TYPE):
     query = update.callback_query
-    await query.answer()
     local_id = int(query.data.split("_")[-1])
     session = get_session()
     tg_id = str(update.effective_user.id)
@@ -72,6 +71,8 @@ async def viajar_local(update: Update, context: ContextTypes.DEFAULT_TYPE):
         )
         session.close()
         return
+
+    await query.answer()
 
     player.local_atual = local.nome
     visitados = (player.locais_visitados or "").split("|") if player.locais_visitados else []
@@ -116,6 +117,8 @@ async def _entrar_covil(session, query, player, local):
     player.em_combate_monstro_id = monstro.id
     from game.codex import registrar_encontro
     registrar_encontro(session, player, monstro.id)
+    player.em_combate_turnos = 0
+    player.em_combate_proficiencia_ganha = 0
     player.em_combate_hp_monstro = monstro.hp
     session.commit()
 

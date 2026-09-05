@@ -17,7 +17,8 @@ ICONE_TIPO_ITEM = {
     "Arco": "🏹", "Cetro": "🪄", "Adaga": "🔪",
     "Peitoral": "🛡️", "Escudo": "🔰", "Elmo": "⛑️",
     "Manopla": "🧤", "Luvas": "🧤", "Bota": "👢", "Calca": "👖", "Calça": "👖",
-    "Amuleto": "📿", "Anel": "💍",
+    "Amuleto": "📿", "Anel": "💍", "Colar": "📿", "Talismã": "🔮", "Talisma": "🔮",
+    "Pena": "🪶", "Vial": "🧪", "Bolsa": "👝",
 }
 
 
@@ -148,17 +149,29 @@ async def listar_compra(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 async def confirmar_compra(update: Update, context: ContextTypes.DEFAULT_TYPE):
     query = update.callback_query
-    await query.answer()
     _, _, categoria, item_id = query.data.split("_", 3)
     session = get_session()
     tg_id = str(update.effective_user.id)
     player = session.query(Player).filter_by(telegram_id=tg_id).first()
+    tipo_item_comprado = None
     try:
         inv = comprar_item(session, player, int(item_id), categoria)
         await query.answer(f"✅ Comprado: {inv.nome_item}!", show_alert=True)
+        from db.models import Arma, Armadura
+        Modelo = Arma if categoria == "arma" else Armadura
+        item_real = session.query(Modelo).filter_by(id=int(item_id)).first()
+        if item_real:
+            tipo_item_comprado = item_real.tipo if categoria == "arma" else item_real.slot
     except ErroEconomia as e:
         await query.answer(f"❌ {e}", show_alert=True)
     session.close()
+
+    # corrige query.data pro formato de NAVEGACAO antes de re-chamar listar_compra --
+    # senao o "id" da compra e interpretado por engano como se fosse um "tipo"
+    if tipo_item_comprado:
+        query.data = f"loja_comprar_{categoria}_{tipo_item_comprado}"
+    else:
+        query.data = f"loja_comprar_{categoria}"
     await listar_compra(update, context)
 
 
@@ -198,7 +211,6 @@ async def listar_venda(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 async def confirmar_venda(update: Update, context: ContextTypes.DEFAULT_TYPE):
     query = update.callback_query
-    await query.answer()
     inv_id = int(query.data.split("_")[-1])
     session = get_session()
     tg_id = str(update.effective_user.id)
@@ -297,15 +309,20 @@ async def menu_crafting(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 async def confirmar_forja(update: Update, context: ContextTypes.DEFAULT_TYPE):
     query = update.callback_query
-    await query.answer()
     receita_id = int(query.data.split("_")[-1])
     session = get_session()
     tg_id = str(update.effective_user.id)
     player = session.query(Player).filter_by(telegram_id=tg_id).first()
+    categoria_receita = None
     try:
+        receita = session.query(Receita).filter_by(id=receita_id).first()
+        categoria_receita = receita.categoria if receita else None
         item = forjar_item(session, player, receita_id)
         await query.answer(f"✅ Forjado: {item.nome_item}!", show_alert=True)
     except ErroEconomia as e:
         await query.answer(f"❌ {e}", show_alert=True)
     session.close()
+
+    # corrige query.data pro formato de NAVEGACAO antes de re-chamar menu_crafting
+    query.data = "loja_crafting_acessorios" if categoria_receita == "Acessório" else "loja_crafting_armaduras"
     await menu_crafting(update, context)

@@ -22,17 +22,39 @@ async def menu_inventario(update: Update, context: ContextTypes.DEFAULT_TYPE):
     player = session.query(Player).filter_by(telegram_id=tg_id).first()
     itens = session.query(PlayerInventario).filter_by(player_id=player.id).all()
 
-    equipaveis = [i for i in itens if i.tipo_item in ("arma", "armadura")]
-    outros = [i for i in itens if i.tipo_item not in ("arma", "armadura")]
+    equipaveis = [i for i in itens if i.tipo_item in ("arma", "armadura", "acessorio")]
+    outros = [i for i in itens if i.tipo_item not in ("arma", "armadura", "acessorio")]
 
     texto = "🎒 *Inventário*\n\n"
     botoes = []
 
     if equipaveis:
+        from handlers.comercio import _icone_tipo
+        from db.models import Arma, Armadura, Receita
         texto += "*Equipamento:*\n"
         for i in equipaveis:
             marca = "✅ " if i.equipado else ""
-            texto += f"{ICONE_TIPO.get(i.tipo_item,'❔')} {marca}{i.nome_item}\n"
+            item_real = None
+            stat_txt = ""
+            icone_item = None
+            if i.tipo_item == "arma" and i.item_ref_id:
+                item_real = session.query(Arma).filter_by(id=i.item_ref_id).first()
+                if item_real:
+                    stat_txt = f" — ⚔️ Dano {item_real.dano_comum}"
+            elif i.tipo_item == "armadura" and i.item_ref_id:
+                item_real = session.query(Armadura).filter_by(id=i.item_ref_id).first()
+                if item_real:
+                    stat_txt = f" — 🛡️ Defesa {item_real.defesa_comum}"
+            elif i.tipo_item == "acessorio":
+                primeira_palavra = i.nome_item.split(" ")[0]
+                icone_item = _icone_tipo(primeira_palavra)
+                receita = session.query(Receita).filter_by(id=i.item_ref_id).first() if i.item_ref_id else None
+                if receita and receita.efeito:
+                    stat_txt = f" — _{receita.efeito}_"
+            if icone_item is None:
+                tipo_especifico = (item_real.tipo if i.tipo_item == "arma" else item_real.slot) if item_real else None
+                icone_item = _icone_tipo(tipo_especifico) if tipo_especifico else ICONE_TIPO.get(i.tipo_item, "❔")
+            texto += f"{icone_item} {marca}{i.nome_item}{stat_txt}\n"
             acao = "desequipar" if i.equipado else "equipar"
             botoes.append([InlineKeyboardButton(
                 f"{'Desequipar' if i.equipado else 'Equipar'} {i.nome_item}",
@@ -54,7 +76,6 @@ async def menu_inventario(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 async def alternar_equipar(update: Update, context: ContextTypes.DEFAULT_TYPE):
     query = update.callback_query
-    await query.answer()
     _, acao, inv_id = query.data.split("_")
     session = get_session()
     tg_id = str(update.effective_user.id)
@@ -65,6 +86,8 @@ async def alternar_equipar(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await query.answer("Item não encontrado.", show_alert=True)
         session.close()
         return
+
+    await query.answer()
 
     if acao == "equipar":
         # desequipa outro item do mesmo tipo (so 1 arma e 1 armadura por vez, regra simples)

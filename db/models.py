@@ -60,6 +60,7 @@ class Classe(Base):
     proficiencia_inicial = Column(Integer, default=10)
     vantagem = Column(Text)
     desvantagem = Column(Text)
+    historia_origem = Column(Text)
 
 
 class TalentoClasse(Base):
@@ -121,6 +122,7 @@ class Monstro(Base):
     papel_combate = Column(String)  # DPS/Tanque/Suporte/Nao-hostil/Necrofago/etc
     interacao_ambiental = Column(Text)  # "Se abordado em paz, pode ser poupado..."
     loot_unico = Column(Text)  # item exclusivo de Boss/Nomeado
+    condicao_spawn = Column(Text)  # "Bosque Sombrio, só à noite" etc
 
 
 class Missao(Base):
@@ -234,12 +236,15 @@ class Player(Base):
     em_combate_efeito_monstro_turnos = Column(Integer, nullable=True)
     em_combate_efeito_jogador = Column(String, nullable=True)
     em_combate_efeito_jogador_turnos = Column(Integer, nullable=True)
+    em_combate_turnos = Column(Integer, default=0)
+    em_combate_proficiencia_ganha = Column(Integer, default=0)
     loot_pendente = Column(Text, nullable=True)  # JSON com materiais esperando "Lootear"
     monstros_poupados = Column(Text, nullable=True)  # nomes curtos separados por "|"
     maior_ato_narrado = Column(Integer, default=0)  # 0=nenhum ainda, 1-5 = Ato ja mostrado
     locais_visitados = Column(Text, nullable=True)  # nomes separados por "|", pro Codex
     ultimo_login_data = Column(String, nullable=True)  # 'YYYY-MM-DD'
     streak_login = Column(Integer, default=0)
+    clima_atual = Column(String, default="Ensolarado")
     criado_em = Column(DateTime, default=datetime.utcnow)
 
     classe = relationship("Classe")

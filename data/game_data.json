@@ -7859,7 +7859,8 @@
       "materiais_dropados": "Ouro + Couro Áspero de Javali (chance rara) + Presa Sanguínea",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Bosque Sombrio"
     },
     {
       "tier": "Sucata Enferrujada",
@@ -7877,7 +7878,8 @@
       "materiais_dropados": "Ouro + Couro Áspero de Javali (chance rara) + Asa de Mosca-Sangue",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Bosque Sombrio"
     },
     {
       "tier": "Sucata Enferrujada",
@@ -7895,7 +7897,8 @@
       "materiais_dropados": "Couro Áspero de Javali + Canino Enferrujado",
       "papel_combate": "Batedor",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Estrada dos Bandidos"
     },
     {
       "tier": "Sucata Enferrujada",
@@ -7913,7 +7916,8 @@
       "materiais_dropados": "Sucata Retorcida + Faca Cega de Recruta + Pano Ensanguentado",
       "papel_combate": "DPS fraco",
       "interacao_ambiental": "Rende-se a 25% de HP — pode ser poupado (gancho de quest).",
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Estrada dos Bandidos"
     },
     {
       "tier": "Sucata Enferrujada",
@@ -7931,7 +7935,8 @@
       "materiais_dropados": "Ouro + Boneco de Pano Remendado",
       "papel_combate": "Não-hostil",
       "interacao_ambiental": "Segue o jogador em silêncio por 2 explorações se poupada.",
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Acampamento dos Marcados"
     },
     {
       "tier": "Sucata Enferrujada",
@@ -7949,7 +7954,8 @@
       "materiais_dropados": "Ouro + Fragmento de Tinta Ritual + Pano do Culto Rasgado",
       "papel_combate": "DPS fraco",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Acampamento dos Marcados"
     },
     {
       "tier": "Sucata Enferrujada",
@@ -7967,7 +7973,8 @@
       "materiais_dropados": "Ouro + Presa de Leitão + Couro Marcado de Leitão",
       "papel_combate": "Enxame",
       "interacao_ambiental": "Chamam o Javali Alfa se todos morrerem (10% de chance).",
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Bosque Sombrio"
     },
     {
       "tier": "Sucata Enferrujada",
@@ -7985,7 +7992,8 @@
       "materiais_dropados": "Ouro + Glândula de Carrapato",
       "papel_combate": "Parasita",
       "interacao_ambiental": "Se o hospedeiro morrer, fica 2x mais agressivo.",
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Bosque Sombrio, só com Javali/Leitão presente"
     },
     {
       "tier": "Sucata Enferrujada",
@@ -8003,7 +8011,8 @@
       "materiais_dropados": "Ouro + Couro Áspero de Javali (chance rara) + Faca Enferrujada de Bandido",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Bosque Sombrio"
     },
     {
       "tier": "Sucata Enferrujada",
@@ -8021,7 +8030,8 @@
       "materiais_dropados": "Ouro + Couro Áspero de Javali (chance rara) + Manto Rasgado de Peregrino",
       "papel_combate": "Controle",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Bosque Sombrio"
     },
     {
       "tier": "Sucata Enferrujada",
@@ -8039,7 +8049,8 @@
       "materiais_dropados": "Sucata Retorcida + Casulo de Verme Pálido + Baba Corrosiva",
       "papel_combate": "Debuffer",
       "interacao_ambiental": "Contamina o material coletado ali (perde 1 unidade).",
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Veio de Sucata"
     },
     {
       "tier": "Sucata Enferrujada",
@@ -8057,7 +8068,8 @@
       "materiais_dropados": "Ouro + Membrana Pulsante",
       "papel_combate": "Explosivo",
       "interacao_ambiental": "Se ignorado por 3 turnos, vira Enxame de Vermes Pálidos.",
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Pântano dos Enxames"
     },
     {
       "tier": "Sucata Enferrujada",
@@ -8075,7 +8087,8 @@
       "materiais_dropados": "Ouro + Dedo Enrijecido + Anel Perdido",
       "papel_combate": "Assassino",
       "interacao_ambiental": "Se esconde entre cadáveres — emboscada.",
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Acampamento dos Marcados"
     },
     {
       "tier": "Sucata Enferrujada",
@@ -8093,7 +8106,8 @@
       "materiais_dropados": "Ouro + Pena Necrófaga + Bico de Corvo",
       "papel_combate": "Necrófago",
       "interacao_ambiental": "Cura 5 HP por cadáver presente no local.",
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Qualquer local, após um combate vencido"
     },
     {
       "tier": "Sucata Enferrujada",
@@ -8111,7 +8125,8 @@
       "materiais_dropados": "Ouro + Faca de Corte Rápido Quebrada",
       "papel_combate": "Batedor",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Estrada dos Bandidos"
     },
     {
       "tier": "Sucata Enferrujada",
@@ -8129,7 +8144,8 @@
       "materiais_dropados": "Sucata Retorcida + Bolsa de Moedas Roubadas + Corda de Saque",
       "papel_combate": "Ladrão",
       "interacao_ambiental": "Foge com o ouro se sobreviver 3 turnos — rastreável (SAB).",
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Estrada dos Bandidos"
     },
     {
       "tier": "Sucata Enferrujada",
@@ -8147,7 +8163,8 @@
       "materiais_dropados": "Ouro + Farrapo de Peregrino + Fragmento de Grito Preso",
       "papel_combate": "Controle",
       "interacao_ambiental": "O grito acorda outros Marcados próximos.",
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Acampamento dos Marcados"
     },
     {
       "tier": "Sucata Enferrujada",
@@ -8165,7 +8182,8 @@
       "materiais_dropados": "Ouro + Estilhaço da Marca Original",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Acampamento dos Marcados"
     },
     {
       "tier": "Sucata Enferrujada",
@@ -8183,7 +8201,8 @@
       "materiais_dropados": "Sucata Retorcida + Cicatriz de Couro Curtido + Machadinha Gasta",
       "papel_combate": "DPS",
       "interacao_ambiental": "Ataca primeiro quem tem menos HP.",
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Estrada dos Bandidos"
     },
     {
       "tier": "Sucata Enferrujada",
@@ -8201,7 +8220,8 @@
       "materiais_dropados": "Fragmento de Fanático dos Dedos Rubros + Ouro + Couro Áspero de Javali (chance baixa)",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Bosque Sombrio"
     },
     {
       "tier": "Sucata Enferrujada",
@@ -8219,7 +8239,8 @@
       "materiais_dropados": "Couro Áspero de Javali, Presa",
       "papel_combate": "Invocador",
       "interacao_ambiental": "Cava toca — some se você recuar.",
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Bosque Sombrio, só à noite"
     },
     {
       "tier": "Sucata Enferrujada",
@@ -8237,7 +8258,8 @@
       "materiais_dropados": "Ouro + Voz Presa em Pano + Manto do Sussurrador",
       "papel_combate": "Suporte",
       "interacao_ambiental": "Foge se for o último cultista vivo.",
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Acampamento dos Marcados"
     },
     {
       "tier": "Sucata Enferrujada",
@@ -8255,7 +8277,8 @@
       "materiais_dropados": "Ouro + Tinta Ritual Concentrada + Pincel de Ossos",
       "papel_combate": "Debuffer",
       "interacao_ambiental": "Se sobreviver ao combate, o local ganha +1 Perigo permanente.",
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Acampamento dos Marcados"
     },
     {
       "tier": "Sucata Enferrujada",
@@ -8273,7 +8296,8 @@
       "materiais_dropados": "Sucata Retorcida x3",
       "papel_combate": "Mímico",
       "interacao_ambiental": "Parece loot comum — só revela a natureza ao ser interagido.",
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Estrada/Acampamento, 5% ao encontrar um baú"
     },
     {
       "tier": "Sucata Enferrujada",
@@ -8291,7 +8315,8 @@
       "materiais_dropados": "Minério de Bronze Sulfuroso (material de Tier 2)",
       "papel_combate": "Superloot / Evasivo",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Veio de Sucata, spawn raro (2%)"
     },
     {
       "tier": "Sucata Enferrujada",
@@ -8309,7 +8334,8 @@
       "materiais_dropados": "Fragmento de Caçador de Marcas + Ouro + Couro Áspero de Javali (chance baixa)",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Bosque Sombrio"
     },
     {
       "tier": "Sucata Enferrujada",
@@ -8327,7 +8353,8 @@
       "materiais_dropados": "Ouro + Gota de Chuva Cristalizada + Resíduo Espectral Ferroso",
       "papel_combate": "Condicional",
       "interacao_ambiental": "Desaparece sozinho quando a chuva passa.",
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Só durante o evento Chuva Ferrosa das Ruínas"
     },
     {
       "tier": "Sucata Enferrujada",
@@ -8345,7 +8372,8 @@
       "materiais_dropados": "Ouro + Fragmento da Lâmina do Arrependido",
       "papel_combate": "Nomeado / Mini-Boss",
       "interacao_ambiental": null,
-      "loot_unico": "Anel do Traidor Perdoado [ver Artefatos e Relíquias]"
+      "loot_unico": "Anel do Traidor Perdoado [ver Artefatos e Relíquias]",
+      "condicao_spawn": "Estrada dos Bandidos, spawn raro (3%)"
     },
     {
       "tier": "Sucata Enferrujada",
@@ -8363,7 +8391,8 @@
       "materiais_dropados": "Presa de Javali Selvagem Alfa + Essência de Javali Selvagem Alfa + Ouro + Couro Áspero de Javali (chance baixa)",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": "Anel de Dente do Javali Alfa",
+      "condicao_spawn": "Bosque Sombrio"
     },
     {
       "tier": "Sucata Enferrujada",
@@ -8381,7 +8410,8 @@
       "materiais_dropados": "Amostra de Carne de O Colhedor do Primeiro Sangue + Essência de O Colhedor do Primeiro Sangue + Ouro + Couro Áspero de Javali (chance baixa)",
       "papel_combate": "Suporte",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Bosque Sombrio"
     },
     {
       "tier": "Bronze",
@@ -8399,7 +8429,8 @@
       "materiais_dropados": "Ouro + Pelo Embotado de Cão de Mina Cego + Faro Apurado de Cão de Mina Cego",
       "papel_combate": "Não-hostil",
       "interacao_ambiental": "Segue o jogador em 1 exploração se poupado.",
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Mina de Bronze"
     },
     {
       "tier": "Bronze",
@@ -8417,7 +8448,8 @@
       "materiais_dropados": "Ouro + Saco de Minério Roubado + Picareta Cega do Coletor",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Mina de Bronze"
     },
     {
       "tier": "Bronze",
@@ -8435,7 +8467,8 @@
       "materiais_dropados": "Ouro + Lanterna Encardida de Mineiro Exausto + Luva Rasgada de Mineiro Exausto",
       "papel_combate": "Não-hostil condicional",
       "interacao_ambiental": "Se abordado sem arma sacada, não ataca — pode ser convencido a fugir da mina (quest).",
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Mina de Bronze — Galeria Principal"
     },
     {
       "tier": "Bronze",
@@ -8453,7 +8486,8 @@
       "materiais_dropados": "Ouro + Fio de Teia Fresca",
       "papel_combate": "Enxame",
       "interacao_ambiental": "Chamam a Matriarca se todas morrerem (8%).",
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Mina de Bronze — Galeria Principal"
     },
     {
       "tier": "Bronze",
@@ -8471,7 +8505,8 @@
       "materiais_dropados": "Ouro + Fio de Teia Grossa + Glândula de Seda da Operária",
       "papel_combate": "Controle/Obstáculo",
       "interacao_ambiental": "A teia permanece 3 turnos mesmo se ela morrer.",
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Mina de Bronze — Galeria Principal"
     },
     {
       "tier": "Bronze",
@@ -8489,7 +8524,8 @@
       "materiais_dropados": "Frasco de Gás Sulfuroso Condensado + Resíduo Amarelado da Nuvem",
       "papel_combate": "Condicional/Explosivo",
       "interacao_ambiental": "Some sozinha depois de detonar uma vez.",
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Mina de Bronze — Túneis Baixos, só em área fechada"
     },
     {
       "tier": "Bronze",
@@ -8507,7 +8543,8 @@
       "materiais_dropados": "Ouro + Mandíbula do Verme Perfurador + Segmento Escamoso de Verme",
       "papel_combate": "Assassino",
       "interacao_ambiental": "Pode sumir e reaparecer em outro ponto do combate.",
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Mina de Bronze — Túneis Baixos"
     },
     {
       "tier": "Bronze",
@@ -8525,7 +8562,8 @@
       "materiais_dropados": "Ouro + Corrente Enferrujada de Escravo da Rocha + Pano de Trabalho Forçado",
       "papel_combate": "DPS fraco",
       "interacao_ambiental": "Se poupado, pode ser libertado (afeta reputação com Milícia dos Desamparados).",
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Mina de Bronze — Túneis Baixos"
     },
     {
       "tier": "Bronze",
@@ -8543,7 +8581,8 @@
       "materiais_dropados": "Ouro + Fio de Teia Fina",
       "papel_combate": "Controle",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Mina de Bronze — Entrada"
     },
     {
       "tier": "Bronze",
@@ -8561,7 +8600,8 @@
       "materiais_dropados": "Punhado de Poeira Viva + Cristal de Minério Consciente",
       "papel_combate": "Condicional",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Mina de Bronze — Túneis Baixos, só em area fechada"
     },
     {
       "tier": "Bronze",
@@ -8579,7 +8619,8 @@
       "materiais_dropados": "Ouro + Fio de Teia Fresca",
       "papel_combate": "Enxame",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Mina de Bronze — Galeria Principal"
     },
     {
       "tier": "Bronze",
@@ -8597,7 +8638,8 @@
       "materiais_dropados": "Ouro + Presa de Aranha da Mina + Quitina de Aranha das Cavernas (chance rara)",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Mina de Bronze"
     },
     {
       "tier": "Bronze",
@@ -8615,7 +8657,8 @@
       "materiais_dropados": "Ouro + Baba Sulfurosa de Verme + Quitina de Aranha das Cavernas (chance rara)",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Mina de Bronze"
     },
     {
       "tier": "Bronze",
@@ -8633,7 +8676,8 @@
       "materiais_dropados": "Ouro + Veneno Coagulado de Aranha Pútrida",
       "papel_combate": "Debuffer",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Mina de Bronze — Túneis Baixos"
     },
     {
       "tier": "Bronze",
@@ -8651,7 +8695,8 @@
       "materiais_dropados": "Ouro + Presa Necrófaga de Verme Carniceiro",
       "papel_combate": "Necrófago",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Mina de Bronze, qualquer túnel após combate vencido"
     },
     {
       "tier": "Bronze",
@@ -8669,7 +8714,8 @@
       "materiais_dropados": "Ouro + Chicote Encardido do Carrasco da Cota + Insígnia da Cota",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Mina de Bronze — Escritório do Capataz"
     },
     {
       "tier": "Bronze",
@@ -8687,7 +8733,8 @@
       "materiais_dropados": "Ouro + Cabo Animado de Picareta Selvagem + Lâmina Corroída de Picareta Selvagem",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Mina de Bronze — Galeria Principal"
     },
     {
       "tier": "Bronze",
@@ -8705,7 +8752,8 @@
       "materiais_dropados": "Ouro + Bolsa de Imposto da Guilda + Adaga Curta de Cobrador",
       "papel_combate": "Ladrão",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Mina de Bronze — Galeria Principal"
     },
     {
       "tier": "Bronze",
@@ -8723,7 +8771,8 @@
       "materiais_dropados": "Ouro + Coleira da Guilda dos Picaretas Negros + Presa de Cão de Guarda da Guilda",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Mina de Bronze — Veio Rico"
     },
     {
       "tier": "Bronze",
@@ -8741,7 +8790,8 @@
       "materiais_dropados": "Ouro + Garra Silenciosa de Aranha Caçadora",
       "papel_combate": "DPS/Emboscada",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Mina de Bronze — Galeria Principal"
     },
     {
       "tier": "Bronze",
@@ -8759,7 +8809,8 @@
       "materiais_dropados": "Ouro + Distintivo Endividado de Mineiro Grimm + Quitina de Aranha das Cavernas (chance rara)",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Mina de Bronze"
     },
     {
       "tier": "Bronze",
@@ -8777,7 +8828,8 @@
       "materiais_dropados": "Casco de Quitina de Matriarca da Colônia de Aranhas + Ouro + Quitina de Aranha das Cavernas (chance baixa)",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Mina de Bronze"
     },
     {
       "tier": "Bronze",
@@ -8795,7 +8847,8 @@
       "materiais_dropados": "Ouro + Minério de Bronze Sulfuroso (chance alta, x2) + Fragmento de Fechadura da Armadilha da Guilda",
       "papel_combate": "Mímico",
       "interacao_ambiental": null,
-      "loot_unico": "Minério de Bronze Sulfuroso x2 (falso — some ao ser revelado, sem uso real)"
+      "loot_unico": "Minério de Bronze Sulfuroso x2 (falso — some ao ser revelado, sem uso real)",
+      "condicao_spawn": "Mina de Bronze — Veio Rico, 5% ao coletar"
     },
     {
       "tier": "Bronze",
@@ -8813,7 +8866,8 @@
       "materiais_dropados": "Ouro + Pelagem Dourada de Rato-Dourado + Bolsa de Poeira Reluzente",
       "papel_combate": "Superloot/Evasivo",
       "interacao_ambiental": null,
-      "loot_unico": "Veio de Ferro Negro (material de Tier 3)"
+      "loot_unico": "Veio de Ferro Negro (material de Tier 3)",
+      "condicao_spawn": "Mina de Bronze, spawn raro (2%)"
     },
     {
       "tier": "Bronze",
@@ -8831,7 +8885,8 @@
       "materiais_dropados": "Presa de Capataz Enforcado + Ouro + Quitina de Aranha das Cavernas (chance baixa)",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Mina de Bronze"
     },
     {
       "tier": "Bronze",
@@ -8849,7 +8904,8 @@
       "materiais_dropados": "Ouro + Fragmento de Contramestre Enlouquecido + Corda Arrebentada da Enforca + Quitina de Aranha das Cavernas (chance baixa)",
       "papel_combate": "Debuffer",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Mina de Bronze — Escritório do Capataz"
     },
     {
       "tier": "Bronze",
@@ -8867,7 +8923,8 @@
       "materiais_dropados": "Ouro + Fragmento de Supervisor Ferido + Bandagem Suja do Supervisor + Quitina de Aranha das Cavernas (chance baixa)",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Mina de Bronze — Escritório do Capataz"
     },
     {
       "tier": "Bronze",
@@ -8885,7 +8942,8 @@
       "materiais_dropados": "Ouro + Glândula de Névoa de Aranha da Névoa + Quitina de Aranha das Cavernas (chance baixa)",
       "papel_combate": "Controle",
       "interacao_ambiental": "Só aparece onde há Nuvem de Gás Sulfuroso por perto.",
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Mina de Bronze — Túneis Baixos"
     },
     {
       "tier": "Bronze",
@@ -8903,7 +8961,8 @@
       "materiais_dropados": "Ouro + Fragmento da Sobrevivente do Desabamento + Quitina de Aranha das Cavernas (chance baixa)",
       "papel_combate": "Nomeado / Mini-Boss",
       "interacao_ambiental": null,
-      "loot_unico": "Amuleto da Sobrevivente (se derrotada em vez de poupada) [ver Artefatos e Relíquias]"
+      "loot_unico": "Amuleto da Sobrevivente (se derrotada em vez de poupada) [ver Artefatos e Relíquias]",
+      "condicao_spawn": "Mina de Bronze — Galeria Colapsada, spawn raro (4%)"
     },
     {
       "tier": "Bronze",
@@ -8921,7 +8980,8 @@
       "materiais_dropados": "Casco de Quitina de Rainha-Aranha da Mina + Essência de Rainha-Aranha da Mina + Ouro + Quitina de Aranha das Cavernas (chance baixa)",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Mina de Bronze"
     },
     {
       "tier": "Bronze",
@@ -8939,7 +8999,8 @@
       "materiais_dropados": "Selo Pessoal de Barão Aldous Grimm (Corrompido) + Essência de Barão Aldous Grimm (Corrompido) + Ouro + Quitina de Aranha das Cavernas (chance baixa)",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Mina de Bronze"
     },
     {
       "tier": "Ferro",
@@ -8957,7 +9018,8 @@
       "materiais_dropados": "Ouro + Armadura Fundida ao Osso + Fragmento de Golem Corrompido (chance rara)",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Ruínas da Antiga Forja"
     },
     {
       "tier": "Ferro",
@@ -8975,7 +9037,8 @@
       "materiais_dropados": "Ouro + Pão Roubado do Acólito",
       "papel_combate": "Não-hostil condicional",
       "interacao_ambiental": "Se abordado sem combate, pode ser convencido a desertar (quest).",
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Ruínas da Antiga Forja — Muralha Externa"
     },
     {
       "tier": "Ferro",
@@ -8993,7 +9056,8 @@
       "materiais_dropados": "Casulo de Ferrugem Viva + Óxido Animado",
       "papel_combate": "Parasita",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Ruínas da Antiga Forja — Fundição, só com Golem presente"
     },
     {
       "tier": "Ferro",
@@ -9011,7 +9075,8 @@
       "materiais_dropados": "Ouro + Placa Enferrujada de Guardião + Elmo Fundido de Guardião",
       "papel_combate": "DPS simples",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Ruínas da Antiga Forja — Muralha Externa"
     },
     {
       "tier": "Ferro",
@@ -9029,7 +9094,8 @@
       "materiais_dropados": "Ouro + Arco de Osso Frágil + Flecha Enferrujada de Esqueleto",
       "papel_combate": "Ranged/DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Ruínas da Antiga Forja — Muralha Externa"
     },
     {
       "tier": "Ferro",
@@ -9047,7 +9113,8 @@
       "materiais_dropados": "Ouro + Feixe de Ossos Remontados",
       "papel_combate": "Tanque",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Ruínas da Antiga Forja — Muralha Externa"
     },
     {
       "tier": "Ferro",
@@ -9065,7 +9132,8 @@
       "materiais_dropados": "Resíduo Espectral de Guarda Menor + Fragmento de Armadura Espectral",
       "papel_combate": "Controle",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Ruínas da Antiga Forja — Salão dos Comandantes"
     },
     {
       "tier": "Ferro",
@@ -9083,7 +9151,8 @@
       "materiais_dropados": "Ouro + Capuz Encardido de Batedor + Corda de Vigia",
       "papel_combate": "Batedor",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Ruínas da Antiga Forja — arredores"
     },
     {
       "tier": "Ferro",
@@ -9101,7 +9170,8 @@
       "materiais_dropados": "Martelo Etéreo do Ferreiro Original + Fagulha do Primeiro Forjador",
       "papel_combate": "Não-hostil",
       "interacao_ambiental": "Revela a localização de um veio raro se poupado.",
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Ruínas da Antiga Forja — Forja Ativa"
     },
     {
       "tier": "Ferro",
@@ -9119,7 +9189,8 @@
       "materiais_dropados": "Ouro + Osso Desconjuntado",
       "papel_combate": "DPS fraco",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Ruínas da Antiga Forja — Muralha Externa"
     },
     {
       "tier": "Ferro",
@@ -9137,7 +9208,8 @@
       "materiais_dropados": "Resíduo Espectral de Sombra Menor",
       "papel_combate": "Controle",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Ruínas da Antiga Forja — Salão dos Comandantes"
     },
     {
       "tier": "Ferro",
@@ -9155,7 +9227,8 @@
       "materiais_dropados": "Ouro + Capa Encardida de Salteador + Fragmento de Golem Corrompido (chance rara)",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Ruínas da Antiga Forja"
     },
     {
       "tier": "Ferro",
@@ -9173,7 +9246,8 @@
       "materiais_dropados": "Cinto de Cargas do Zelote Fanático + Fragmento de Ferro Ritual",
       "papel_combate": "Explosivo",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Ruínas da Antiga Forja — Salão dos Comandantes"
     },
     {
       "tier": "Ferro",
@@ -9191,7 +9265,8 @@
       "materiais_dropados": "Ouro + Saco de Relíquias Menores + Gazua Enferrujada",
       "papel_combate": "Ladrão",
       "interacao_ambiental": "Foge com o item roubado se sobreviver 2 turnos.",
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Ruínas da Antiga Forja"
     },
     {
       "tier": "Ferro",
@@ -9209,7 +9284,8 @@
       "materiais_dropados": "Placa de Ferro do Golem Menor + Núcleo Instável Menor",
       "papel_combate": "Tanque",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Ruínas da Antiga Forja — Fundição"
     },
     {
       "tier": "Ferro",
@@ -9227,7 +9303,8 @@
       "materiais_dropados": "Ouro + Marca de Nascença em Ferro + Pano Chamuscado da Forja",
       "papel_combate": "Condicional",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Ruínas da Antiga Forja — Forja Ativa, só com fogo aceso"
     },
     {
       "tier": "Ferro",
@@ -9245,7 +9322,8 @@
       "materiais_dropados": "Ouro + Martelo Improvisado de Aprendiz + Avental Chamuscado",
       "papel_combate": "Suporte",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Ruínas da Antiga Forja — Forja Ativa"
     },
     {
       "tier": "Ferro",
@@ -9263,7 +9341,8 @@
       "materiais_dropados": "Placa de Sucata Reaproveitada + Engrenagem Torta da Forja",
       "papel_combate": "Tanque",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Ruínas da Antiga Forja — Fundição"
     },
     {
       "tier": "Ferro",
@@ -9281,7 +9360,8 @@
       "materiais_dropados": "Ouro + Emblema do Culto do Ferro + Fragmento de Golem Corrompido (chance rara)",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Ruínas da Antiga Forja"
     },
     {
       "tier": "Ferro",
@@ -9299,7 +9379,8 @@
       "materiais_dropados": "Ouro + Resíduo Espectral de Guarda Caída + Fragmento de Golem Corrompido (chance rara)",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Ruínas da Antiga Forja"
     },
     {
       "tier": "Ferro",
@@ -9317,7 +9398,8 @@
       "materiais_dropados": "Fragmento de Guarda de Ferro Corrompido + Ouro + Fragmento de Golem Corrompido (chance baixa)",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Ruínas da Antiga Forja"
     },
     {
       "tier": "Ferro",
@@ -9335,7 +9417,8 @@
       "materiais_dropados": "Fragmento de O Executor da Forja Velha + Ouro + Fragmento de Golem Corrompido (chance baixa)",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Ruínas da Antiga Forja"
     },
     {
       "tier": "Ferro",
@@ -9353,7 +9436,8 @@
       "materiais_dropados": "Ouro + Fragmento de Esqueleto Comandante + Estandarte Partido de Comando + Fragmento de Golem Corrompido (chance baixa)",
       "papel_combate": "Suporte/Buffer",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Ruínas da Antiga Forja — Salão dos Comandantes"
     },
     {
       "tier": "Ferro",
@@ -9371,7 +9455,8 @@
       "materiais_dropados": "Ouro + Fragmento de Zelote Ferreiro + Martelo Abençoado pela Mão + Fragmento de Golem Corrompido (chance baixa)",
       "papel_combate": "Suporte",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Ruínas da Antiga Forja — Forja Ativa"
     },
     {
       "tier": "Ferro",
@@ -9389,7 +9474,8 @@
       "materiais_dropados": "Ouro + Veio de Ferro Negro (chance alta, x2) + Fragmento de Bigorna Armadilhada",
       "papel_combate": "Mímico",
       "interacao_ambiental": null,
-      "loot_unico": "Veio de Ferro Negro x2"
+      "loot_unico": "Veio de Ferro Negro x2",
+      "condicao_spawn": "Ruínas da Antiga Forja — Forja Ativa, 5% ao interagir"
     },
     {
       "tier": "Ferro",
@@ -9407,7 +9493,8 @@
       "materiais_dropados": "Ouro + Resíduo Etéreo do Espírito Fugidio",
       "papel_combate": "Superloot/Evasivo",
       "interacao_ambiental": null,
-      "loot_unico": "Veio de Prata Pálida (material de Tier 4)"
+      "loot_unico": "Veio de Prata Pálida (material de Tier 4)",
+      "condicao_spawn": "Ruínas da Antiga Forja, spawn raro (2%)"
     },
     {
       "tier": "Ferro",
@@ -9425,7 +9512,8 @@
       "materiais_dropados": "Ouro + Fragmento do Capitão Que Não Se Rendeu + Fragmento de Golem Corrompido (chance baixa)",
       "papel_combate": "Nomeado / Mini-Boss",
       "interacao_ambiental": null,
-      "loot_unico": "Brasão do Capitão Que Não Se Rendeu (se derrotado em vez de poupado) [ver Artefatos e Relíquias]"
+      "loot_unico": "Brasão do Capitão Que Não Se Rendeu (se derrotado em vez de poupado) [ver Artefatos e Relíquias]",
+      "condicao_spawn": "Ruínas da Antiga Forja — Salão dos Comandantes, spawn raro (4%)"
     },
     {
       "tier": "Ferro",
@@ -9443,7 +9531,8 @@
       "materiais_dropados": "Ouro + Fragmento de Golem Fragmentado + Núcleo Rachado + Fragmento de Golem Corrompido (chance baixa)",
       "papel_combate": "Tanque/Invocador",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Ruínas da Antiga Forja — Fundição"
     },
     {
       "tier": "Ferro",
@@ -9461,7 +9550,8 @@
       "materiais_dropados": "Relicário de Zelote Superior do Ferro + Ouro + Fragmento de Golem Corrompido (chance baixa)",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Ruínas da Antiga Forja"
     },
     {
       "tier": "Ferro",
@@ -9479,7 +9569,8 @@
       "materiais_dropados": "Núcleo de Golem de Sucata + Essência de Golem de Sucata + Ouro + Fragmento de Golem Corrompido (chance baixa)",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Ruínas da Antiga Forja"
     },
     {
       "tier": "Ferro",
@@ -9497,7 +9588,8 @@
       "materiais_dropados": "Fragmento de O Primeiro Marcado + Essência de O Primeiro Marcado + Ouro + Fragmento de Golem Corrompido (chance baixa)",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Ruínas da Antiga Forja"
     },
     {
       "tier": "Prata",
@@ -9515,7 +9607,8 @@
       "materiais_dropados": "Ouro + Mortalha Fresca de Zumbi",
       "papel_combate": "DPS fraco",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Criptas de Prata — Câmara Externa"
     },
     {
       "tier": "Prata",
@@ -9533,7 +9626,8 @@
       "materiais_dropados": "Terço Quebrado da Freira Perdida",
       "papel_combate": "Não-hostil",
       "interacao_ambiental": "Revela um atalho na cripta se poupada.",
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Criptas de Prata — Corredor dos Ecos"
     },
     {
       "tier": "Prata",
@@ -9551,7 +9645,8 @@
       "materiais_dropados": "Ouro + Carne Preservada da Câmara Interna",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Criptas de Prata — Câmara Interna"
     },
     {
       "tier": "Prata",
@@ -9569,7 +9664,8 @@
       "materiais_dropados": "Ouro + Placa Rachada de Cavaleiro Ferido + Elmo Amassado de Cavaleiro",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Criptas de Prata — Salão dos Cavaleiros"
     },
     {
       "tier": "Prata",
@@ -9587,7 +9683,8 @@
       "materiais_dropados": "Ouro + Escudo Rachado de Escudeiro Amaldiçoado",
       "papel_combate": "Tanque",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Criptas de Prata — Salão dos Cavaleiros"
     },
     {
       "tier": "Prata",
@@ -9605,7 +9702,8 @@
       "materiais_dropados": "Ouro + Farrapo de Peregrino Silenciado + Pó de Ectoplasma Cristalizado (chance rara)",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Criptas de Prata"
     },
     {
       "tier": "Prata",
@@ -9623,7 +9721,8 @@
       "materiais_dropados": "Sussurro Preso em Névoa",
       "papel_combate": "Controle",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Criptas de Prata — Corredor dos Ecos"
     },
     {
       "tier": "Prata",
@@ -9641,7 +9740,8 @@
       "materiais_dropados": "Ouro + Colar de Dívida do Devoto",
       "papel_combate": "Não-hostil condicional",
       "interacao_ambiental": "Se abordado sem combate, pode desertar (quest).",
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Criptas de Prata — Câmara Externa"
     },
     {
       "tier": "Prata",
@@ -9659,7 +9759,8 @@
       "materiais_dropados": "Ouro + Placa Esquecida de Cavaleiro + Juramento Partido em Metal",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Criptas de Prata — Salão dos Cavaleiros"
     },
     {
       "tier": "Prata",
@@ -9677,7 +9778,8 @@
       "materiais_dropados": "Fio de Sudário Roído",
       "papel_combate": "Parasita",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Criptas de Prata — Câmara Externa, só com Aparição presente"
     },
     {
       "tier": "Prata",
@@ -9695,7 +9797,8 @@
       "materiais_dropados": "Resíduo Espectral de Aparição Menor",
       "papel_combate": "Controle",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Criptas de Prata — Corredor dos Ecos"
     },
     {
       "tier": "Prata",
@@ -9713,7 +9816,8 @@
       "materiais_dropados": "Ouro + Mordaça de Aprendiz",
       "papel_combate": "DPS fraco",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Criptas de Prata — Câmara Externa"
     },
     {
       "tier": "Prata",
@@ -9731,7 +9835,8 @@
       "materiais_dropados": "Névoa Fria da Entrada",
       "papel_combate": "Controle",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Criptas de Prata — Câmara Externa"
     },
     {
       "tier": "Prata",
@@ -9749,7 +9854,8 @@
       "materiais_dropados": "Ouro + Capuz Encardido de Espectro + Pó de Ectoplasma Cristalizado (chance rara)",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Criptas de Prata"
     },
     {
       "tier": "Prata",
@@ -9767,7 +9873,8 @@
       "materiais_dropados": "Ouro + Fio de Sudário Frio + Pó de Ectoplasma Cristalizado (chance rara)",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Criptas de Prata"
     },
     {
       "tier": "Prata",
@@ -9785,7 +9892,8 @@
       "materiais_dropados": "Ouro + Presa Necrófaga de Zumbi Devorador",
       "papel_combate": "Necrófago",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Criptas de Prata — Câmara Externa"
     },
     {
       "tier": "Prata",
@@ -9803,7 +9911,8 @@
       "materiais_dropados": "Ouro + Escudo Amaldiçoado + Corrente de Lealdade Partida",
       "papel_combate": "Tanque/Suporte",
       "interacao_ambiental": "+10% de Defesa a 1 Cavaleiro Amaldiçoado próximo, se vivo.",
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Criptas de Prata — Salão dos Cavaleiros"
     },
     {
       "tier": "Prata",
@@ -9821,7 +9930,8 @@
       "materiais_dropados": "Badalo Menor Rachado",
       "papel_combate": "Condicional",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Criptas de Prata — Câmara do Sino, só perto do sino"
     },
     {
       "tier": "Prata",
@@ -9839,7 +9949,8 @@
       "materiais_dropados": "Ouro + Língua Cortada Selada + Pó de Ectoplasma Cristalizado (chance rara)",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Criptas de Prata"
     },
     {
       "tier": "Prata",
@@ -9857,7 +9968,8 @@
       "materiais_dropados": "Eco Preso no Metal",
       "papel_combate": "Condicional",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Criptas de Prata — Câmara do Sino, só perto do sino"
     },
     {
       "tier": "Prata",
@@ -9875,7 +9987,8 @@
       "materiais_dropados": "Grito Guardado do Devoto Fanático",
       "papel_combate": "Explosivo",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Criptas de Prata — Corredor dos Ecos"
     },
     {
       "tier": "Prata",
@@ -9893,7 +10006,8 @@
       "materiais_dropados": "Fragmento de Placa de Cavaleiro Amaldicoado + Ouro + Pó de Ectoplasma Cristalizado (chance baixa)",
       "papel_combate": "Suporte",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Criptas de Prata"
     },
     {
       "tier": "Prata",
@@ -9911,7 +10025,8 @@
       "materiais_dropados": "Ouro + Veio de Prata Pálida (chance alta, x2) + Fragmento de Badalo Armadilhado",
       "papel_combate": "Mímico",
       "interacao_ambiental": null,
-      "loot_unico": "Veio de Prata Pálida x2 (falso — some ao ser revelado, sem uso real)"
+      "loot_unico": "Veio de Prata Pálida x2 (falso — some ao ser revelado, sem uso real)",
+      "condicao_spawn": "Criptas de Prata — Câmara do Sino, 5% ao interagir"
     },
     {
       "tier": "Prata",
@@ -9929,7 +10044,8 @@
       "materiais_dropados": "Ouro + Fragmento de Confessor do Silêncio + Relicário de Confissões Guardadas + Pó de Ectoplasma Cristalizado (chance baixa)",
       "papel_combate": "Suporte",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Criptas de Prata — Corredor dos Ecos"
     },
     {
       "tier": "Prata",
@@ -9947,7 +10063,8 @@
       "materiais_dropados": "Ouro + Resíduo de Alma Fugidia",
       "papel_combate": "Superloot/Evasivo",
       "interacao_ambiental": null,
-      "loot_unico": "Metal Estriado Élfico (material de Tier 5) — correção: nome anterior 'Veio de Ferro Negro Cristalizado' não existia como material real; ajustado pra seguir a regra 141 (Superloot dropa material real do tier seguinte)"
+      "loot_unico": "Metal Estriado Élfico (material de Tier 5) — correção: nome anterior 'Veio de Ferro Negro Cristalizado' não existia como material real; ajustado pra seguir a regra 141 (Superloot dropa material real do tier seguinte)",
+      "condicao_spawn": "Criptas de Prata, spawn raro (2%)"
     },
     {
       "tier": "Prata",
@@ -9965,7 +10082,8 @@
       "materiais_dropados": "Ouro + Fragmento de Guarda-Costas Menor + Pó de Ectoplasma Cristalizado (chance baixa)",
       "papel_combate": "Tanque",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Criptas de Prata — Corredor dos Ecos"
     },
     {
       "tier": "Prata",
@@ -9983,7 +10101,8 @@
       "materiais_dropados": "Relicário de Inquisidor do Silêncio + Ouro + Pó de Ectoplasma Cristalizado (chance baixa)",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Criptas de Prata"
     },
     {
       "tier": "Prata",
@@ -10001,7 +10120,8 @@
       "materiais_dropados": "Fragmento de Irmã Traidora + Ouro + Pó de Ectoplasma Cristalizado (chance baixa)",
       "papel_combate": "Suporte",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Criptas de Prata"
     },
     {
       "tier": "Prata",
@@ -10019,7 +10139,8 @@
       "materiais_dropados": "Ouro + Fragmento de Carrasco Silencioso + Machado Silencioso Quebrado + Pó de Ectoplasma Cristalizado (chance baixa)",
       "papel_combate": "Assassino",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Criptas de Prata — Câmara do Sino"
     },
     {
       "tier": "Prata",
@@ -10037,7 +10158,8 @@
       "materiais_dropados": "Ouro + Fragmento do Último Vigia + Pó de Ectoplasma Cristalizado (chance baixa)",
       "papel_combate": "Nomeado / Mini-Boss",
       "interacao_ambiental": null,
-      "loot_unico": "Corda do Último Vigia (se derrotado em vez de negociado) [ver Artefatos e Relíquias]"
+      "loot_unico": "Corda do Último Vigia (se derrotado em vez de negociado) [ver Artefatos e Relíquias]",
+      "condicao_spawn": "Criptas de Prata — Câmara do Sino, spawn raro (4%)"
     },
     {
       "tier": "Prata",
@@ -10055,7 +10177,8 @@
       "materiais_dropados": "Ouro + Fragmento de Guarda-Costas do Silêncio + Pó de Ectoplasma Cristalizado (chance baixa)",
       "papel_combate": "Tanque",
       "interacao_ambiental": "Redireciona 1 ataque por turno pro Confessor, se presente.",
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Criptas de Prata — Corredor dos Ecos"
     },
     {
       "tier": "Prata",
@@ -10073,7 +10196,8 @@
       "materiais_dropados": "Resíduo Espectral de O Ceifador do Silêncio + Essência de O Ceifador do Silêncio + Ouro + Pó de Ectoplasma Cristalizado (chance baixa)",
       "papel_combate": "Controle",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Criptas de Prata"
     },
     {
       "tier": "Prata",
@@ -10091,7 +10215,8 @@
       "materiais_dropados": "Núcleo de Guardião do Sino + Essência de Guardião do Sino + Ouro + Pó de Ectoplasma Cristalizado (chance baixa)",
       "papel_combate": "Suporte",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": "O Sino Que Não Deve Tocar",
+      "condicao_spawn": "Criptas de Prata"
     },
     {
       "tier": "Aco Elfico",
@@ -10109,7 +10234,8 @@
       "materiais_dropados": "Ouro + Fragmento de Pedra Rúnica Quebrada",
       "papel_combate": "DPS fraco",
       "interacao_ambiental": "Pode ser reparada se poupada e levada a um ferreiro élfico (quest).",
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Ruínas Élficas — Pátio Externo"
     },
     {
       "tier": "Aco Elfico",
@@ -10127,7 +10253,8 @@
       "materiais_dropados": "Ouro + Amostra de Musgo Devorador",
       "papel_combate": "Necrófago",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Ruínas Élficas — Pátio Externo"
     },
     {
       "tier": "Aco Elfico",
@@ -10145,7 +10272,8 @@
       "materiais_dropados": "Ouro + Broche do Clã Perdido",
       "papel_combate": "Não-hostil",
       "interacao_ambiental": "Ensina uma Receita se poupada e tratada com respeito.",
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Ruínas Élficas — Pátio Externo"
     },
     {
       "tier": "Aco Elfico",
@@ -10163,7 +10291,8 @@
       "materiais_dropados": "Ouro + Broto de Musgo Rastejante",
       "papel_combate": "Necrófago",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Ruínas Élficas — Pátio Externo"
     },
     {
       "tier": "Aco Elfico",
@@ -10181,7 +10310,8 @@
       "materiais_dropados": "Ouro + Núcleo Rúnico Dormente + Cristal Ressonante da Elfa (chance rara)",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Ruínas Élficas"
     },
     {
       "tier": "Aco Elfico",
@@ -10199,7 +10329,8 @@
       "materiais_dropados": "Ouro + Casca Corrompida de Ent Pequeno",
       "papel_combate": "Tanque",
       "interacao_ambiental": "Se destruído, planta uma nova semente corrompida no local (cosmético).",
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Bosques Pétreos"
     },
     {
       "tier": "Aco Elfico",
@@ -10217,7 +10348,8 @@
       "materiais_dropados": "Ouro + Fragmento de Pedra do Guardião Menor",
       "papel_combate": "Tanque",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Ruínas Élficas — Pátio Interno"
     },
     {
       "tier": "Aco Elfico",
@@ -10235,7 +10367,8 @@
       "materiais_dropados": "Ouro + Seiva Parasita Extraída",
       "papel_combate": "Parasita",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Ruínas Élficas, só com Aranha-Seiva presente"
     },
     {
       "tier": "Aco Elfico",
@@ -10253,7 +10386,8 @@
       "materiais_dropados": "Ouro + Engrenagem Rúnica Recém-Ativada",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Ruínas Élficas — Pátio Externo"
     },
     {
       "tier": "Aco Elfico",
@@ -10271,7 +10405,8 @@
       "materiais_dropados": "Ouro + Cauda Espectral de Raposa Jovem",
       "papel_combate": "DPS fraco",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Bosques Pétreos"
     },
     {
       "tier": "Aco Elfico",
@@ -10289,7 +10424,8 @@
       "materiais_dropados": "Ouro + Seiva Viva Corrompida",
       "papel_combate": "Debuffer",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Ruínas Élficas — Pátio Externo"
     },
     {
       "tier": "Aco Elfico",
@@ -10307,7 +10443,8 @@
       "materiais_dropados": "Ouro + Arco Espectral de Arqueiro Fantasma + Cristal Ressonante da Elfa (chance rara)",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Ruínas Élficas"
     },
     {
       "tier": "Aco Elfico",
@@ -10325,7 +10462,8 @@
       "materiais_dropados": "Ouro + Núcleo Rúnico Desperto",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Ruínas Élficas — Pátio Interno"
     },
     {
       "tier": "Aco Elfico",
@@ -10343,7 +10481,8 @@
       "materiais_dropados": "Ouro + Lâmina Espectral Quebrada",
       "papel_combate": "Assassino",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Ruínas Élficas — Pátio Interno"
     },
     {
       "tier": "Aco Elfico",
@@ -10361,7 +10500,8 @@
       "materiais_dropados": "Ouro + Cauda Espectral de Raposa da Névoa",
       "papel_combate": "Batedor",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Bosques Pétreos, mais comum à noite"
     },
     {
       "tier": "Aco Elfico",
@@ -10379,7 +10519,8 @@
       "materiais_dropados": "Ouro + Fragmento da Última Canção",
       "papel_combate": "Controle",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Bosques Pétreos, à noite"
     },
     {
       "tier": "Aco Elfico",
@@ -10397,7 +10538,8 @@
       "materiais_dropados": "Ouro + Arco Corrompido de Batedor Élfico",
       "papel_combate": "Ranged",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Bosques Pétreos"
     },
     {
       "tier": "Aco Elfico",
@@ -10415,7 +10557,8 @@
       "materiais_dropados": "Ouro + Fragmento de Pedra Rachada",
       "papel_combate": "Tanque",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Ruínas Élficas — Pátio Interno"
     },
     {
       "tier": "Aco Elfico",
@@ -10433,7 +10576,8 @@
       "materiais_dropados": "Ouro + Eco Menor Fragmentado",
       "papel_combate": "Controle",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Bosques Pétreos, à noite"
     },
     {
       "tier": "Aco Elfico",
@@ -10451,7 +10595,8 @@
       "materiais_dropados": "Ouro + Lâmina Espectral Menor",
       "papel_combate": "Assassino",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Ruínas Élficas — Pátio Interno"
     },
     {
       "tier": "Aco Elfico",
@@ -10469,7 +10614,8 @@
       "materiais_dropados": "Ouro + Seiva Escurecida de Aranha + Cristal Ressonante da Elfa (chance rara)",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Ruínas Élficas"
     },
     {
       "tier": "Aco Elfico",
@@ -10487,7 +10633,8 @@
       "materiais_dropados": "Ouro + Capuz Silencioso da Ordem + Cristal Ressonante da Elfa (chance rara)",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Ruínas Élficas"
     },
     {
       "tier": "Aco Elfico",
@@ -10505,7 +10652,8 @@
       "materiais_dropados": "Ouro + Arco Corrompido de Batedor Veterano",
       "papel_combate": "Ranged/DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Bosques Pétreos"
     },
     {
       "tier": "Aco Elfico",
@@ -10523,7 +10671,8 @@
       "materiais_dropados": "Ouro + Corda Rúnica de Caçador Menor",
       "papel_combate": "Debuffer",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Bosques Pétreos"
     },
     {
       "tier": "Aco Elfico",
@@ -10541,7 +10690,8 @@
       "materiais_dropados": "Ouro + Casca Corrompida de Ent Ancião",
       "papel_combate": "Tanque",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Bosques Pétreos"
     },
     {
       "tier": "Aco Elfico",
@@ -10559,7 +10709,8 @@
       "materiais_dropados": "Núcleo de Guardiao das Ruinas + Ouro + Cristal Ressonante da Elfa (chance baixa)",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Ruínas Élficas"
     },
     {
       "tier": "Aco Elfico",
@@ -10577,7 +10728,8 @@
       "materiais_dropados": "Ouro + Sabugueiro Ancestral (chance alta, x2) + Fragmento de Raiz Armadilhada",
       "papel_combate": "Mímico",
       "interacao_ambiental": null,
-      "loot_unico": "Sabugueiro Ancestral x2 (falso — some ao ser revelado, sem uso real)"
+      "loot_unico": "Sabugueiro Ancestral x2 (falso — some ao ser revelado, sem uso real)",
+      "condicao_spawn": "Bosques Pétreos, 5% ao interagir com árvore antiga"
     },
     {
       "tier": "Aco Elfico",
@@ -10595,7 +10747,8 @@
       "materiais_dropados": "Ouro + Pelo Prateado do Cervo",
       "papel_combate": "Superloot/Evasivo",
       "interacao_ambiental": null,
-      "loot_unico": "Latão de Fornalha Subterrânea (material de Tier 6)"
+      "loot_unico": "Latão de Fornalha Subterrânea (material de Tier 6)",
+      "condicao_spawn": "Bosques Pétreos, spawn raro (2%)"
     },
     {
       "tier": "Aco Elfico",
@@ -10613,7 +10766,8 @@
       "materiais_dropados": "Ouro + Fragmento de Guardião Menor dos Portões + Cristal Ressonante da Elfa (chance baixa)",
       "papel_combate": "Tanque",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Ruínas Élficas — Portão Principal"
     },
     {
       "tier": "Aco Elfico",
@@ -10631,7 +10785,8 @@
       "materiais_dropados": "Núcleo de Guardião dos Bosques Pétreos + Ouro + Cristal Ressonante da Elfa (chance baixa)",
       "papel_combate": "Controle",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Ruínas Élficas"
     },
     {
       "tier": "Aco Elfico",
@@ -10649,7 +10804,8 @@
       "materiais_dropados": "Fragmento de Caçador de Conjuradores + Ouro + Cristal Ressonante da Elfa (chance baixa)",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Ruínas Élficas"
     },
     {
       "tier": "Aco Elfico",
@@ -10667,7 +10823,8 @@
       "materiais_dropados": "Ouro + Fragmento da Vigília Élfica + Cristal Ressonante da Elfa (chance baixa)",
       "papel_combate": "Nomeado / Mini-Boss",
       "interacao_ambiental": null,
-      "loot_unico": "Fragmento da Lâmina que Nunca Dormiu (se derrotada em vez de testada) [ver Artefatos e Relíquias]"
+      "loot_unico": "Fragmento da Lâmina que Nunca Dormiu (se derrotada em vez de testada) [ver Artefatos e Relíquias]",
+      "condicao_spawn": "Ruínas Élficas — Pátio Interno, spawn raro (4%)"
     },
     {
       "tier": "Aco Elfico",
@@ -10685,7 +10842,8 @@
       "materiais_dropados": "Ouro + Fragmento de Guardião dos Portões + Cristal Ressonante da Elfa (chance baixa)",
       "papel_combate": "Tanque",
       "interacao_ambiental": "Nunca persegue — fica sempre no mesmo ponto.",
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Ruínas Élficas — Portão Principal"
     },
     {
       "tier": "Aco Elfico",
@@ -10703,7 +10861,8 @@
       "materiais_dropados": "Ouro + Fragmento de Caçador Veterano + Cristal Ressonante da Elfa (chance baixa)",
       "papel_combate": "Debuffer",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Bosques Pétreos"
     },
     {
       "tier": "Aco Elfico",
@@ -10721,7 +10880,8 @@
       "materiais_dropados": "Resíduo Espectral de Espirito da Ultima Elfa + Essência de Espirito da Ultima Elfa + Ouro + Cristal Ressonante da Elfa (chance baixa)",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": "A Lâmina da Elfa Sem Nome",
+      "condicao_spawn": "Ruínas Élficas"
     },
     {
       "tier": "Aco Elfico",
@@ -10739,7 +10899,8 @@
       "materiais_dropados": "Núcleo de O Núcleo Desgovernado + Essência de O Núcleo Desgovernado + Ouro + Cristal Ressonante da Elfa (chance baixa)",
       "papel_combate": "Suporte",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Ruínas Élficas"
     },
     {
       "tier": "Mecanismo Anao",
@@ -10757,7 +10918,8 @@
       "materiais_dropados": "Ouro + Ferramenta Enferrujada do Último Anão",
       "papel_combate": "Não-hostil",
       "interacao_ambiental": "Ensina uma Receita se poupado.",
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Câmara Mecânica Anã — Salão de Entrada"
     },
     {
       "tier": "Mecanismo Anao",
@@ -10775,7 +10937,8 @@
       "materiais_dropados": "Ouro + Engrenagem Solta de Vigia Menor",
       "papel_combate": "Batedor",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Câmara Mecânica Anã — Salão de Entrada"
     },
     {
       "tier": "Mecanismo Anao",
@@ -10793,7 +10956,8 @@
       "materiais_dropados": "Ouro + Garra Reciclada de Devorador Menor",
       "papel_combate": "Necrófago",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Câmara Mecânica Anã — Salão de Entrada"
     },
     {
       "tier": "Mecanismo Anao",
@@ -10811,7 +10975,8 @@
       "materiais_dropados": "Ouro + Resíduo de Vapor Fraco",
       "papel_combate": "Parasita",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Câmara Mecânica Anã, só com Autômato presente"
     },
     {
       "tier": "Mecanismo Anao",
@@ -10829,7 +10994,8 @@
       "materiais_dropados": "Ouro + Placa Quebrada de Autômato + Núcleo de Engrenagem Ancestral (chance rara)",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Câmara Mecânica Anã"
     },
     {
       "tier": "Mecanismo Anao",
@@ -10847,7 +11013,8 @@
       "materiais_dropados": "Ouro + Lente de Vigia Corrompida",
       "papel_combate": "Batedor",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Câmara Mecânica Anã — Salão de Entrada"
     },
     {
       "tier": "Mecanismo Anao",
@@ -10865,7 +11032,8 @@
       "materiais_dropados": "Ouro + Caderno de Anotações do Aprendiz",
       "papel_combate": "Não-hostil condicional",
       "interacao_ambiental": "Se poupado, pode consertar 1 item danificado de graça (quest).",
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Câmara Mecânica Anã — Oficina Principal"
     },
     {
       "tier": "Mecanismo Anao",
@@ -10883,7 +11051,8 @@
       "materiais_dropados": "Ouro + Garra Reciclada de Devorador",
       "papel_combate": "Necrófago",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Câmara Mecânica Anã — Salão de Entrada"
     },
     {
       "tier": "Mecanismo Anao",
@@ -10901,7 +11070,8 @@
       "materiais_dropados": "Ouro + Resíduo de Vapor Corrosivo",
       "papel_combate": "Parasita",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Câmara Mecânica Anã, só com Autômato presente"
     },
     {
       "tier": "Mecanismo Anao",
@@ -10919,7 +11089,8 @@
       "materiais_dropados": "Ouro + Haste de Pistão Menor",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Câmara Mecânica Anã — Corredor de Vapor"
     },
     {
       "tier": "Mecanismo Anao",
@@ -10937,7 +11108,8 @@
       "materiais_dropados": "Ouro + Luva Gasta de Engenheiro Cansado",
       "papel_combate": "DPS fraco",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Câmara Mecânica Anã — Oficina Principal"
     },
     {
       "tier": "Mecanismo Anao",
@@ -10955,7 +11127,8 @@
       "materiais_dropados": "Ouro + Válvula Menor Presa",
       "papel_combate": "Explosivo",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Câmara Mecânica Anã — Corredor de Vapor"
     },
     {
       "tier": "Mecanismo Anao",
@@ -10973,7 +11146,8 @@
       "materiais_dropados": "Ouro + Roda de Trilho Menor",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Câmara Mecânica Anã — Corredor de Vapor"
     },
     {
       "tier": "Mecanismo Anao",
@@ -10991,7 +11165,8 @@
       "materiais_dropados": "Ouro + Escova Mecânica de Limpeza",
       "papel_combate": "DPS fraco",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Câmara Mecânica Anã — Oficina Principal"
     },
     {
       "tier": "Mecanismo Anao",
@@ -11009,7 +11184,8 @@
       "materiais_dropados": "Ouro + Engrenagem de Rato Mecânico",
       "papel_combate": "DPS fraco",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Câmara Mecânica Anã — Salão de Entrada"
     },
     {
       "tier": "Mecanismo Anao",
@@ -11027,7 +11203,8 @@
       "materiais_dropados": "Ouro + Manifesto do Renegado + Núcleo de Engrenagem Ancestral (chance rara)",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Câmara Mecânica Anã"
     },
     {
       "tier": "Mecanismo Anao",
@@ -11045,7 +11222,8 @@
       "materiais_dropados": "Ouro + Válvula Explosiva Instável",
       "papel_combate": "Explosivo",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Câmara Mecânica Anã — Corredor de Vapor"
     },
     {
       "tier": "Mecanismo Anao",
@@ -11063,7 +11241,8 @@
       "materiais_dropados": "Ouro + Trilho de Metal Vivo",
       "papel_combate": "Assassino",
       "interacao_ambiental": "Só ataca quem está no caminho dos trilhos.",
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Câmara Mecânica Anã — Corredor de Vapor"
     },
     {
       "tier": "Mecanismo Anao",
@@ -11081,7 +11260,8 @@
       "materiais_dropados": "Ouro + Bobina Noturna de Autômato",
       "papel_combate": "Condicional",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Câmara Mecânica Anã, só à noite"
     },
     {
       "tier": "Mecanismo Anao",
@@ -11099,7 +11279,8 @@
       "materiais_dropados": "Ouro + Placa Fundida Parcial",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Câmara Mecânica Anã — Corredor de Vapor"
     },
     {
       "tier": "Mecanismo Anao",
@@ -11117,7 +11298,8 @@
       "materiais_dropados": "Ouro + Haste de Pistão Instável",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Câmara Mecânica Anã — Corredor de Vapor"
     },
     {
       "tier": "Mecanismo Anao",
@@ -11135,7 +11317,8 @@
       "materiais_dropados": "Ouro + Mola Enfurecida + Núcleo de Engrenagem Ancestral (chance rara)",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Câmara Mecânica Anã"
     },
     {
       "tier": "Mecanismo Anao",
@@ -11153,7 +11336,8 @@
       "materiais_dropados": "Ouro + Kit de Sabotagem Improvisado",
       "papel_combate": "Ladrão/Sabotador",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Câmara Mecânica Anã — Oficina Principal"
     },
     {
       "tier": "Mecanismo Anao",
@@ -11171,7 +11355,8 @@
       "materiais_dropados": "Ouro + Placa de Fusão Menor",
       "papel_combate": "Tanque",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Câmara Mecânica Anã — Corredor de Vapor"
     },
     {
       "tier": "Mecanismo Anao",
@@ -11189,7 +11374,8 @@
       "materiais_dropados": "Ouro + Máscara Possuída pelo Vapor + Núcleo de Engrenagem Ancestral (chance rara)",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Câmara Mecânica Anã"
     },
     {
       "tier": "Mecanismo Anao",
@@ -11207,7 +11393,8 @@
       "materiais_dropados": "Engrenagem de Maquina de Guerra Ana + Ouro + Núcleo de Engrenagem Ancestral (chance baixa)",
       "papel_combate": "Controle",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Câmara Mecânica Anã"
     },
     {
       "tier": "Mecanismo Anao",
@@ -11225,7 +11412,8 @@
       "materiais_dropados": "Ouro + Latão de Fornalha Subterrânea (chance alta, x2) + Fragmento de Fechadura da Caixa",
       "papel_combate": "Mímico",
       "interacao_ambiental": null,
-      "loot_unico": "Latão de Fornalha Subterrânea x2 (falso — some ao ser revelado, sem uso real)"
+      "loot_unico": "Latão de Fornalha Subterrânea x2 (falso — some ao ser revelado, sem uso real)",
+      "condicao_spawn": "Câmara Mecânica Anã — Oficina Principal, 5% ao interagir"
     },
     {
       "tier": "Mecanismo Anao",
@@ -11243,7 +11431,8 @@
       "materiais_dropados": "Ouro + Peça Rara de Rato Fugidio",
       "papel_combate": "Superloot/Evasivo",
       "interacao_ambiental": null,
-      "loot_unico": "Obsidiana Incandescente (material de Tier 7)"
+      "loot_unico": "Obsidiana Incandescente (material de Tier 7)",
+      "condicao_spawn": "Câmara Mecânica Anã, spawn raro (2%)"
     },
     {
       "tier": "Mecanismo Anao",
@@ -11261,7 +11450,8 @@
       "materiais_dropados": "Núcleo de Guardião do Puzzle Central + Ouro + Núcleo de Engrenagem Ancestral (chance baixa)",
       "papel_combate": "Controle",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Câmara Mecânica Anã"
     },
     {
       "tier": "Mecanismo Anao",
@@ -11279,7 +11469,8 @@
       "materiais_dropados": "Ouro + Fragmento de Autômato Reconstruído + Núcleo de Engrenagem Ancestral (chance baixa)",
       "papel_combate": "Tanque",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Câmara Mecânica Anã — Oficina Principal"
     },
     {
       "tier": "Mecanismo Anao",
@@ -11297,7 +11488,8 @@
       "materiais_dropados": "Resíduo Espectral de Engenheiro Fantasma + Ouro + Núcleo de Engrenagem Ancestral (chance baixa)",
       "papel_combate": "Suporte",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Câmara Mecânica Anã"
     },
     {
       "tier": "Mecanismo Anao",
@@ -11315,7 +11507,8 @@
       "materiais_dropados": "Ouro + Fragmento de Anão Fundido ao Metal + Núcleo de Engrenagem Ancestral (chance baixa)",
       "papel_combate": "Tanque",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Câmara Mecânica Anã — Corredor de Vapor"
     },
     {
       "tier": "Mecanismo Anao",
@@ -11333,7 +11526,8 @@
       "materiais_dropados": "Ouro + Fragmento de Grondar + Núcleo de Engrenagem Ancestral (chance baixa)",
       "papel_combate": "Nomeado / Mini-Boss",
       "interacao_ambiental": null,
-      "loot_unico": "Chave-Mestra de Grondar (se derrotado antes de se autodesligar) [ver Artefatos e Relíquias]"
+      "loot_unico": "Chave-Mestra de Grondar (se derrotado antes de se autodesligar) [ver Artefatos e Relíquias]",
+      "condicao_spawn": "Câmara Mecânica Anã — Oficina Principal, spawn raro (4%)"
     },
     {
       "tier": "Mecanismo Anao",
@@ -11351,7 +11545,8 @@
       "materiais_dropados": "Ouro + Fragmento de Sabotador Veterano + Núcleo de Engrenagem Ancestral (chance baixa)",
       "papel_combate": "Ladrão/Sabotador",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Câmara Mecânica Anã — Oficina Principal"
     },
     {
       "tier": "Mecanismo Anao",
@@ -11369,7 +11564,8 @@
       "materiais_dropados": "Núcleo de O Colosso a Vapor Desgovernado + Essência de O Colosso a Vapor Desgovernado + Ouro + Núcleo de Engrenagem Ancestral (chance baixa)",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Câmara Mecânica Anã"
     },
     {
       "tier": "Mecanismo Anao",
@@ -11387,7 +11583,8 @@
       "materiais_dropados": "Núcleo de Nucleo Mecanico Ancestral + Essência de Nucleo Mecanico Ancestral + Ouro + Núcleo de Engrenagem Ancestral (chance baixa)",
       "papel_combate": "Controle",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Câmara Mecânica Anã"
     },
     {
       "tier": "Vidro Vulcanico",
@@ -11405,7 +11602,8 @@
       "materiais_dropados": "Ouro + Caderno do Peregrino da Fenda",
       "papel_combate": "Não-hostil",
       "interacao_ambiental": "Revela um Local Secreto se poupado.",
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Fenda Vulcânica Ativa — Bordas"
     },
     {
       "tier": "Vidro Vulcanico",
@@ -11423,7 +11621,8 @@
       "materiais_dropados": "Ouro + Pena de Urubu das Cinzas Jovem",
       "papel_combate": "Necrófago",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Fenda Vulcânica Ativa, após combate vencido"
     },
     {
       "tier": "Vidro Vulcanico",
@@ -11441,7 +11640,8 @@
       "materiais_dropados": "Ouro + Escama Fina de Salamandra Recém-Nascida",
       "papel_combate": "DPS fraco",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Fenda Vulcânica Ativa — Bordas"
     },
     {
       "tier": "Vidro Vulcanico",
@@ -11459,7 +11659,8 @@
       "materiais_dropados": "Ouro + Manto Novo de Zelote Jovem",
       "papel_combate": "Não-hostil condicional",
       "interacao_ambiental": "Se abordado em paz, pode desertar (quest).",
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Fenda Vulcânica Ativa — Templo da Coroação"
     },
     {
       "tier": "Vidro Vulcanico",
@@ -11477,7 +11678,8 @@
       "materiais_dropados": "Ouro + Escama de Salamandra Jovem",
       "papel_combate": "DPS fraco",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Fenda Vulcânica Ativa — Bordas"
     },
     {
       "tier": "Vidro Vulcanico",
@@ -11495,7 +11697,8 @@
       "materiais_dropados": "Ouro + Pena Cinzenta de Urubu",
       "papel_combate": "Necrófago",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Fenda Vulcânica Ativa, qualquer área após combate vencido"
     },
     {
       "tier": "Vidro Vulcanico",
@@ -11513,7 +11716,8 @@
       "materiais_dropados": "Ouro + Punhado de Cinzas Instáveis",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Fenda Vulcânica Ativa — Câmara de Magma"
     },
     {
       "tier": "Vidro Vulcanico",
@@ -11531,7 +11735,8 @@
       "materiais_dropados": "Ouro + Cauda de Lagartixa Jovem",
       "papel_combate": "Batedor",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Fenda Vulcânica Ativa — Bordas"
     },
     {
       "tier": "Vidro Vulcanico",
@@ -11549,7 +11754,8 @@
       "materiais_dropados": "Ouro + Casulo de Larva de Magma",
       "papel_combate": "DPS fraco",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Fenda Vulcânica Ativa — Bordas"
     },
     {
       "tier": "Vidro Vulcanico",
@@ -11567,7 +11773,8 @@
       "materiais_dropados": "Ouro + Brasa Instável Menor",
       "papel_combate": "Explosivo",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Fenda Vulcânica Ativa — Câmara de Magma"
     },
     {
       "tier": "Vidro Vulcanico",
@@ -11585,7 +11792,8 @@
       "materiais_dropados": "Ouro + Escama Vítrea de Salamandra + Escama de Fera Vítrea (chance rara)",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Fenda Vulcânica Ativa"
     },
     {
       "tier": "Vidro Vulcanico",
@@ -11603,7 +11811,8 @@
       "materiais_dropados": "Ouro + Cauda de Lagartixa de Obsidiana",
       "papel_combate": "Batedor",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Fenda Vulcânica Ativa — Bordas"
     },
     {
       "tier": "Vidro Vulcanico",
@@ -11621,7 +11830,8 @@
       "materiais_dropados": "Ouro + Núcleo de Brasa Instável",
       "papel_combate": "Explosivo",
       "interacao_ambiental": "Ao morrer, causa 1 de Queimadura em área.",
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Fenda Vulcânica Ativa — Câmara de Magma"
     },
     {
       "tier": "Vidro Vulcanico",
@@ -11639,7 +11849,8 @@
       "materiais_dropados": "Ouro + Casulo de Larva de Magma Comum",
       "papel_combate": "Enxame",
       "interacao_ambiental": "Chamam o Verme da Lava se todas morrerem (8%).",
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Fenda Vulcânica Ativa — Bordas"
     },
     {
       "tier": "Vidro Vulcanico",
@@ -11657,7 +11868,8 @@
       "materiais_dropados": "Ouro + Símbolo Duvidoso do Zelote",
       "papel_combate": "Não-hostil condicional",
       "interacao_ambiental": "Se abordado em paz, pode desertar (quest).",
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Fenda Vulcânica Ativa — Templo da Coroação"
     },
     {
       "tier": "Vidro Vulcanico",
@@ -11675,7 +11887,8 @@
       "materiais_dropados": "Ouro + Cristal Parasita Extraído",
       "papel_combate": "Parasita",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Fenda Vulcânica Ativa, só com Fera Vítrea presente"
     },
     {
       "tier": "Vidro Vulcanico",
@@ -11693,7 +11906,8 @@
       "materiais_dropados": "Ouro + Fumaça Condensada Fraca",
       "papel_combate": "Controle",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Fenda Vulcânica Ativa — Câmara de Magma"
     },
     {
       "tier": "Vidro Vulcanico",
@@ -11711,7 +11925,8 @@
       "materiais_dropados": "Ouro + Cinto Incendiário Menor",
       "papel_combate": "Explosivo",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Fenda Vulcânica Ativa — Templo da Coroação"
     },
     {
       "tier": "Vidro Vulcanico",
@@ -11729,7 +11944,8 @@
       "materiais_dropados": "Ouro + Núcleo de Cinzas Vivas + Escama de Fera Vítrea (chance rara)",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Fenda Vulcânica Ativa"
     },
     {
       "tier": "Vidro Vulcanico",
@@ -11747,7 +11963,8 @@
       "materiais_dropados": "Ouro + Segmento de Verme da Lava + Escama de Fera Vítrea (chance rara)",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Fenda Vulcânica Ativa"
     },
     {
       "tier": "Vidro Vulcanico",
@@ -11765,7 +11982,8 @@
       "materiais_dropados": "Ouro + Resíduo de Espírito da Fumaça",
       "papel_combate": "Controle",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Fenda Vulcânica Ativa — Câmara de Magma"
     },
     {
       "tier": "Vidro Vulcanico",
@@ -11783,7 +12001,8 @@
       "materiais_dropados": "Ouro + Tocha da Vigília Noturna",
       "papel_combate": "Condicional",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Fenda Vulcânica Ativa, só à noite"
     },
     {
       "tier": "Vidro Vulcanico",
@@ -11801,7 +12020,8 @@
       "materiais_dropados": "Ouro + Elmo Menor do Guarda do Rei Vazio",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Fenda Vulcânica Ativa — Templo da Coroação"
     },
     {
       "tier": "Vidro Vulcanico",
@@ -11819,7 +12039,8 @@
       "materiais_dropados": "Ouro + Emblema da Coroação Vazia + Escama de Fera Vítrea (chance rara)",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Fenda Vulcânica Ativa"
     },
     {
       "tier": "Vidro Vulcanico",
@@ -11837,7 +12058,8 @@
       "materiais_dropados": "Ouro + Cinto Incendiário Ritual",
       "papel_combate": "Explosivo",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Fenda Vulcânica Ativa — Templo da Coroação"
     },
     {
       "tier": "Vidro Vulcanico",
@@ -11855,7 +12077,8 @@
       "materiais_dropados": "Ouro + Obsidiana Incandescente (chance alta, x2) + Fragmento de Tesouro Falso",
       "papel_combate": "Mímico",
       "interacao_ambiental": null,
-      "loot_unico": "Obsidiana Incandescente x2 (falso — some ao ser revelado, sem uso real)"
+      "loot_unico": "Obsidiana Incandescente x2 (falso — some ao ser revelado, sem uso real)",
+      "condicao_spawn": "Fenda Vulcânica Ativa, 5% ao encontrar tesouro"
     },
     {
       "tier": "Vidro Vulcanico",
@@ -11873,7 +12096,8 @@
       "materiais_dropados": "Ouro + Escama Dourada de Salamandra",
       "papel_combate": "Superloot/Evasivo",
       "interacao_ambiental": null,
-      "loot_unico": "Lingote de Ferro Órquico Bruto (material de Tier 8)"
+      "loot_unico": "Lingote de Ferro Órquico Bruto (material de Tier 8)",
+      "condicao_spawn": "Fenda Vulcânica Ativa, spawn raro (2%)"
     },
     {
       "tier": "Vidro Vulcanico",
@@ -11891,7 +12115,8 @@
       "materiais_dropados": "Ouro + Fragmento de Arauto Menor Aprendiz + Escama de Fera Vítrea (chance baixa)",
       "papel_combate": "Suporte",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Fenda Vulcânica Ativa — Templo da Coroação"
     },
     {
       "tier": "Vidro Vulcanico",
@@ -11909,7 +12134,8 @@
       "materiais_dropados": "Presa de Fera Vitrea Ancestral + Ouro + Escama de Fera Vítrea (chance baixa)",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Fenda Vulcânica Ativa"
     },
     {
       "tier": "Vidro Vulcanico",
@@ -11927,7 +12153,8 @@
       "materiais_dropados": "Ouro + Fragmento de Guarda do Rei Vazio + Escama de Fera Vítrea (chance baixa)",
       "papel_combate": "Tanque/DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Fenda Vulcânica Ativa — Templo da Coroação"
     },
     {
       "tier": "Vidro Vulcanico",
@@ -11945,7 +12172,8 @@
       "materiais_dropados": "Ouro + Fragmento de Arauto Menor da Coroação + Escama de Fera Vítrea (chance baixa)",
       "papel_combate": "Suporte",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Fenda Vulcânica Ativa — Templo da Coroação"
     },
     {
       "tier": "Vidro Vulcanico",
@@ -11963,7 +12191,8 @@
       "materiais_dropados": "Relicário de Sumo Sacerdote da Coroação + Ouro + Escama de Fera Vítrea (chance baixa)",
       "papel_combate": "Suporte",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Fenda Vulcânica Ativa"
     },
     {
       "tier": "Vidro Vulcanico",
@@ -11981,7 +12210,8 @@
       "materiais_dropados": "Relicário de Zelote Superior da Coroação + Ouro + Escama de Fera Vítrea (chance baixa)",
       "papel_combate": "Suporte",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Fenda Vulcânica Ativa"
     },
     {
       "tier": "Vidro Vulcanico",
@@ -11999,7 +12229,8 @@
       "materiais_dropados": "Ouro + Fragmento de Irmão Kaelen + Escama de Fera Vítrea (chance baixa)",
       "papel_combate": "Nomeado / Mini-Boss",
       "interacao_ambiental": null,
-      "loot_unico": "Cinzas do Último Sermão (se ele lutar até o fim) [ver Artefatos e Relíquias]"
+      "loot_unico": "Cinzas do Último Sermão (se ele lutar até o fim) [ver Artefatos e Relíquias]",
+      "condicao_spawn": "Fenda Vulcânica Ativa — Templo da Coroação, spawn raro (4%)"
     },
     {
       "tier": "Vidro Vulcanico",
@@ -12017,7 +12248,8 @@
       "materiais_dropados": "Núcleo de Guardiao da Fenda Ativa + Essência de Guardiao da Fenda Ativa + Ouro + Escama de Fera Vítrea (chance baixa)",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": "A Espada de Obsidiana Queimada",
+      "condicao_spawn": "Fenda Vulcânica Ativa"
     },
     {
       "tier": "Vidro Vulcanico",
@@ -12035,7 +12267,8 @@
       "materiais_dropados": "Relicário de O Arauto da Coroação Vazia + Essência de O Arauto da Coroação Vazia + Ouro + Escama de Fera Vítrea (chance baixa)",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": "Rei sem corpo",
+      "condicao_spawn": "Fenda Vulcânica Ativa"
     },
     {
       "tier": "Ferro Orquico",
@@ -12053,7 +12286,8 @@
       "materiais_dropados": "Ouro + Mapa Rasgado do Batedor",
       "papel_combate": "Não-hostil",
       "interacao_ambiental": "Revela um Local Secreto se poupado.",
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Trilha de Caça do Bando"
     },
     {
       "tier": "Ferro Orquico",
@@ -12071,7 +12305,8 @@
       "materiais_dropados": "Ouro + Pelagem Ferida de Lobo Solitário",
       "papel_combate": "DPS fraco",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Trilha de Caça do Bando"
     },
     {
       "tier": "Ferro Orquico",
@@ -12089,7 +12324,8 @@
       "materiais_dropados": "Ouro + Cicatriz Fresca de Orc Ferido",
       "papel_combate": "DPS fraco",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Acampamento de Guerra Orc"
     },
     {
       "tier": "Ferro Orquico",
@@ -12107,7 +12343,8 @@
       "materiais_dropados": "Ouro + Corda de Recrutamento Forçado",
       "papel_combate": "Não-hostil condicional",
       "interacao_ambiental": "Se abordado em paz, pode desertar (quest).",
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Acampamento de Guerra Orc"
     },
     {
       "tier": "Ferro Orquico",
@@ -12125,7 +12362,8 @@
       "materiais_dropados": "Ouro + Presa de Filhote de Guerra",
       "papel_combate": "Enxame",
       "interacao_ambiental": "Chamam o Lobo Alfa se todos morrerem (8%).",
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Trilha de Caça do Bando"
     },
     {
       "tier": "Ferro Orquico",
@@ -12143,7 +12381,8 @@
       "materiais_dropados": "Ouro + Pena do Urubu de Batalha",
       "papel_combate": "Necrófago",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Acampamento de Guerra Orc, após combate vencido"
     },
     {
       "tier": "Ferro Orquico",
@@ -12161,7 +12400,8 @@
       "materiais_dropados": "Ouro + Bandagem Suja de Recruta Ferido",
       "papel_combate": "DPS fraco",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Acampamento de Guerra Orc"
     },
     {
       "tier": "Ferro Orquico",
@@ -12179,7 +12419,8 @@
       "materiais_dropados": "Ouro + Amuleto Rúnico de Aprendiz Menor",
       "papel_combate": "Suporte",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Acampamento de Guerra Orc"
     },
     {
       "tier": "Ferro Orquico",
@@ -12197,7 +12438,8 @@
       "materiais_dropados": "Ouro + Presa de Filhote Solitário",
       "papel_combate": "DPS fraco",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Trilha de Caça do Bando"
     },
     {
       "tier": "Ferro Orquico",
@@ -12215,7 +12457,8 @@
       "materiais_dropados": "Ouro + Machadinha de Orc Guerreiro + Crânio Troféu do Chefe Orc (chance rara)",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Acampamento de Guerra Orc"
     },
     {
       "tier": "Ferro Orquico",
@@ -12233,7 +12476,8 @@
       "materiais_dropados": "Ouro + Amuleto Rúnico de Aprendiz",
       "papel_combate": "Suporte",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Acampamento de Guerra Orc"
     },
     {
       "tier": "Ferro Orquico",
@@ -12251,7 +12495,8 @@
       "materiais_dropados": "Ouro + Sanguessuga do Ritual",
       "papel_combate": "Parasita",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Acampamento de Guerra Orc, só com Xamã presente"
     },
     {
       "tier": "Ferro Orquico",
@@ -12269,7 +12514,8 @@
       "materiais_dropados": "Ouro + Escudo do Guarda Menor",
       "papel_combate": "Tanque",
       "interacao_ambiental": "Redireciona 1 ataque por turno pro Guardião do Estandarte, se presente.",
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Acampamento de Guerra Orc"
     },
     {
       "tier": "Ferro Orquico",
@@ -12287,7 +12533,8 @@
       "materiais_dropados": "Ouro + Presa de Lobo Jovem",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Trilha de Caça do Bando"
     },
     {
       "tier": "Ferro Orquico",
@@ -12305,7 +12552,8 @@
       "materiais_dropados": "Ouro + Arco Improvisado de Batedor Menor",
       "papel_combate": "Ranged",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Trilha de Caça do Bando"
     },
     {
       "tier": "Ferro Orquico",
@@ -12323,7 +12571,8 @@
       "materiais_dropados": "Ouro + Placa do Aspirante ao Estandarte",
       "papel_combate": "Tanque",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Acampamento de Guerra Orc"
     },
     {
       "tier": "Ferro Orquico",
@@ -12341,7 +12590,8 @@
       "materiais_dropados": "Ouro + Faro Treinado do Rastreador Jovem",
       "papel_combate": "Rastreador",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Trilha de Caça do Bando"
     },
     {
       "tier": "Ferro Orquico",
@@ -12359,7 +12609,8 @@
       "materiais_dropados": "Ouro + Corda de Vigia Orc + Crânio Troféu do Chefe Orc (chance rara)",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Acampamento de Guerra Orc"
     },
     {
       "tier": "Ferro Orquico",
@@ -12377,7 +12628,8 @@
       "materiais_dropados": "Ouro + Cicatriz de Orc Veterano",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Acampamento de Guerra Orc"
     },
     {
       "tier": "Ferro Orquico",
@@ -12395,7 +12647,8 @@
       "materiais_dropados": "Ouro + Faro Treinado do Rastreador",
       "papel_combate": "Rastreador",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Trilha de Caça do Bando"
     },
     {
       "tier": "Ferro Orquico",
@@ -12413,7 +12666,8 @@
       "materiais_dropados": "Ouro + Corrente de Contenção do Berserker",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Acampamento de Guerra Orc"
     },
     {
       "tier": "Ferro Orquico",
@@ -12431,7 +12685,8 @@
       "materiais_dropados": "Ouro + Bandagem de Veterano Ferido",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Acampamento de Guerra Orc"
     },
     {
       "tier": "Ferro Orquico",
@@ -12449,7 +12704,8 @@
       "materiais_dropados": "Ouro + Marca Forçada do Recruta + Crânio Troféu do Chefe Orc (chance rara)",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Acampamento de Guerra Orc"
     },
     {
       "tier": "Ferro Orquico",
@@ -12467,7 +12723,8 @@
       "materiais_dropados": "Ouro + Pelagem Corrompida de Lobo + Crânio Troféu do Chefe Orc (chance rara)",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Acampamento de Guerra Orc"
     },
     {
       "tier": "Ferro Orquico",
@@ -12485,7 +12742,8 @@
       "materiais_dropados": "Presa de Campeão Cicatrizado Orc + Ouro + Crânio Troféu do Chefe Orc (chance baixa)",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Acampamento de Guerra Orc"
     },
     {
       "tier": "Ferro Orquico",
@@ -12503,7 +12761,8 @@
       "materiais_dropados": "Presa de Orc Berserker + Ouro + Crânio Troféu do Chefe Orc (chance baixa)",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Acampamento de Guerra Orc"
     },
     {
       "tier": "Ferro Orquico",
@@ -12521,7 +12780,8 @@
       "materiais_dropados": "Ouro + Fragmento de Campeão Menor + Crânio Troféu do Chefe Orc (chance baixa)",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Acampamento de Guerra Orc"
     },
     {
       "tier": "Ferro Orquico",
@@ -12539,7 +12799,8 @@
       "materiais_dropados": "Ouro + Pena Negra de Corvo de Batalha",
       "papel_combate": "Superloot/Evasivo",
       "interacao_ambiental": null,
-      "loot_unico": "Veio Profundo de Mithril (material de Tier 9) — correção: nome anterior 'Lingote de Ferro Órquico Refinado' não existia como material real; ajustado pra seguir a regra 141"
+      "loot_unico": "Veio Profundo de Mithril (material de Tier 9) — correção: nome anterior 'Lingote de Ferro Órquico Refinado' não existia como material real; ajustado pra seguir a regra 141",
+      "condicao_spawn": "Acampamento de Guerra Orc, spawn raro (2%)"
     },
     {
       "tier": "Ferro Orquico",
@@ -12557,7 +12818,8 @@
       "materiais_dropados": "Ouro + Fragmento de Lobo Alfa Menor + Crânio Troféu do Chefe Orc (chance baixa)",
       "papel_combate": "Suporte/DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Trilha de Caça do Bando"
     },
     {
       "tier": "Ferro Orquico",
@@ -12575,7 +12837,8 @@
       "materiais_dropados": "Ouro + Lingote de Ferro Órquico Bruto (chance alta, x2) + Fragmento de Totem Armadilhado",
       "papel_combate": "Mímico",
       "interacao_ambiental": null,
-      "loot_unico": "Lingote de Ferro Órquico Bruto x2 (falso — some ao ser revelado, sem uso real) — correção: nome anterior 'Presa de Campeão Cicatrizado Orc x2' reutilizava o troféu de outro Elite; ajustado pro material-base do próprio tier, seguindo o padrão de Mímico usado nos demais tiers"
+      "loot_unico": "Lingote de Ferro Órquico Bruto x2 (falso — some ao ser revelado, sem uso real) — correção: nome anterior 'Presa de Campeão Cicatrizado Orc x2' reutilizava o troféu de outro Elite; ajustado pro material-base do próprio tier, seguindo o padrão de Mímico usado nos demais tiers",
+      "condicao_spawn": "Trilha de Caça do Bando, 5% ao interagir"
     },
     {
       "tier": "Ferro Orquico",
@@ -12593,7 +12856,8 @@
       "materiais_dropados": "Amostra de Carne de Xamã do Sangue Negro + Ouro + Crânio Troféu do Chefe Orc (chance baixa)",
       "papel_combate": "Suporte",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Acampamento de Guerra Orc"
     },
     {
       "tier": "Ferro Orquico",
@@ -12611,7 +12875,8 @@
       "materiais_dropados": "Ouro + Fragmento do Campeão Deposto + Crânio Troféu do Chefe Orc (chance baixa)",
       "papel_combate": "Nomeado / Mini-Boss",
       "interacao_ambiental": null,
-      "loot_unico": "Machado do Campeão Deposto (se derrotado em vez de recrutado) [ver Artefatos e Relíquias]"
+      "loot_unico": "Machado do Campeão Deposto (se derrotado em vez de recrutado) [ver Artefatos e Relíquias]",
+      "condicao_spawn": "Acampamento de Guerra Orc, spawn raro (4%)"
     },
     {
       "tier": "Ferro Orquico",
@@ -12629,7 +12894,8 @@
       "materiais_dropados": "Ouro + Fragmento de Berserker Ritualizado + Crânio Troféu do Chefe Orc (chance baixa)",
       "papel_combate": "Condicional/DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Acampamento de Guerra Orc, só com ritual do Xamã ativo"
     },
     {
       "tier": "Ferro Orquico",
@@ -12647,7 +12913,8 @@
       "materiais_dropados": "Presa de Chefe do Bando Orc + Essência de Chefe do Bando Orc + Ouro + Crânio Troféu do Chefe Orc (chance baixa)",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Acampamento de Guerra Orc"
     },
     {
       "tier": "Ferro Orquico",
@@ -12665,7 +12932,8 @@
       "materiais_dropados": "Núcleo de O Guardião do Estandarte + Essência de O Guardião do Estandarte + Ouro + Crânio Troféu do Chefe Orc (chance baixa)",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": "O Estandarte do Bando Despedaçado",
+      "condicao_spawn": "Acampamento de Guerra Orc"
     },
     {
       "tier": "Mithril",
@@ -12683,7 +12951,8 @@
       "materiais_dropados": "Ouro + Diário Encharcado do Náufrago",
       "papel_combate": "Não-hostil",
       "interacao_ambiental": "Ensina uma Receita se poupado.",
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Lago Sem Sol"
     },
     {
       "tier": "Mithril",
@@ -12701,7 +12970,8 @@
       "materiais_dropados": "Ouro + Corda Encharcada de Marinheiro",
       "papel_combate": "Não-hostil condicional",
       "interacao_ambiental": "Se abordado em paz, pode ser resgatado antes da assimilação completar (quest).",
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Lago Sem Sol"
     },
     {
       "tier": "Mithril",
@@ -12719,7 +12989,8 @@
       "materiais_dropados": "Ouro + Símbolo Molhado da Fusão",
       "papel_combate": "Condicional",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Lago Sem Sol, só em maré alta"
     },
     {
       "tier": "Mithril",
@@ -12737,7 +13008,8 @@
       "materiais_dropados": "Ouro + Fragmento de Cristal Recém-Formado",
       "papel_combate": "DPS fraco",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Veio Profundo de Mithril"
     },
     {
       "tier": "Mithril",
@@ -12755,7 +13027,8 @@
       "materiais_dropados": "Ouro + Manto Encharcado de Acólito Menor",
       "papel_combate": "DPS fraco",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Profundezas de Mithril"
     },
     {
       "tier": "Mithril",
@@ -12773,7 +13046,8 @@
       "materiais_dropados": "Ouro + Presa Jovem de Devorador de Afogados",
       "papel_combate": "Necrófago",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Lago Sem Sol, após combate vencido"
     },
     {
       "tier": "Mithril",
@@ -12791,7 +13065,8 @@
       "materiais_dropados": "Ouro + Fragmento de Cristal Vivo + Núcleo de Cristal Elemental (chance rara)",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Lago Sem Sol"
     },
     {
       "tier": "Mithril",
@@ -12809,7 +13084,8 @@
       "materiais_dropados": "Ouro + Fragmento de Cristal Jovem",
       "papel_combate": "DPS fraco",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Veio Profundo de Mithril"
     },
     {
       "tier": "Mithril",
@@ -12827,7 +13103,8 @@
       "materiais_dropados": "Ouro + Escama de Cardume Abissal",
       "papel_combate": "Enxame",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Lago Sem Sol"
     },
     {
       "tier": "Mithril",
@@ -12845,7 +13122,8 @@
       "materiais_dropados": "Ouro + Manto de Acólito da Fusão",
       "papel_combate": "DPS fraco",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Profundezas de Mithril"
     },
     {
       "tier": "Mithril",
@@ -12863,7 +13141,8 @@
       "materiais_dropados": "Ouro + Asa de Morcego Jovem",
       "papel_combate": "DPS fraco",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Profundezas de Mithril"
     },
     {
       "tier": "Mithril",
@@ -12881,7 +13160,8 @@
       "materiais_dropados": "Ouro + Carne-Raiz Menor de Marinheiro",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Lago Sem Sol"
     },
     {
       "tier": "Mithril",
@@ -12899,7 +13179,8 @@
       "materiais_dropados": "Ouro + Escama de Cardume Menor",
       "papel_combate": "Enxame",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Lago Sem Sol"
     },
     {
       "tier": "Mithril",
@@ -12917,7 +13198,8 @@
       "materiais_dropados": "Ouro + Lanterna Bioluminescente Solitária",
       "papel_combate": "Controle",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Lago Sem Sol"
     },
     {
       "tier": "Mithril",
@@ -12935,7 +13217,8 @@
       "materiais_dropados": "Ouro + Fragmento de Golem Jovem de Mithril",
       "papel_combate": "Tanque",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Veio Profundo de Mithril"
     },
     {
       "tier": "Mithril",
@@ -12953,7 +13236,8 @@
       "materiais_dropados": "Ouro + Asa de Morcego das Profundezas + Núcleo de Cristal Elemental (chance rara)",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Lago Sem Sol"
     },
     {
       "tier": "Mithril",
@@ -12971,7 +13255,8 @@
       "materiais_dropados": "Ouro + Sonar Orgânico de Morcego",
       "papel_combate": "Batedor",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Profundezas de Mithril"
     },
     {
       "tier": "Mithril",
@@ -12989,7 +13274,8 @@
       "materiais_dropados": "Ouro + Lanterna Parasita Extraída",
       "papel_combate": "Parasita",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Lago Sem Sol, só com Peixe-Abissal presente"
     },
     {
       "tier": "Mithril",
@@ -13007,7 +13293,8 @@
       "materiais_dropados": "Ouro + Fragmento de Golem Menor de Mithril",
       "papel_combate": "Tanque",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Veio Profundo de Mithril"
     },
     {
       "tier": "Mithril",
@@ -13025,7 +13312,8 @@
       "materiais_dropados": "Ouro + Presa de Devorador de Afogados",
       "papel_combate": "Necrófago",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Lago Sem Sol, após combate vencido"
     },
     {
       "tier": "Mithril",
@@ -13043,7 +13331,8 @@
       "materiais_dropados": "Ouro + Escama de Peixe-Abissal Jovem",
       "papel_combate": "DPS fraco",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Lago Sem Sol"
     },
     {
       "tier": "Mithril",
@@ -13061,7 +13350,8 @@
       "materiais_dropados": "Ouro + Fragmento de Golem Rachado",
       "papel_combate": "Tanque",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Veio Profundo de Mithril"
     },
     {
       "tier": "Mithril",
@@ -13079,7 +13369,8 @@
       "materiais_dropados": "Ouro + Escama Corrompida de Peixe-Abissal + Núcleo de Cristal Elemental (chance rara)",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Lago Sem Sol"
     },
     {
       "tier": "Mithril",
@@ -13097,7 +13388,8 @@
       "materiais_dropados": "Ouro + Carne-Raiz de Marinheiro Assimilado + Núcleo de Cristal Elemental (chance rara)",
       "papel_combate": "Controle",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Lago Sem Sol"
     },
     {
       "tier": "Mithril",
@@ -13115,7 +13407,8 @@
       "materiais_dropados": "Núcleo de Golem de Mithril + Ouro + Núcleo de Cristal Elemental (chance baixa)",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Lago Sem Sol"
     },
     {
       "tier": "Mithril",
@@ -13133,7 +13426,8 @@
       "materiais_dropados": "Ouro + Fragmento de Cristal Ressonante + Núcleo de Cristal Elemental (chance baixa)",
       "papel_combate": "Controle",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Veio Profundo de Mithril"
     },
     {
       "tier": "Mithril",
@@ -13151,7 +13445,8 @@
       "materiais_dropados": "Ouro + Núcleo de Cristal Elemental (chance alta, x2) + Fragmento de Concha Armadilhada",
       "papel_combate": "Mímico",
       "interacao_ambiental": null,
-      "loot_unico": "Núcleo de Cristal Elemental x2 (falso — some ao ser revelado, sem uso real)"
+      "loot_unico": "Núcleo de Cristal Elemental x2 (falso — some ao ser revelado, sem uso real)",
+      "condicao_spawn": "Lago Sem Sol, 5% ao coletar"
     },
     {
       "tier": "Mithril",
@@ -13169,7 +13464,8 @@
       "materiais_dropados": "Ouro + Escama Dourada de Peixe das Profundezas",
       "papel_combate": "Superloot/Evasivo",
       "interacao_ambiental": null,
-      "loot_unico": "Rocha Negra de Ébano (material de Tier 10)"
+      "loot_unico": "Rocha Negra de Ébano (material de Tier 10)",
+      "condicao_spawn": "Lago Sem Sol, spawn raro (2%)"
     },
     {
       "tier": "Mithril",
@@ -13187,7 +13483,8 @@
       "materiais_dropados": "Ouro + Fragmento de Capitão Assimilado Menor + Núcleo de Cristal Elemental (chance baixa)",
       "papel_combate": "Suporte",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Lago Sem Sol"
     },
     {
       "tier": "Mithril",
@@ -13205,7 +13502,8 @@
       "materiais_dropados": "Fragmento de Cirurgião Renegado + Ouro + Núcleo de Cristal Elemental (chance baixa)",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Lago Sem Sol"
     },
     {
       "tier": "Mithril",
@@ -13223,7 +13521,8 @@
       "materiais_dropados": "Fragmento de Profeta da Fusão + Ouro + Núcleo de Cristal Elemental (chance baixa)",
       "papel_combate": "Suporte",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Lago Sem Sol"
     },
     {
       "tier": "Mithril",
@@ -13241,7 +13540,8 @@
       "materiais_dropados": "Ouro + Fragmento de Capitão Assimilado + Núcleo de Cristal Elemental (chance baixa)",
       "papel_combate": "Suporte",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Lago Sem Sol"
     },
     {
       "tier": "Mithril",
@@ -13259,7 +13559,8 @@
       "materiais_dropados": "Ouro + Fragmento da Imediata Sereia + Núcleo de Cristal Elemental (chance baixa)",
       "papel_combate": "Nomeado / Mini-Boss",
       "interacao_ambiental": null,
-      "loot_unico": "Bússola da Última Rota (se interrompida em vez de deixada terminar) [ver Artefatos e Relíquias]"
+      "loot_unico": "Bússola da Última Rota (se interrompida em vez de deixada terminar) [ver Artefatos e Relíquias]",
+      "condicao_spawn": "Lago Sem Sol, spawn raro (4%)"
     },
     {
       "tier": "Mithril",
@@ -13277,7 +13578,8 @@
       "materiais_dropados": "Núcleo de Elemental Guardiao das Profundezas + Essência de Elemental Guardiao das Profundezas + Ouro + Núcleo de Cristal Elemental (chance baixa)",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": "O Coração de Mithril Resfriado",
+      "condicao_spawn": "Lago Sem Sol"
     },
     {
       "tier": "Mithril",
@@ -13295,7 +13597,8 @@
       "materiais_dropados": "Fragmento de O Devorador de Mithril + Essência de O Devorador de Mithril + Ouro + Núcleo de Cristal Elemental (chance baixa)",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Lago Sem Sol"
     },
     {
       "tier": "Ebano",
@@ -13313,7 +13616,8 @@
       "materiais_dropados": "Ouro + Manto Cinzento de Zelote Iniciante",
       "papel_combate": "DPS fraco",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Câmara da Fusão"
     },
     {
       "tier": "Ebano",
@@ -13331,7 +13635,8 @@
       "materiais_dropados": "Ouro + Máscara Rachada de Zelote Fundido",
       "papel_combate": "Não-hostil condicional",
       "interacao_ambiental": "Se abordado em paz, pode ser resgatado do ritual (quest).",
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Câmara da Fusão"
     },
     {
       "tier": "Ebano",
@@ -13349,7 +13654,8 @@
       "materiais_dropados": "Ouro + Resíduo de Sombra Recém-Formada",
       "papel_combate": "DPS fraco",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Fenda Extinta — Bordas"
     },
     {
       "tier": "Ebano",
@@ -13367,7 +13673,8 @@
       "materiais_dropados": "Ouro + Fragmento de Raiz Jovem",
       "papel_combate": "Tanque",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Fenda Extinta — Bordas"
     },
     {
       "tier": "Ebano",
@@ -13385,7 +13692,8 @@
       "materiais_dropados": "Ouro + Núcleo de Guardião Jovem",
       "papel_combate": "Controle",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Fenda Extinta — Bordas"
     },
     {
       "tier": "Ebano",
@@ -13403,7 +13711,8 @@
       "materiais_dropados": "Ouro + Seiva Parasita Jovem",
       "papel_combate": "Parasita",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Fenda Extinta, só com Raiz presente"
     },
     {
       "tier": "Ebano",
@@ -13421,7 +13730,8 @@
       "materiais_dropados": "Ouro + Resíduo de Sombra Vulcânica + Essência da Fenda Extinta (chance rara)",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Fenda Extinta"
     },
     {
       "tier": "Ebano",
@@ -13439,7 +13749,8 @@
       "materiais_dropados": "Ouro + Resíduo de Sombra Jovem",
       "papel_combate": "DPS fraco",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Fenda Extinta — Bordas"
     },
     {
       "tier": "Ebano",
@@ -13457,7 +13768,8 @@
       "materiais_dropados": "Ouro + Seiva Parasita de Raiz",
       "papel_combate": "Parasita",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Fenda Extinta, só com Raiz Rastejante presente"
     },
     {
       "tier": "Ebano",
@@ -13475,7 +13787,8 @@
       "materiais_dropados": "Ouro + Núcleo de Guardião Menor",
       "papel_combate": "Controle",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Fenda Extinta — Bordas"
     },
     {
       "tier": "Ebano",
@@ -13493,7 +13806,8 @@
       "materiais_dropados": "Ouro + Punhado de Cinza Amaldiçoada Menor",
       "papel_combate": "DPS fraco",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Fenda Extinta — Bordas"
     },
     {
       "tier": "Ebano",
@@ -13511,7 +13825,8 @@
       "materiais_dropados": "Ouro + Amostra de Carne Fundida Recente",
       "papel_combate": "DPS fraco",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Câmara da Fusão"
     },
     {
       "tier": "Ebano",
@@ -13529,7 +13844,8 @@
       "materiais_dropados": "Ouro + Fragmento Espectral Menor",
       "papel_combate": "Controle",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Câmara da Fusão"
     },
     {
       "tier": "Ebano",
@@ -13547,7 +13863,8 @@
       "materiais_dropados": "Ouro + Foice Improvisada de Ceifador Aprendiz",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Câmara da Fusão"
     },
     {
       "tier": "Ebano",
@@ -13565,7 +13882,8 @@
       "materiais_dropados": "Ouro + Esporo Jovem de Cinza",
       "papel_combate": "Debuffer",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Fenda Extinta — Bordas"
     },
     {
       "tier": "Ebano",
@@ -13583,7 +13901,8 @@
       "materiais_dropados": "Ouro + Punhado de Cinza Amaldiçoada + Essência da Fenda Extinta (chance rara)",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Fenda Extinta"
     },
     {
       "tier": "Ebano",
@@ -13601,7 +13920,8 @@
       "materiais_dropados": "Ouro + Amostra de Carne Multi-Fundida + Essência da Fenda Extinta (chance rara)",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Fenda Extinta"
     },
     {
       "tier": "Ebano",
@@ -13619,7 +13939,8 @@
       "materiais_dropados": "Ouro + Resíduo de Cinza Rastejante",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Fenda Extinta — Bordas"
     },
     {
       "tier": "Ebano",
@@ -13637,7 +13958,8 @@
       "materiais_dropados": "Ouro + Amostra de Carne Bifundida",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Câmara da Fusão"
     },
     {
       "tier": "Ebano",
@@ -13655,7 +13977,8 @@
       "materiais_dropados": "Ouro + Fragmento Espectral de Ebano",
       "papel_combate": "Controle",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Câmara da Fusão"
     },
     {
       "tier": "Ebano",
@@ -13673,7 +13996,8 @@
       "materiais_dropados": "Ouro + Esporo Andante de Cinza",
       "papel_combate": "Debuffer",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Fenda Extinta — Bordas"
     },
     {
       "tier": "Ebano",
@@ -13691,7 +14015,8 @@
       "materiais_dropados": "Ouro + Resíduo de Sombra Devoradora Jovem",
       "papel_combate": "Necrófago",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Fenda Extinta — Bordas"
     },
     {
       "tier": "Ebano",
@@ -13709,7 +14034,8 @@
       "materiais_dropados": "Ouro + Fragmento de Raiz Rastejante + Essência da Fenda Extinta (chance rara)",
       "papel_combate": "Controle",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Fenda Extinta"
     },
     {
       "tier": "Ebano",
@@ -13727,7 +14053,8 @@
       "materiais_dropados": "Ouro + Resíduo de Sombra Devoradora",
       "papel_combate": "Necrófago",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Fenda Extinta — Bordas"
     },
     {
       "tier": "Ebano",
@@ -13745,7 +14072,8 @@
       "materiais_dropados": "Ouro + Amostra de Carne do Amálgama Menor",
       "papel_combate": "Condicional",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Câmara da Fusão, só com ritual ativo"
     },
     {
       "tier": "Ebano",
@@ -13763,7 +14091,8 @@
       "materiais_dropados": "Resíduo Espectral de Espectro de Ebano + Ouro + Essência da Fenda Extinta (chance baixa)",
       "papel_combate": "Suporte",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Fenda Extinta"
     },
     {
       "tier": "Ebano",
@@ -13781,7 +14110,8 @@
       "materiais_dropados": "Ouro + Fragmento de Ceifador Menor + Essência da Fenda Extinta (chance baixa)",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Câmara da Fusão"
     },
     {
       "tier": "Ebano",
@@ -13799,7 +14129,8 @@
       "materiais_dropados": "Ouro + Essência da Fenda Extinta (chance alta, x2) + Fragmento de Cofre Armadilhado",
       "papel_combate": "Mímico",
       "interacao_ambiental": null,
-      "loot_unico": "Essência da Fenda Extinta x2 (falso — some ao ser revelado, sem uso real) — correção: nome anterior 'Resíduo Espectral de Espectro de Ebano x2' reutilizava o troféu de outro Elite; ajustado pro material-base do próprio tier"
+      "loot_unico": "Essência da Fenda Extinta x2 (falso — some ao ser revelado, sem uso real) — correção: nome anterior 'Resíduo Espectral de Espectro de Ebano x2' reutilizava o troféu de outro Elite; ajustado pro material-base do próprio tier",
+      "condicao_spawn": "Fenda Extinta, 5% ao interagir"
     },
     {
       "tier": "Ebano",
@@ -13817,7 +14148,8 @@
       "materiais_dropados": "Ouro + Amostra Instável do Fragmento Fugidio",
       "papel_combate": "Superloot/Evasivo",
       "interacao_ambiental": null,
-      "loot_unico": "Veio Puro de Adamantina (material de Tier 11)"
+      "loot_unico": "Veio Puro de Adamantina (material de Tier 11)",
+      "condicao_spawn": "Fenda Extinta, spawn raro (2%)"
     },
     {
       "tier": "Ebano",
@@ -13835,7 +14167,8 @@
       "materiais_dropados": "Ouro + Fragmento de Amálgama Fragmentário + Essência da Fenda Extinta (chance baixa)",
       "papel_combate": "Condicional",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Câmara da Fusão, só com ritual ativo"
     },
     {
       "tier": "Ebano",
@@ -13853,7 +14186,8 @@
       "materiais_dropados": "Resíduo Espectral de Ceifador da Carne Viva + Ouro + Essência da Fenda Extinta (chance baixa)",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Fenda Extinta"
     },
     {
       "tier": "Ebano",
@@ -13871,7 +14205,8 @@
       "materiais_dropados": "Relicário de Zelote da Fusão Suprema + Ouro + Essência da Fenda Extinta (chance baixa)",
       "papel_combate": "Suporte",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Fenda Extinta"
     },
     {
       "tier": "Ebano",
@@ -13889,7 +14224,8 @@
       "materiais_dropados": "Ouro + Fragmento de Irmã Vashti + Essência da Fenda Extinta (chance baixa)",
       "papel_combate": "Nomeado / Mini-Boss",
       "interacao_ambiental": null,
-      "loot_unico": "Fragmento da Última Resistência (se derrotada em vez de recrutada) [ver Artefatos e Relíquias]"
+      "loot_unico": "Fragmento da Última Resistência (se derrotada em vez de recrutada) [ver Artefatos e Relíquias]",
+      "condicao_spawn": "Câmara da Fusão, spawn raro (4%)"
     },
     {
       "tier": "Ebano",
@@ -13907,7 +14243,8 @@
       "materiais_dropados": "Núcleo de Guardiao da Fenda Morta + Essência de Guardiao da Fenda Morta + Ouro + Essência da Fenda Extinta (chance baixa)",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": "O Manto de Cinza Impenetrável",
+      "condicao_spawn": "Fenda Extinta"
     },
     {
       "tier": "Ebano",
@@ -13925,7 +14262,8 @@
       "materiais_dropados": "Amostra de Carne de O Amálgama Original + Essência de O Amálgama Original + Ouro + Essência da Fenda Extinta (chance baixa)",
       "papel_combate": "Suporte",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": "A Couraça da Carne Rastejante",
+      "condicao_spawn": "Fenda Extinta"
     },
     {
       "tier": "Adamantina",
@@ -13943,7 +14281,8 @@
       "materiais_dropados": "Ouro + Fragmento de Coroa do Titã (chance rara)",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Forja dos Titãs"
     },
     {
       "tier": "Adamantina",
@@ -13961,7 +14300,8 @@
       "materiais_dropados": "Ouro + Fragmento de Golem Muito Menor",
       "papel_combate": "Tanque",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Forja dos Titãs — Pátio"
     },
     {
       "tier": "Adamantina",
@@ -13979,7 +14319,8 @@
       "materiais_dropados": "Ouro + Presa Jovem de Devorador de Cavaleiros",
       "papel_combate": "Necrófago",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Forja dos Titãs — Pátio, após combate vencido"
     },
     {
       "tier": "Adamantina",
@@ -13997,7 +14338,8 @@
       "materiais_dropados": "Ouro + Brasão Manchado de Cavaleiro Ferido",
       "papel_combate": "Não-hostil condicional",
       "interacao_ambiental": "Se abordado em paz, pode se juntar como informante (quest).",
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Forja dos Titãs — Pátio"
     },
     {
       "tier": "Adamantina",
@@ -14015,7 +14357,8 @@
       "materiais_dropados": "Ouro + Fragmento de Coroa do Titã (chance rara)",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Forja dos Titãs"
     },
     {
       "tier": "Adamantina",
@@ -14033,7 +14376,8 @@
       "materiais_dropados": "Ouro + Fragmento de Golem Menor de Guerra",
       "papel_combate": "Tanque",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Forja dos Titãs — Pátio"
     },
     {
       "tier": "Adamantina",
@@ -14051,7 +14395,8 @@
       "materiais_dropados": "Ouro + Brasão do Cavaleiro Fiel",
       "papel_combate": "Não-hostil condicional",
       "interacao_ambiental": "Se abordado em paz, pode se juntar como informante (quest).",
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Forja dos Titãs — Pátio"
     },
     {
       "tier": "Adamantina",
@@ -14069,7 +14414,8 @@
       "materiais_dropados": "Ouro + Presa de Devorador de Cavaleiros Caídos",
       "papel_combate": "Necrófago",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Forja dos Titãs — Pátio, após combate vencido"
     },
     {
       "tier": "Adamantina",
@@ -14087,7 +14433,8 @@
       "materiais_dropados": "Ouro + Brasão Manchado do Desertor",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Forja dos Titãs — Pátio"
     },
     {
       "tier": "Adamantina",
@@ -14105,7 +14452,8 @@
       "materiais_dropados": "Ouro + Amuleto do Sacerdote Iniciante",
       "papel_combate": "Suporte",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Templo da Heresia"
     },
     {
       "tier": "Adamantina",
@@ -14123,7 +14471,8 @@
       "materiais_dropados": "Ouro + Fragmento de Rachadura Jovem",
       "papel_combate": "Parasita",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Forja dos Titãs, só com Constructo presente"
     },
     {
       "tier": "Adamantina",
@@ -14141,7 +14490,8 @@
       "materiais_dropados": "Ouro + Máscara Jovem de Herege",
       "papel_combate": "Condicional",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Templo da Heresia, só durante cerimônia ativa"
     },
     {
       "tier": "Adamantina",
@@ -14159,7 +14509,8 @@
       "materiais_dropados": "Ouro + Fragmento de Coroa do Titã (chance rara)",
       "papel_combate": "Suporte",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Forja dos Titãs"
     },
     {
       "tier": "Adamantina",
@@ -14177,7 +14528,8 @@
       "materiais_dropados": "Ouro + Manto Novo de Devoto Recém-Convertido",
       "papel_combate": "DPS fraco",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Templo da Heresia"
     },
     {
       "tier": "Adamantina",
@@ -14195,7 +14547,8 @@
       "materiais_dropados": "Ouro + Fragmento de Armadura Inquebrável",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Forja dos Titãs — Pátio"
     },
     {
       "tier": "Adamantina",
@@ -14213,7 +14566,8 @@
       "materiais_dropados": "Ouro + Fragmento de Rachadura Viva",
       "papel_combate": "Parasita",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Forja dos Titãs, só com Constructo presente"
     },
     {
       "tier": "Adamantina",
@@ -14231,7 +14585,8 @@
       "materiais_dropados": "Ouro + Máscara de Herege Silencioso",
       "papel_combate": "Condicional",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Templo da Heresia, só durante cerimônia ativa"
     },
     {
       "tier": "Adamantina",
@@ -14249,7 +14604,8 @@
       "materiais_dropados": "Ouro + Manto Jovem de Devoto",
       "papel_combate": "DPS fraco",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Templo da Heresia"
     },
     {
       "tier": "Adamantina",
@@ -14267,7 +14623,8 @@
       "materiais_dropados": "Ouro + Amostra de Carne-Metal Jovem",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Templo da Heresia"
     },
     {
       "tier": "Adamantina",
@@ -14285,7 +14642,8 @@
       "materiais_dropados": "Ouro + Placa Rachada de Adamantina",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Forja dos Titãs — Pátio"
     },
     {
       "tier": "Adamantina",
@@ -14303,7 +14661,8 @@
       "materiais_dropados": "Ouro + Fragmento de Constructo Muito Menor",
       "papel_combate": "Tanque",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Forja dos Titãs — Pátio"
     },
     {
       "tier": "Adamantina",
@@ -14321,7 +14680,8 @@
       "materiais_dropados": "Ouro + Fragmento de Coroa do Titã (chance rara)",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Forja dos Titãs"
     },
     {
       "tier": "Adamantina",
@@ -14339,7 +14699,8 @@
       "materiais_dropados": "Ouro + Amostra de Carne-Metal Rastejante",
       "papel_combate": "Tanque",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Templo da Heresia"
     },
     {
       "tier": "Adamantina",
@@ -14357,7 +14718,8 @@
       "materiais_dropados": "Fragmento de Campeao Adamantino + Ouro + Fragmento de Coroa do Titã (chance baixa)",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Forja dos Titãs"
     },
     {
       "tier": "Adamantina",
@@ -14375,7 +14737,8 @@
       "materiais_dropados": "Ouro + Fragmento de Golem Fragmentado Menor + Fragmento de Coroa do Titã (chance baixa)",
       "papel_combate": "Tanque/Invocador",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Forja dos Titãs — Pátio"
     },
     {
       "tier": "Adamantina",
@@ -14393,7 +14756,8 @@
       "materiais_dropados": "Núcleo de Constructo Titânico Corrompido + Ouro + Fragmento de Coroa do Titã (chance baixa)",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Forja dos Titãs"
     },
     {
       "tier": "Adamantina",
@@ -14411,7 +14775,8 @@
       "materiais_dropados": "Ouro + Fragmento de Golem Fragmentado de Adamantina + Fragmento de Coroa do Titã (chance baixa)",
       "papel_combate": "Tanque/Invocador",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Forja dos Titãs — Pátio"
     },
     {
       "tier": "Adamantina",
@@ -14429,7 +14794,8 @@
       "materiais_dropados": "Ouro + Núcleo de Constructo Titânico Menor + Fragmento de Coroa do Titã (chance baixa)",
       "papel_combate": "Tanque",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Forja dos Titãs — Pátio"
     },
     {
       "tier": "Adamantina",
@@ -14447,7 +14813,8 @@
       "materiais_dropados": "Ouro + Fragmento de Sacerdote Menor da Heresia + Fragmento de Coroa do Titã (chance baixa)",
       "papel_combate": "Suporte",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Templo da Heresia"
     },
     {
       "tier": "Adamantina",
@@ -14465,7 +14832,8 @@
       "materiais_dropados": "Ouro + Fragmento de Coroa do Titã (chance alta, x2) + Fragmento de Cofre-Titã Armadilhado",
       "papel_combate": "Mímico",
       "interacao_ambiental": null,
-      "loot_unico": "Fragmento de Coroa do Titã x2 (falso — some ao ser revelado, sem uso real) — correção: nome anterior 'Fragmento de Campeao Adamantino x2' reutilizava o troféu de outro Elite; ajustado pro material-base do próprio tier"
+      "loot_unico": "Fragmento de Coroa do Titã x2 (falso — some ao ser revelado, sem uso real) — correção: nome anterior 'Fragmento de Campeao Adamantino x2' reutilizava o troféu de outro Elite; ajustado pro material-base do próprio tier",
+      "condicao_spawn": "Forja dos Titãs, 5% ao interagir"
     },
     {
       "tier": "Adamantina",
@@ -14483,7 +14851,8 @@
       "materiais_dropados": "Ouro + Amostra Pura de Fragmento Fugidio",
       "papel_combate": "Superloot/Evasivo",
       "interacao_ambiental": null,
-      "loot_unico": "Marfim e Osso de Dragão Ancião (material de Tier 12) — correção: nome anterior 'Osso de Dragão Fragmentado' não existia como material real; ajustado pra seguir a regra 141"
+      "loot_unico": "Marfim e Osso de Dragão Ancião (material de Tier 12) — correção: nome anterior 'Osso de Dragão Fragmentado' não existia como material real; ajustado pra seguir a regra 141",
+      "condicao_spawn": "Forja dos Titãs, spawn raro (2%)"
     },
     {
       "tier": "Adamantina",
@@ -14501,7 +14870,8 @@
       "materiais_dropados": "Fragmento de Placa de Heresiarca do Titã Negro + Ouro + Fragmento de Coroa do Titã (chance baixa)",
       "papel_combate": "Suporte",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Forja dos Titãs"
     },
     {
       "tier": "Adamantina",
@@ -14519,7 +14889,8 @@
       "materiais_dropados": "Ouro + Fragmento de Sir Aldric + Fragmento de Coroa do Titã (chance baixa)",
       "papel_combate": "Nomeado / Mini-Boss",
       "interacao_ambiental": null,
-      "loot_unico": "Espada do Juramento Quebrado (se derrotado em vez de convencido) [ver Artefatos e Relíquias]"
+      "loot_unico": "Espada do Juramento Quebrado (se derrotado em vez de convencido) [ver Artefatos e Relíquias]",
+      "condicao_spawn": "Forja dos Titãs — Pátio, spawn raro (4%)"
     },
     {
       "tier": "Adamantina",
@@ -14537,7 +14908,8 @@
       "materiais_dropados": "Fragmento de Placa de Tita de Adamantina + Essência de Tita de Adamantina + Ouro + Fragmento de Coroa do Titã (chance baixa)",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Forja dos Titãs"
     },
     {
       "tier": "Adamantina",
@@ -14555,7 +14927,8 @@
       "materiais_dropados": "Fragmento de Placa de O Herói Caído (Ressuscitado) + Essência de O Herói Caído (Ressuscitado) + Ouro + Fragmento de Coroa do Titã (chance baixa)",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Forja dos Titãs"
     },
     {
       "tier": "Osso de Dragao",
@@ -14573,7 +14946,8 @@
       "materiais_dropados": "Ouro + Escama Ferida de Wyrmling Jovem",
       "papel_combate": "Não-hostil",
       "interacao_ambiental": "Se poupado, fortalece a ninhada que pode ser resgatada.",
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Ossuário Draconiano — Ninhal"
     },
     {
       "tier": "Osso de Dragao",
@@ -14591,7 +14965,8 @@
       "materiais_dropados": "Ouro + Escama de Wyrmling Poupável",
       "papel_combate": "Não-hostil",
       "interacao_ambiental": "Se poupado e cuidado, pode retornar como aliado numa expedição futura.",
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Ossuário Draconiano — Ninhal"
     },
     {
       "tier": "Osso de Dragao",
@@ -14609,7 +14984,8 @@
       "materiais_dropados": "Ouro + Casca de Ovo Corrompido",
       "papel_combate": "Explosivo/Invocador",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Ossuário Draconiano — Ninhal"
     },
     {
       "tier": "Osso de Dragao",
@@ -14627,7 +15003,8 @@
       "materiais_dropados": "Ouro + Escama de Wyrmling Muito Jovem",
       "papel_combate": "DPS fraco",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Ossuário Draconiano — Ninhal"
     },
     {
       "tier": "Osso de Dragao",
@@ -14645,7 +15022,8 @@
       "materiais_dropados": "Ouro + Arco Novo de Caçador Iniciante",
       "papel_combate": "DPS fraco",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Ossuário Draconiano — Trilha dos Caçadores"
     },
     {
       "tier": "Osso de Dragao",
@@ -14663,7 +15041,8 @@
       "materiais_dropados": "Ouro + Coração Incandescente de Dragão (chance rara)",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Ossuário Draconiano"
     },
     {
       "tier": "Osso de Dragao",
@@ -14681,7 +15060,8 @@
       "materiais_dropados": "Ouro + Garra de Wyrmling Faminto",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Ossuário Draconiano — Ninhal"
     },
     {
       "tier": "Osso de Dragao",
@@ -14699,7 +15079,8 @@
       "materiais_dropados": "Ouro + Arco de Caçador Aprendiz",
       "papel_combate": "DPS fraco",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Ossuário Draconiano — Trilha dos Caçadores"
     },
     {
       "tier": "Osso de Dragao",
@@ -14717,7 +15098,8 @@
       "materiais_dropados": "Ouro + Véu Manchado de Serva Recém-Infectada",
       "papel_combate": "Condicional",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Pântano da Peste, só durante surto ativo"
     },
     {
       "tier": "Osso de Dragao",
@@ -14735,7 +15117,8 @@
       "materiais_dropados": "Ouro + Frasco Menor de Peste",
       "papel_combate": "Debuffer",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Ossuário Draconiano — Pântano da Peste"
     },
     {
       "tier": "Osso de Dragao",
@@ -14753,7 +15136,8 @@
       "materiais_dropados": "Ouro + Pena Doente de Fera Alada",
       "papel_combate": "DPS fraco",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Ossuário Draconiano — Céu Baixo"
     },
     {
       "tier": "Osso de Dragao",
@@ -14771,7 +15155,8 @@
       "materiais_dropados": "Ouro + Presa Jovem de Devorador de Ossos",
       "papel_combate": "Necrófago",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Ossuário Draconiano — Ninhal, após combate vencido"
     },
     {
       "tier": "Osso de Dragao",
@@ -14789,7 +15174,8 @@
       "materiais_dropados": "Ouro + Segmento Jovem de Verme da Peste",
       "papel_combate": "Parasita",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Pântano da Peste, só com Portador presente"
     },
     {
       "tier": "Osso de Dragao",
@@ -14807,7 +15193,8 @@
       "materiais_dropados": "Ouro + Fragmento de Guardião Muito Menor do Pilar",
       "papel_combate": "Tanque",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Ossuário Draconiano — Ninhal"
     },
     {
       "tier": "Osso de Dragao",
@@ -14825,7 +15212,8 @@
       "materiais_dropados": "Ouro + Coração Incandescente de Dragão (chance rara)",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Ossuário Draconiano"
     },
     {
       "tier": "Osso de Dragao",
@@ -14843,7 +15231,8 @@
       "materiais_dropados": "Ouro + Frasco de Peste",
       "papel_combate": "Debuffer",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Ossuário Draconiano — Pântano da Peste"
     },
     {
       "tier": "Osso de Dragao",
@@ -14861,7 +15250,8 @@
       "materiais_dropados": "Ouro + Pena Enfraquecida de Fera Alada",
       "papel_combate": "DPS fraco",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Ossuário Draconiano — Céu Baixo"
     },
     {
       "tier": "Osso de Dragao",
@@ -14879,7 +15269,8 @@
       "materiais_dropados": "Ouro + Presa de Devorador de Ossos Antigos",
       "papel_combate": "Necrófago",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Ossuário Draconiano — Ninhal, após combate vencido"
     },
     {
       "tier": "Osso de Dragao",
@@ -14897,7 +15288,8 @@
       "materiais_dropados": "Ouro + Segmento de Verme da Peste Escarlate",
       "papel_combate": "Parasita",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Pântano da Peste, só com Serva presente"
     },
     {
       "tier": "Osso de Dragao",
@@ -14915,7 +15307,8 @@
       "materiais_dropados": "Ouro + Coração Incandescente de Dragão (chance rara)",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Ossuário Draconiano"
     },
     {
       "tier": "Osso de Dragao",
@@ -14933,7 +15326,8 @@
       "materiais_dropados": "Ouro + Coração Incandescente de Dragão (chance rara)",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Ossuário Draconiano"
     },
     {
       "tier": "Osso de Dragao",
@@ -14951,7 +15345,8 @@
       "materiais_dropados": "Ouro + Fragmento de Caçador-Mestre Ferido + Coração Incandescente de Dragão (chance baixa)",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Trilha dos Caçadores"
     },
     {
       "tier": "Osso de Dragao",
@@ -14969,7 +15364,8 @@
       "materiais_dropados": "Escama de Dracoformo Jovem + Ouro + Coração Incandescente de Dragão (chance baixa)",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Ossuário Draconiano"
     },
     {
       "tier": "Osso de Dragao",
@@ -14987,7 +15383,8 @@
       "materiais_dropados": "Ouro + Fragmento de Caçador-Mestre em Treinamento + Coração Incandescente de Dragão (chance baixa)",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Trilha dos Caçadores"
     },
     {
       "tier": "Osso de Dragao",
@@ -15005,7 +15402,8 @@
       "materiais_dropados": "Ouro + Núcleo de Guardião Menor do Pilar + Coração Incandescente de Dragão (chance baixa)",
       "papel_combate": "Tanque",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Ossuário Draconiano — Ninhal"
     },
     {
       "tier": "Osso de Dragao",
@@ -15023,7 +15421,8 @@
       "materiais_dropados": "Ouro + Coração Incandescente de Dragão (chance alta, x2) + Fragmento de Baú Armadilhado",
       "papel_combate": "Mímico",
       "interacao_ambiental": null,
-      "loot_unico": "Coração Incandescente de Dragão x2 (falso — some ao ser revelado, sem uso real) — correção: nome anterior 'Escama de Dracoformo Jovem x2' reutilizava o troféu de outro Elite; ajustado pro material-base do próprio tier"
+      "loot_unico": "Coração Incandescente de Dragão x2 (falso — some ao ser revelado, sem uso real) — correção: nome anterior 'Escama de Dracoformo Jovem x2' reutilizava o troféu de outro Elite; ajustado pro material-base do próprio tier",
+      "condicao_spawn": "Ossuário Draconiano, 5% ao interagir"
     },
     {
       "tier": "Osso de Dragao",
@@ -15041,7 +15440,8 @@
       "materiais_dropados": "Ouro + Escama Dourada de Wyrmling Fugidio",
       "papel_combate": "Superloot/Evasivo",
       "interacao_ambiental": null,
-      "loot_unico": "Veio do Pacto Abissal (material de Tier 13)"
+      "loot_unico": "Veio do Pacto Abissal (material de Tier 13)",
+      "condicao_spawn": "Ossuário Draconiano, spawn raro (2%)"
     },
     {
       "tier": "Osso de Dragao",
@@ -15059,7 +15459,8 @@
       "materiais_dropados": "Núcleo de Guardião do Pilar de Ossos + Ouro + Coração Incandescente de Dragão (chance baixa)",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Ossuário Draconiano"
     },
     {
       "tier": "Osso de Dragao",
@@ -15077,7 +15478,8 @@
       "materiais_dropados": "Fragmento de Caçador-Mestre Corrompido + Ouro + Coração Incandescente de Dragão (chance baixa)",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Ossuário Draconiano"
     },
     {
       "tier": "Osso de Dragao",
@@ -15095,7 +15497,8 @@
       "materiais_dropados": "Ouro + Fragmento de Kessandra + Coração Incandescente de Dragão (chance baixa)",
       "papel_combate": "Nomeado / Mini-Boss",
       "interacao_ambiental": null,
-      "loot_unico": "Lança da Lealdade Quebrada (se derrotada em vez de recrutada) [ver Artefatos e Relíquias]"
+      "loot_unico": "Lança da Lealdade Quebrada (se derrotada em vez de recrutada) [ver Artefatos e Relíquias]",
+      "condicao_spawn": "Trilha dos Caçadores, spawn raro (4%)"
     },
     {
       "tier": "Osso de Dragao",
@@ -15113,7 +15516,8 @@
       "materiais_dropados": "Escama de Dragao Anciao + Essência de Dragao Anciao + Ouro + Coração Incandescente de Dragão (chance baixa)",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": "O Olho do Dragão Ancião Cego",
+      "condicao_spawn": "Ossuário Draconiano"
     },
     {
       "tier": "Osso de Dragao",
@@ -15131,7 +15535,8 @@
       "materiais_dropados": "Escama de O Dragão da Peste Escarlate + Essência de O Dragão da Peste Escarlate + Ouro + Coração Incandescente de Dragão (chance baixa)",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Ossuário Draconiano"
     },
     {
       "tier": "Pacto Daedrico",
@@ -15149,7 +15554,8 @@
       "materiais_dropados": "Ouro + Manto Novo de Cultista",
       "papel_combate": "Não-hostil condicional",
       "interacao_ambiental": "Se abordado em paz, pode desertar antes de qualquer ritual (quest).",
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Círculo do Pacto — Entrada"
     },
     {
       "tier": "Pacto Daedrico",
@@ -15167,7 +15573,8 @@
       "materiais_dropados": "Ouro + Pena Rachada de Escriba Iniciante",
       "papel_combate": "DPS fraco",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Círculo do Pacto — Entrada"
     },
     {
       "tier": "Pacto Daedrico",
@@ -15185,7 +15592,8 @@
       "materiais_dropados": "Ouro + Olho Preservado do Arauto (chance rara)",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Círculo do Pacto"
     },
     {
       "tier": "Pacto Daedrico",
@@ -15203,7 +15611,8 @@
       "materiais_dropados": "Ouro + Marca Fresca de Cultista Iniciado",
       "papel_combate": "Não-hostil condicional",
       "interacao_ambiental": "Se abordado em paz, pode desertar antes do próprio sacrifício ritual (quest).",
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Círculo do Pacto — Entrada"
     },
     {
       "tier": "Pacto Daedrico",
@@ -15221,7 +15630,8 @@
       "materiais_dropados": "Ouro + Registro Roubado do Escriba",
       "papel_combate": "Não-hostil",
       "interacao_ambiental": "Ensina uma Receita rara se poupado.",
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Círculo do Pacto — Entrada"
     },
     {
       "tier": "Pacto Daedrico",
@@ -15239,7 +15649,8 @@
       "materiais_dropados": "Ouro + Resíduo de Horror Muito Fragmentado",
       "papel_combate": "DPS fraco",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Círculo do Pacto — Salão Ritual"
     },
     {
       "tier": "Pacto Daedrico",
@@ -15257,7 +15668,8 @@
       "materiais_dropados": "Ouro + Presa Jovem de Devorador de Sacrifícios",
       "papel_combate": "Necrófago",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Círculo do Pacto, após combate vencido"
     },
     {
       "tier": "Pacto Daedrico",
@@ -15275,7 +15687,8 @@
       "materiais_dropados": "Ouro + Fragmento Jovem do Véu",
       "papel_combate": "Parasita",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Círculo do Pacto, só com Horror presente"
     },
     {
       "tier": "Pacto Daedrico",
@@ -15293,7 +15706,8 @@
       "materiais_dropados": "Ouro + Olho Preservado do Arauto (chance rara)",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Círculo do Pacto"
     },
     {
       "tier": "Pacto Daedrico",
@@ -15311,7 +15725,8 @@
       "materiais_dropados": "Ouro + Resíduo de Horror Fragmentado",
       "papel_combate": "DPS fraco",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Círculo do Pacto — Salão Ritual"
     },
     {
       "tier": "Pacto Daedrico",
@@ -15329,7 +15744,8 @@
       "materiais_dropados": "Ouro + Presa de Devorador de Sacrifícios",
       "papel_combate": "Necrófago",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Círculo do Pacto, após combate vencido"
     },
     {
       "tier": "Pacto Daedrico",
@@ -15347,7 +15763,8 @@
       "materiais_dropados": "Ouro + Fragmento do Véu",
       "papel_combate": "Parasita",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Círculo do Pacto, só com Horror presente"
     },
     {
       "tier": "Pacto Daedrico",
@@ -15365,7 +15782,8 @@
       "materiais_dropados": "Ouro + Resíduo de Sombra Sem Rosto Muito Menor",
       "papel_combate": "Controle",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Círculo do Pacto — Salão Ritual"
     },
     {
       "tier": "Pacto Daedrico",
@@ -15383,7 +15801,8 @@
       "materiais_dropados": "Ouro + Amuleto do Aprendiz Menor",
       "papel_combate": "Suporte",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Círculo do Pacto — Salão Ritual"
     },
     {
       "tier": "Pacto Daedrico",
@@ -15401,7 +15820,8 @@
       "materiais_dropados": "Ouro + Fragmento de Guardiã Muito Menor",
       "papel_combate": "Tanque",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Círculo do Pacto — Salão Ritual"
     },
     {
       "tier": "Pacto Daedrico",
@@ -15419,7 +15839,8 @@
       "materiais_dropados": "Ouro + Olho Preservado do Arauto (chance rara)",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Círculo do Pacto"
     },
     {
       "tier": "Pacto Daedrico",
@@ -15437,7 +15858,8 @@
       "materiais_dropados": "Ouro + Resíduo de Sombra Sem Rosto Menor",
       "papel_combate": "Controle",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Círculo do Pacto — Salão Ritual"
     },
     {
       "tier": "Pacto Daedrico",
@@ -15455,7 +15877,8 @@
       "materiais_dropados": "Ouro + Amuleto do Aprendiz do Pacto",
       "papel_combate": "Suporte",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Círculo do Pacto — Salão Ritual"
     },
     {
       "tier": "Pacto Daedrico",
@@ -15473,7 +15896,8 @@
       "materiais_dropados": "Ouro + Eco Condicional do Sussurrante",
       "papel_combate": "Condicional",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Círculo do Pacto, só durante ritual completo ativo"
     },
     {
       "tier": "Pacto Daedrico",
@@ -15491,7 +15915,8 @@
       "materiais_dropados": "Ouro + Eco do Terceiro Sussurrante",
       "papel_combate": "Controle",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Círculo do Pacto — Salão Ritual"
     },
     {
       "tier": "Pacto Daedrico",
@@ -15509,7 +15934,8 @@
       "materiais_dropados": "Ouro + Olho Preservado do Arauto (chance rara)",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Círculo do Pacto"
     },
     {
       "tier": "Pacto Daedrico",
@@ -15527,7 +15953,8 @@
       "materiais_dropados": "Ouro + Eco do Segundo Sussurrante",
       "papel_combate": "Controle",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Círculo do Pacto — Salão Ritual"
     },
     {
       "tier": "Pacto Daedrico",
@@ -15545,7 +15972,8 @@
       "materiais_dropados": "Relicário de Sacerdote do Pacto + Ouro + Olho Preservado do Arauto (chance baixa)",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Círculo do Pacto"
     },
     {
       "tier": "Pacto Daedrico",
@@ -15563,7 +15991,8 @@
       "materiais_dropados": "Ouro + Olho Preservado do Arauto (chance alta, x2) + Fragmento de Altar Armadilhado",
       "papel_combate": "Mímico",
       "interacao_ambiental": null,
-      "loot_unico": "Olho Preservado do Arauto x2 (falso — some ao ser revelado, sem uso real) — correção: nome anterior 'Relicário de Sacerdote do Pacto x2' reutilizava o troféu de outro Elite; ajustado pro material-base do próprio tier"
+      "loot_unico": "Olho Preservado do Arauto x2 (falso — some ao ser revelado, sem uso real) — correção: nome anterior 'Relicário de Sacerdote do Pacto x2' reutilizava o troféu de outro Elite; ajustado pro material-base do próprio tier",
+      "condicao_spawn": "Círculo do Pacto, 5% ao interagir com altar"
     },
     {
       "tier": "Pacto Daedrico",
@@ -15581,7 +16010,8 @@
       "materiais_dropados": "Ouro + Resíduo Instável do Horror Fugidio",
       "papel_combate": "Superloot/Evasivo",
       "interacao_ambiental": null,
-      "loot_unico": "Minério Estelar / Poeira de Quasar (material de Tier 14)"
+      "loot_unico": "Minério Estelar / Poeira de Quasar (material de Tier 14)",
+      "condicao_spawn": "Círculo do Pacto, spawn raro (2%)"
     },
     {
       "tier": "Pacto Daedrico",
@@ -15599,7 +16029,8 @@
       "materiais_dropados": "Ouro + Núcleo de Guardiã Menor dos Altares + Olho Preservado do Arauto (chance baixa)",
       "papel_combate": "Tanque",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Círculo do Pacto — Salão Ritual"
     },
     {
       "tier": "Pacto Daedrico",
@@ -15617,7 +16048,8 @@
       "materiais_dropados": "Relicário de Sacerdote do Sangue Final + Ouro + Olho Preservado do Arauto (chance baixa)",
       "papel_combate": "Suporte",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Círculo do Pacto"
     },
     {
       "tier": "Pacto Daedrico",
@@ -15635,7 +16067,8 @@
       "materiais_dropados": "Núcleo de Guardiã dos Altares de Sangue + Ouro + Olho Preservado do Arauto (chance baixa)",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Círculo do Pacto"
     },
     {
       "tier": "Pacto Daedrico",
@@ -15653,7 +16086,8 @@
       "materiais_dropados": "Ouro",
       "papel_combate": "Nomeado / Mini-Boss",
       "interacao_ambiental": null,
-      "loot_unico": "Punhal do Círculo Quebrado (se derrotada em vez de poupada) [ver Artefatos e Relíquias]"
+      "loot_unico": "Punhal do Círculo Quebrado (se derrotada em vez de poupada) [ver Artefatos e Relíquias]",
+      "condicao_spawn": "Círculo do Pacto, spawn raro (4%)"
     },
     {
       "tier": "Pacto Daedrico",
@@ -15671,7 +16105,8 @@
       "materiais_dropados": "Ouro + Fragmento de Sacerdote do Sangue Final Ferido + Olho Preservado do Arauto (chance baixa)",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Círculo do Pacto — Salão Ritual"
     },
     {
       "tier": "Pacto Daedrico",
@@ -15689,7 +16124,8 @@
       "materiais_dropados": "Relicário de Arauto Daedrico + Essência de Arauto Daedrico + Ouro + Olho Preservado do Arauto (chance baixa)",
       "papel_combate": "Suporte",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": "O Pacto dos Dez Dedos Ensanguentados",
+      "condicao_spawn": "Círculo do Pacto"
     },
     {
       "tier": "Pacto Daedrico",
@@ -15707,7 +16143,8 @@
       "materiais_dropados": "Fragmento de O Arquivista Traidor + Essência de O Arquivista Traidor + Ouro + Olho Preservado do Arauto (chance baixa)",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Círculo do Pacto"
     },
     {
       "tier": "Estelar / Cosmico",
@@ -15725,7 +16162,8 @@
       "materiais_dropados": "Ouro + Diário Mudo da Testemunha",
       "papel_combate": "Não-hostil",
       "interacao_ambiental": "Revela lore rara sobre a origem da Mão Carmesim se poupada.",
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Fenda Estelar — Bordas"
     },
     {
       "tier": "Estelar / Cosmico",
@@ -15743,7 +16181,8 @@
       "materiais_dropados": "Ouro + Poeira de Fragmento Muito Instável",
       "papel_combate": "DPS fraco",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Fenda Estelar — Bordas"
     },
     {
       "tier": "Estelar / Cosmico",
@@ -15761,7 +16200,8 @@
       "materiais_dropados": "Ouro + Marca do Despertar Recente",
       "papel_combate": "Não-hostil condicional",
       "interacao_ambiental": "Se abordado em paz, hesita e pode ser convencido a fugir.",
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Fenda Estelar — Bordas"
     },
     {
       "tier": "Estelar / Cosmico",
@@ -15779,7 +16219,8 @@
       "materiais_dropados": "Ouro + Núcleo da Sentinela Recém-Formada",
       "papel_combate": "Condicional",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Fenda Estelar, só com portal parcialmente aberto"
     },
     {
       "tier": "Estelar / Cosmico",
@@ -15797,7 +16238,8 @@
       "materiais_dropados": "Ouro + Centelha do Fim Inominável (chance rara)",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Fenda Estelar"
     },
     {
       "tier": "Estelar / Cosmico",
@@ -15815,7 +16257,8 @@
       "materiais_dropados": "Ouro + Poeira de Fragmento Instável",
       "papel_combate": "DPS fraco",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Fenda Estelar — Bordas"
     },
     {
       "tier": "Estelar / Cosmico",
@@ -15833,7 +16276,8 @@
       "materiais_dropados": "Ouro + Marca do Despertar",
       "papel_combate": "Não-hostil condicional",
       "interacao_ambiental": "Se abordado em paz, pode ser o último a desertar antes do fim (quest final).",
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Fenda Estelar — Bordas"
     },
     {
       "tier": "Estelar / Cosmico",
@@ -15851,7 +16295,8 @@
       "materiais_dropados": "Ouro + Núcleo da Sentinela Silenciosa",
       "papel_combate": "Condicional",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Fenda Estelar, só com portal central ativo"
     },
     {
       "tier": "Estelar / Cosmico",
@@ -15869,7 +16314,8 @@
       "materiais_dropados": "Ouro + Fragmento de Vigia Muito Menor",
       "papel_combate": "Controle",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Fenda Estelar — Bordas"
     },
     {
       "tier": "Estelar / Cosmico",
@@ -15887,7 +16333,8 @@
       "materiais_dropados": "Ouro + Resíduo de Devorador de Luz Fraca",
       "papel_combate": "Necrófago",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Fenda Estelar, após combate vencido"
     },
     {
       "tier": "Estelar / Cosmico",
@@ -15905,7 +16352,8 @@
       "materiais_dropados": "Ouro + Fragmento Jovem do Aspecto",
       "papel_combate": "Parasita",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Fenda Estelar, só com Arauto presente"
     },
     {
       "tier": "Estelar / Cosmico",
@@ -15923,7 +16371,8 @@
       "materiais_dropados": "Ouro + Poeira do Fragmento Consciente Menor",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Fenda Estelar — Bordas"
     },
     {
       "tier": "Estelar / Cosmico",
@@ -15941,7 +16390,8 @@
       "materiais_dropados": "Ouro + Centelha do Fim Inominável (chance rara)",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Fenda Estelar"
     },
     {
       "tier": "Estelar / Cosmico",
@@ -15959,7 +16409,8 @@
       "materiais_dropados": "Ouro + Fragmento de Vigia Menor",
       "papel_combate": "Controle",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Fenda Estelar — Bordas"
     },
     {
       "tier": "Estelar / Cosmico",
@@ -15977,7 +16428,8 @@
       "materiais_dropados": "Ouro + Resíduo de Devorador de Luz",
       "papel_combate": "Necrófago",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Fenda Estelar, após combate vencido"
     },
     {
       "tier": "Estelar / Cosmico",
@@ -15995,7 +16447,8 @@
       "materiais_dropados": "Ouro + Fragmento do Aspecto",
       "papel_combate": "Parasita",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Fenda Estelar, só com Arauto presente"
     },
     {
       "tier": "Estelar / Cosmico",
@@ -16013,7 +16466,8 @@
       "materiais_dropados": "Ouro + Resíduo de Terceira Ordem",
       "papel_combate": "Enxame",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Fenda Estelar — Bordas"
     },
     {
       "tier": "Estelar / Cosmico",
@@ -16031,7 +16485,8 @@
       "materiais_dropados": "Ouro + Fragmento de Vanguarda Muito Menor",
       "papel_combate": "DPS fraco",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Fenda Estelar — Bordas"
     },
     {
       "tier": "Estelar / Cosmico",
@@ -16049,7 +16504,8 @@
       "materiais_dropados": "Ouro + Centelha do Fim Inominável (chance rara)",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Fenda Estelar"
     },
     {
       "tier": "Estelar / Cosmico",
@@ -16067,7 +16523,8 @@
       "materiais_dropados": "Ouro + Resíduo de Segunda Ordem",
       "papel_combate": "Enxame",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Fenda Estelar — Bordas"
     },
     {
       "tier": "Estelar / Cosmico",
@@ -16085,7 +16542,8 @@
       "materiais_dropados": "Ouro + Manto do Zelote Final Menor",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Fenda Estelar — Bordas"
     },
     {
       "tier": "Estelar / Cosmico",
@@ -16103,7 +16561,8 @@
       "materiais_dropados": "Ouro + Eco Fraco do Aspecto",
       "papel_combate": "Controle",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Fenda Estelar — Bordas"
     },
     {
       "tier": "Estelar / Cosmico",
@@ -16121,7 +16580,8 @@
       "materiais_dropados": "Ouro + Centelha do Fim Inominável (chance alta, x1) + Fragmento de Portal Menor Armadilhado",
       "papel_combate": "Mímico",
       "interacao_ambiental": null,
-      "loot_unico": "Centelha do Fim Inominável x1 (falso — some ao ser revelado, sem uso real) — correção: nome anterior 'Fragmento de Vanguarda do Vazio Astral x1' reutilizava o troféu de outro Elite; ajustado pro material-base do próprio tier"
+      "loot_unico": "Centelha do Fim Inominável x1 (falso — some ao ser revelado, sem uso real) — correção: nome anterior 'Fragmento de Vanguarda do Vazio Astral x1' reutilizava o troféu de outro Elite; ajustado pro material-base do próprio tier",
+      "condicao_spawn": "Fenda Estelar, 5% ao interagir"
     },
     {
       "tier": "Estelar / Cosmico",
@@ -16139,7 +16599,8 @@
       "materiais_dropados": "Ouro + Poeira Instável do Fragmento Fugidio Menor",
       "papel_combate": "Superloot/Evasivo",
       "interacao_ambiental": null,
-      "loot_unico": "Centelha Fragmentada (material único)"
+      "loot_unico": "Centelha Fragmentada (material único)",
+      "condicao_spawn": "Fenda Estelar, spawn raro (2%)"
     },
     {
       "tier": "Estelar / Cosmico",
@@ -16157,7 +16618,8 @@
       "materiais_dropados": "Relicário de Arauto do Aspecto + Ouro + Centelha do Fim Inominável (chance baixa)",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Fenda Estelar"
     },
     {
       "tier": "Estelar / Cosmico",
@@ -16175,7 +16637,8 @@
       "materiais_dropados": "Ouro + Centelha do Fim Inominável (chance alta, x2) + Fragmento de Portal Armadilhado",
       "papel_combate": "Mímico",
       "interacao_ambiental": null,
-      "loot_unico": "Centelha do Fim Inominável x2 (falso — some ao ser revelado, sem uso real) — correção: nome anterior 'Relicário de Arauto do Aspecto x2' reutilizava o troféu de outro Elite; ajustado pro material-base do próprio tier"
+      "loot_unico": "Centelha do Fim Inominável x2 (falso — some ao ser revelado, sem uso real) — correção: nome anterior 'Relicário de Arauto do Aspecto x2' reutilizava o troféu de outro Elite; ajustado pro material-base do próprio tier",
+      "condicao_spawn": "Fenda Estelar, 5% ao interagir"
     },
     {
       "tier": "Estelar / Cosmico",
@@ -16193,7 +16656,8 @@
       "materiais_dropados": "Ouro + Resíduo Puro do Vazio Astral",
       "papel_combate": "Superloot/Evasivo",
       "interacao_ambiental": null,
-      "loot_unico": "Centelha do Fim Inominável (material único, sem tier seguinte)"
+      "loot_unico": "Centelha do Fim Inominável (material único, sem tier seguinte)",
+      "condicao_spawn": "Fenda Estelar, spawn raro (2%)"
     },
     {
       "tier": "Estelar / Cosmico",
@@ -16211,7 +16675,8 @@
       "materiais_dropados": "Fragmento de Vanguarda do Vazio Astral + Ouro + Centelha do Fim Inominável (chance baixa)",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Fenda Estelar"
     },
     {
       "tier": "Estelar / Cosmico",
@@ -16229,7 +16694,8 @@
       "materiais_dropados": "Relicário de Zelote Final do Culto + Ouro + Centelha do Fim Inominável (chance baixa)",
       "papel_combate": "Suporte",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Fenda Estelar"
     },
     {
       "tier": "Estelar / Cosmico",
@@ -16247,7 +16713,8 @@
       "materiais_dropados": "Ouro + Fragmento de Vanguarda Menor do Vazio + Centelha do Fim Inominável (chance baixa)",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Fenda Estelar — Bordas"
     },
     {
       "tier": "Estelar / Cosmico",
@@ -16265,7 +16732,8 @@
       "materiais_dropados": "Ouro + Fragmento da Última Voz + Centelha do Fim Inominável (chance baixa)",
       "papel_combate": "Nomeado / Mini-Boss",
       "interacao_ambiental": null,
-      "loot_unico": "Último Fragmento de Humanidade (se derrotada em vez de libertada) [ver Artefatos e Relíquias]"
+      "loot_unico": "Último Fragmento de Humanidade (se derrotada em vez de libertada) [ver Artefatos e Relíquias]",
+      "condicao_spawn": "Fenda Estelar, spawn raro (4%)"
     },
     {
       "tier": "Estelar / Cosmico",
@@ -16283,7 +16751,8 @@
       "materiais_dropados": "Núcleo de O Guardião do Portal Estelar + Essência de O Guardião do Portal Estelar + Ouro + Centelha do Fim Inominável (chance baixa)",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Fenda Estelar"
     },
     {
       "tier": "Estelar / Cosmico",
@@ -16301,7 +16770,8 @@
       "materiais_dropados": "Fragmento de O Aspecto da Infeccao + Essência de O Aspecto da Infeccao + Ouro + Centelha do Fim Inominável (chance baixa)",
       "papel_combate": "DPS",
       "interacao_ambiental": null,
-      "loot_unico": null
+      "loot_unico": null,
+      "condicao_spawn": "Fenda Estelar"
     }
   ],
   "classes": [
@@ -16313,7 +16783,8 @@
       "kit_inicial": "Espada de Sucata Enferrujada + Escudo de Sucata + Peitoral de Sucata Enferrujada",
       "proficiencia_inicial": 10,
       "vantagem": "+2 Defesa permanente ao equipar armadura pesada ou escudo",
-      "desvantagem": "-10% de Dano com Adaga, Arco ou Cetro"
+      "desvantagem": "-10% de Dano com Adaga, Arco ou Cetro",
+      "historia_origem": "Veteranos e guardas treinados nas antigas forjas que usam a disciplina do metal para resistir às garras da Infecção."
     },
     {
       "nome": "Inquisidor de Prata",
@@ -16323,7 +16794,8 @@
       "kit_inicial": "Maça de Sucata Enferrujada + Escudo de Sucata + Elmo de Sucata Enferrujada",
       "proficiencia_inicial": 10,
       "vantagem": "+50% de dano contra mortos-vivos e cultistas",
-      "desvantagem": "Gasta +1 VIG extra em toda ação ofensiva (disciplina tem custo)"
+      "desvantagem": "Gasta +1 VIG extra em toda ação ofensiva (disciplina tem custo)",
+      "historia_origem": "Membros de ordens religiosas dispersas que juraram queimar os dedos ensanguentados da Mão onde quer que surjam."
     },
     {
       "nome": "Conjurador de Sangue (Hemomante)",
@@ -16333,7 +16805,8 @@
       "kit_inicial": "Cetro de Sucata Enferrujada + Adaga de Sucata Enferrujada",
       "proficiencia_inicial": 10,
       "vantagem": "Rouba Vida (15%) em qualquer ataque mágico, mesmo sem esse efeito na magia",
-      "desvantagem": "HP Máximo reduzido em 10% permanentemente (o pacto cobra seu preço)"
+      "desvantagem": "HP Máximo reduzido em 10% permanentemente (o pacto cobra seu preço)",
+      "historia_origem": "Eruditos desesperados que decifraram os sussurros da Mão nas paredes para transformar a própria praga em arma contra seus criadores."
     },
     {
       "nome": "Batedor dos Ecos",
@@ -16343,7 +16816,8 @@
       "kit_inicial": "Arco de Sucata Enferrujada + Adaga de Sucata Enferrujada",
       "proficiencia_inicial": 10,
       "vantagem": "+10% de chance de acerto com Arco",
-      "desvantagem": "-1 de Dano em armas corpo-a-corpo"
+      "desvantagem": "-1 de Dano em armas corpo-a-corpo",
+      "historia_origem": "Rastreadores que viveram nos limites do domínio élfico aprendendo a ler o movimento do vento e a fugir antes do Ceifador chegar."
     },
     {
       "nome": "Ladino das Sombras",
@@ -16353,7 +16827,8 @@
       "kit_inicial": "2x Adaga de Sucata Enferrujada + Peitoral de Couro e Metal",
       "proficiencia_inicial": 10,
       "vantagem": "Dano em dobro contra alvos desprevenidos ou imobilizados",
-      "desvantagem": "-2 de Defesa permanente (evita armadura pesada por natureza)"
+      "desvantagem": "-2 de Defesa permanente (evita armadura pesada por natureza)",
+      "historia_origem": "Sobreviventes das vielas e prisões subterrâneas que aprenderam que a lâmina mais rápida é aquela que o inimigo nunca vê."
     },
     {
       "nome": "Mago Elemental",
@@ -16363,7 +16838,8 @@
       "kit_inicial": "Cetro de Sucata Enferrujada + Peitoral de Couro e Metal",
       "proficiencia_inicial": 10,
       "vantagem": "Feitiços custam -10% de Mana",
-      "desvantagem": "-2 de Defesa física (sem treino de combate corpo-a-corpo)"
+      "desvantagem": "-2 de Defesa física (sem treino de combate corpo-a-corpo)",
+      "historia_origem": "Estudiosos das antigas academias de magia que buscam restaurar o equilíbrio elemental rompido pela fenda cósmica."
     },
     {
       "nome": "Bárbaro da Fenda",
@@ -16373,7 +16849,8 @@
       "kit_inicial": "Machado de Duas Cabeças de Sucata Enferrujada + Peitoral de Couro e Metal",
       "proficiencia_inicial": 10,
       "vantagem": "+1 de Bônus de Ataque a cada 20% de HP perdido em combate",
-      "desvantagem": "-10% de eficácia em cura recebida (não cicatriza bem)"
+      "desvantagem": "-10% de eficácia em cura recebida (não cicatriza bem)",
+      "historia_origem": "Guerreiros selvagens criados nos ermos rochosos que aprenderam a canalizar a dor dos ferimentos em força devastadora."
     },
     {
       "nome": "Artífice Mecânico",
@@ -16383,7 +16860,8 @@
       "kit_inicial": "Manopla de Sucata Enferrujada + Peitoral de Sucata Enferrujada",
       "proficiencia_inicial": 10,
       "vantagem": "Reparo de equipamento custa -30%",
-      "desvantagem": "-1 de Dano em combate corpo-a-corpo (é suporte, não combatente direto)"
+      "desvantagem": "-1 de Dano em combate corpo-a-corpo (é suporte, não combatente direto)",
+      "historia_origem": "Inventores que estudaram as ruínas anãs e criaram dispositivos mecânicos capazes de enfrentar os horrores sobrenaturais."
     }
   ],
   "talentos_classe": [

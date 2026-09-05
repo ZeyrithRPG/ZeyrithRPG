@@ -113,6 +113,9 @@ def completar_missao(session, player, missao_id):
     if missao.is_principal and missao.recompensa_xp:
         player.xp_atual += missao.recompensa_xp
 
+    from game.nivel import verificar_e_aplicar_level_up
+    niveis_subidos = verificar_e_aplicar_level_up(session, player)
+
     faccao = TIER_PARA_FACCAO.get(missao.tier)
     honra_ganha = 0
     if faccao:
@@ -122,4 +125,4 @@ def completar_missao(session, player, missao_id):
 
     pq.status = "concluida"
     session.commit()
-    return ouro, honra_ganha, faccao, missao.recompensa_extra
+    return ouro, honra_ganha, faccao, missao.recompensa_extra, niveis_subidos

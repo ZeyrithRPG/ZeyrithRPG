@@ -18,7 +18,6 @@ CUSTO_POR_GRAU = {"Basico": 0.15, "Avancado": 0.4, "Mestre": 0.65}
 
 async def menu_magias(update: Update, context: ContextTypes.DEFAULT_TYPE):
     query = update.callback_query
-    await query.answer()
     session = get_session()
     tg_id = str(update.effective_user.id)
     player = session.query(Player).filter_by(telegram_id=tg_id).first()
@@ -27,6 +26,8 @@ async def menu_magias(update: Update, context: ContextTypes.DEFAULT_TYPE):
         session.close()
         await query.answer("Só dá pra conjurar durante um combate.", show_alert=True)
         return
+
+    await query.answer()
 
     mana_max = player.mana_max or 0
     magias_disponiveis = session.query(Magia).filter(
@@ -59,7 +60,6 @@ async def menu_magias(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 async def conjurar(update: Update, context: ContextTypes.DEFAULT_TYPE):
     query = update.callback_query
-    await query.answer()
     magia_id = int(query.data.split("_")[1])
 
     session = get_session()
@@ -70,6 +70,7 @@ async def conjurar(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     if magia is None or monstro is None or player.em_combate_hp_monstro is None:
         session.close()
+        await query.answer()
         await query.edit_message_text(
             "Esse combate não está mais ativo.",
             reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("⬅️ Voltar", callback_data="menu_status")]]),
@@ -85,6 +86,8 @@ async def conjurar(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await query.answer("Mana insuficiente.", show_alert=True)
         return
 
+    await query.answer()
+
     player.mana_atual -= custo_real
     atq_bonus_jogador = curva.atq_bonus if curva else 2
 
@@ -97,20 +100,8 @@ async def conjurar(update: Update, context: ContextTypes.DEFAULT_TYPE):
         linhas.append("💨 A magia erra o alvo.")
 
     if player.em_combate_hp_monstro <= 0:
-        xp_ganho = 10 * player.tier_mais_alto_alcancado
-        ouro_ganho = 10 * player.tier_mais_alto_alcancado
-        player.xp_atual += xp_ganho
-        player.ouro += ouro_ganho
-        nome_derrotado = monstro.nome
-        player.em_combate_monstro_id = None
-        player.em_combate_hp_monstro = None
-        session.commit()
-        session.close()
-        await query.edit_message_text(
-            "\n".join(linhas) + f"\n\n🏆 *Você derrotou {nome_derrotado}!*\n✨ +{xp_ganho} XP  💰 +{ouro_ganho} Ouro",
-            parse_mode="Markdown",
-            reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("⬅️ Voltar", callback_data="menu_status")]]),
-        )
+        from handlers.aventura import _vitoria
+        await _vitoria(session, query, player, monstro, linhas)
         return
 
     defesa_jogador = curva.defesa_esperada if curva else 6

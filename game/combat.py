@@ -15,13 +15,13 @@ class ResultadoAtaque:
     rolagem: int
 
 
-def resolver_ataque(atq_bonus: int, defesa_alvo: int, dano_base: int) -> ResultadoAtaque:
+def resolver_ataque(atq_bonus: int, defesa_alvo: int, dano_base: int, bonus_critico_pct: int = 0) -> ResultadoAtaque:
     d20 = random.randint(1, 20)
 
     if d20 == 1:
         return ResultadoAtaque(acertou=False, critico=False, dano=0, rolagem=d20)
 
-    critico = d20 == 20
+    critico = d20 == 20 or (bonus_critico_pct > 0 and random.random() < bonus_critico_pct / 100)
     acertou = critico or (d20 + atq_bonus) >= defesa_alvo
 
     if not acertou:

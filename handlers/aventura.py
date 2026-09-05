@@ -86,10 +86,29 @@ async def menu_aventura(update: Update, context: ContextTypes.DEFAULT_TYPE):
         f"{_barra(vig_atual, vig_max)}\n\n"
         f"🔍 Custo pra explorar aqui: *{custo} VIG*"
     )
-    botoes = [[InlineKeyboardButton("🔍 Explorar", callback_data="explorar")],
-              [InlineKeyboardButton("⬅️ Voltar", callback_data="menu_status")]]
+    botoes = [[InlineKeyboardButton("🔍 Explorar", callback_data="explorar")]]
+    from game.descanso import pode_descansar
+    if pode_descansar(session, player):
+        botoes.append([InlineKeyboardButton("😴 Descansar", callback_data="descansar")])
+    botoes.append([InlineKeyboardButton("⬅️ Voltar", callback_data="menu_status")])
     session.close()
     await query.edit_message_text(texto, parse_mode="Markdown", reply_markup=InlineKeyboardMarkup(botoes))
+
+
+async def descansar_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    from game.descanso import descansar, ErroDescanso
+
+    query = update.callback_query
+    session = get_session()
+    tg_id = str(update.effective_user.id)
+    player = session.query(Player).filter_by(telegram_id=tg_id).first()
+    try:
+        custo = descansar(session, player)
+        await query.answer(f"😴 Você descansou! HP/Vigor/Mana restaurados. (-{custo} Ouro)", show_alert=True)
+    except ErroDescanso as e:
+        await query.answer(f"❌ {e}", show_alert=True)
+    session.close()
+    await menu_aventura(update, context)
 
 
 # ---------- Explorar ----------
@@ -119,6 +138,8 @@ async def explorar(update: Update, context: ContextTypes.DEFAULT_TYPE):
         return
 
     player.vig_atual -= custo
+    from game.relogio import avancar_tempo
+    avancar_tempo(player)
 
     from game.eventos import evento_aleatorio
     evento = evento_aleatorio(session, player)
@@ -184,7 +205,11 @@ async def explorar(update: Update, context: ContextTypes.DEFAULT_TYPE):
         tier_num = min(tier_num + 1, 14)
 
     tier_nome = _nome_do_tier(tier_num, session)
+    from game.relogio import monstro_disponivel_agora
     candidatos = session.query(Monstro).filter_by(tier=tier_nome, papel=papel).all()
+    candidatos_no_periodo = [m for m in candidatos if monstro_disponivel_agora(m, player.hora_do_mundo)]
+    if candidatos_no_periodo:
+        candidatos = candidatos_no_periodo
     if not candidatos:
         candidatos = session.query(Monstro).filter_by(tier=tier_nome, papel="Comum").all()
     if not candidatos:
@@ -208,6 +233,8 @@ async def explorar(update: Update, context: ContextTypes.DEFAULT_TYPE):
     player.em_combate_monstro_id = monstro.id
     from game.codex import registrar_encontro
     registrar_encontro(session, player, monstro.id)
+    player.em_combate_turnos = 0
+    player.em_combate_proficiencia_ganha = 0
     player.em_combate_hp_monstro = monstro.hp
     session.commit()
 
@@ -258,6 +285,7 @@ async def atacar(update: Update, context: ContextTypes.DEFAULT_TYPE):
             ),
         )
         return
+    player.em_combate_turnos = (player.em_combate_turnos or 0) + 1
     tier_jogador = session.query(Tier).filter(
         Tier.id == player.tier_mais_alto_alcancado
     ).first()
@@ -302,10 +330,37 @@ async def atacar(update: Update, context: ContextTypes.DEFAULT_TYPE):
         return
 
     # --- 2) ataque do jogador ---
-    res = resolver_ataque(atq_bonus_jogador, monstro.defesa, dano_jogador_base)
+    from game.atributos import bonus_dano_por_for, bonus_critico_por_des
+    dano_jogador_base += bonus_dano_por_for(player.atributo_for or 10)
+    res = resolver_ataque(
+        atq_bonus_jogador, monstro.defesa, dano_jogador_base,
+        bonus_critico_pct=bonus_critico_por_des(player.atributo_des or 10),
+    )
     if res.acertou:
-        player.em_combate_hp_monstro -= res.dano
-        linhas.append(f"⚔️ Você acerta{' 💥 CRÍTICO!' if res.critico else ''}: *{res.dano}* de dano.")
+        from db.models import PlayerInventario, Classe
+        from game.proficiencia import registrar_hit, nivel_e_progresso, bonus_dano_percentual
+
+        arma_equipada = (
+            session.query(PlayerInventario)
+            .filter_by(player_id=player.id, tipo_item="arma", equipado=True)
+            .first()
+        )
+        dano_final = res.dano
+        if arma_equipada and arma_equipada.item_ref_id:
+            from db.models import Arma
+            arma_obj = session.query(Arma).filter_by(id=arma_equipada.item_ref_id).first()
+            if arma_obj:
+                classe_obj = session.get(Classe, player.classe_id) if player.classe_id else None
+                nome_classe = classe_obj.nome if classe_obj else ""
+                subiu, nivel_novo = registrar_hit(session, player, arma_obj.tipo)
+                player.em_combate_proficiencia_ganha = (player.em_combate_proficiencia_ganha or 0) + 1
+                bonus_pct = bonus_dano_percentual(nivel_novo, nome_classe, arma_obj.tipo)
+                dano_final = round(res.dano * (1 + bonus_pct))
+                if subiu:
+                    linhas.append(f"📈 Proficiência com {arma_obj.tipo} subiu pro Nv.{nivel_novo}!")
+
+        player.em_combate_hp_monstro -= dano_final
+        linhas.append(f"⚔️ Você acerta{' 💥 CRÍTICO!' if res.critico else ''}: *{dano_final}* de dano.")
     else:
         linhas.append("💨 Você errou o golpe.")
 
@@ -380,6 +435,8 @@ async def _vitoria(session, query, player, monstro, linhas):
 
     player.xp_atual += xp_ganho
     player.ouro += ouro_ganho
+    from game.nivel import verificar_e_aplicar_level_up
+    niveis_subidos = verificar_e_aplicar_level_up(session, player)
     player.em_combate_monstro_id = None
     player.em_combate_hp_monstro = None
     player.em_combate_efeito_monstro = None
@@ -390,6 +447,15 @@ async def _vitoria(session, query, player, monstro, linhas):
 
     session.commit()
     nome_derrotado, ouro_total, xp_total = monstro.nome, player.ouro, player.xp_atual
+    turnos_luta = player.em_combate_turnos or 0
+    prof_ganha = player.em_combate_proficiencia_ganha or 0
+    from db.models import PlayerInventario
+    arma_equipada = (
+        session.query(PlayerInventario)
+        .filter_by(player_id=player.id, tipo_item="arma", equipado=True)
+        .first()
+    )
+    nome_arma_equipada = arma_equipada.nome_item if arma_equipada else None
     session.close()
 
     botoes = [[InlineKeyboardButton(
@@ -397,11 +463,20 @@ async def _vitoria(session, query, player, monstro, linhas):
         callback_data="lootear",
     )], [InlineKeyboardButton("⬅️ Voltar", callback_data="menu_status")]]
 
-    await query.edit_message_text(
+    resumo = (
         "\n".join(linhas) +
         f"\n\n🏆 *Você derrotou {nome_derrotado}!*\n\n"
+        f"⏱️ Duração: {turnos_luta} turno{'s' if turnos_luta != 1 else ''}\n"
         f"✨ +{xp_ganho} XP (total: {xp_total})\n"
-        f"💰 +{ouro_ganho} Ouro (total: {ouro_total})",
+        f"💰 +{ouro_ganho} Ouro (total: {ouro_total})"
+    )
+    if prof_ganha and nome_arma_equipada:
+        resumo += f"\n🗡️ +{prof_ganha} Proficiência com {nome_arma_equipada}"
+    if niveis_subidos:
+        resumo += f"\n\n🎉 *LEVEL UP! Você chegou ao Nível {niveis_subidos[-1]}!*"
+
+    await query.edit_message_text(
+        resumo,
         parse_mode="Markdown",
         reply_markup=InlineKeyboardMarkup(botoes),
     )
@@ -520,7 +595,6 @@ async def lootear(update: Update, context: ContextTypes.DEFAULT_TYPE):
     from game.loot import aplicar_loot_no_inventario
 
     query = update.callback_query
-    await query.answer()
     session = get_session()
     tg_id = str(update.effective_user.id)
     player = session.query(Player).filter_by(telegram_id=tg_id).first()
@@ -530,6 +604,8 @@ async def lootear(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await query.answer("Não há nada pra lootear.", show_alert=True)
         session.close()
         return
+
+    await query.answer()
 
     aplicar_loot_no_inventario(session, player, materiais)
     player.loot_pendente = None
@@ -549,7 +625,6 @@ async def lootear(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 async def poupar(update: Update, context: ContextTypes.DEFAULT_TYPE):
     query = update.callback_query
-    await query.answer()
     session = get_session()
     tg_id = str(update.effective_user.id)
     player = session.query(Player).filter_by(telegram_id=tg_id).first()
@@ -561,6 +636,8 @@ async def poupar(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await query.answer("Não é possível poupar agora.", show_alert=True)
         session.close()
         return
+
+    await query.answer()
 
     nome_poupado = monstro.nome
     nome_curto_poupado = nome_poupado.split(",")[0].strip()
