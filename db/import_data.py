@@ -167,24 +167,56 @@ def importar():
         if not precisa_forcar and hashes_salvos.get(chave) == hash_atual and session.query(Modelo).count() > 0:
             continue  # conteudo identico ao ultimo import, nao mexe
         # Tabela de REFERENCIA (nunca escrita durante o jogo) — seguro substituir por completo
-        # sempre que a planilha mudar (rebalanceamento), detectado por hash de conteudo.
         qtd_antes = session.query(Modelo).count()
-        session.query(Modelo).delete()
         campos_validos = {c.name for c in Modelo.__table__.columns}
-        for item in itens_json:
-            item_limpo = {k: v for k, v in item.items() if k in campos_validos}
-            if "preco_base" in item_limpo:
-                item_limpo["preco_base"] = _texto_pra_numero(item_limpo["preco_base"])
-            # SQLAlchemy 2.0 se confunde ao inserir em lote quando a MESMA coluna Text
-            # recebe tipo Python misto (int numa linha, str noutra) -- normaliza pra
-            # sempre string em qualquer campo que o modelo declara como Text/String
-            # mas que pode vir como numero da planilha (ex: recompensa).
-            for campo, valor in list(item_limpo.items()):
-                if valor is not None and not isinstance(valor, (str, bool)):
-                    coluna_modelo = Modelo.__table__.columns.get(campo)
-                    if coluna_modelo is not None and str(coluna_modelo.type).upper() in ("TEXT", "VARCHAR"):
-                        item_limpo[campo] = str(valor)
-            session.add(Modelo(**item_limpo))
+        if Modelo == Classe:
+            for item in itens_json:
+                item_limpo = {k: v for k, v in item.items() if k in campos_validos}
+                for campo, valor in list(item_limpo.items()):
+                    if valor is not None and not isinstance(valor, (str, bool)):
+                        coluna_modelo = Modelo.__table__.columns.get(campo)
+                        if coluna_modelo is not None and str(coluna_modelo.type).upper() in ("TEXT", "VARCHAR"):
+                            item_limpo[campo] = str(valor)
+                obj = session.query(Classe).filter_by(nome=item_limpo.get("nome")).first()
+                if obj:
+                    for k, v in item_limpo.items():
+                        setattr(obj, k, v)
+                else:
+                    session.add(Classe(**item_limpo))
+        elif Modelo == HabilidadeAtiva:
+            for item in itens_json:
+                item_limpo = {k: v for k, v in item.items() if k in campos_validos}
+                for campo, valor in list(item_limpo.items()):
+                    if valor is not None and not isinstance(valor, (str, bool)):
+                        coluna_modelo = Modelo.__table__.columns.get(campo)
+                        if coluna_modelo is not None and str(coluna_modelo.type).upper() in ("TEXT", "VARCHAR"):
+                            item_limpo[campo] = str(valor)
+                obj = None
+                if "classe_id" in item_limpo:
+                    obj = session.query(HabilidadeAtiva).filter_by(classe_id=item_limpo["classe_id"]).first()
+                if not obj and "habilidade_nome" in item_limpo:
+                    obj = session.query(HabilidadeAtiva).filter_by(habilidade_nome=item_limpo["habilidade_nome"]).first()
+                if obj:
+                    for k, v in item_limpo.items():
+                        setattr(obj, k, v)
+                else:
+                    session.add(HabilidadeAtiva(**item_limpo))
+        else:
+            session.query(Modelo).delete()
+            for item in itens_json:
+                item_limpo = {k: v for k, v in item.items() if k in campos_validos}
+                if "preco_base" in item_limpo:
+                    item_limpo["preco_base"] = _texto_pra_numero(item_limpo["preco_base"])
+                # SQLAlchemy 2.0 se confunde ao inserir em lote quando a MESMA coluna Text
+                # recebe tipo Python misto (int numa linha, str noutra) -- normaliza pra
+                # sempre string em qualquer campo que o modelo declara como Text/String
+                # mas que pode vir como numero da planilha (ex: recompensa).
+                for campo, valor in list(item_limpo.items()):
+                    if valor is not None and not isinstance(valor, (str, bool)):
+                        coluna_modelo = Modelo.__table__.columns.get(campo)
+                        if coluna_modelo is not None and str(coluna_modelo.type).upper() in ("TEXT", "VARCHAR"):
+                            item_limpo[campo] = str(valor)
+                session.add(Modelo(**item_limpo))
         novos_hashes[chave] = hash_atual
         algo_novo = True
         print(f"Tabela de referência sincronizada: {chave} ({qtd_antes} -> {len(itens_json)})")
