@@ -401,8 +401,15 @@ async def mostrar_hud(update: Update, context: ContextTypes.DEFAULT_TYPE):
     classe = session.get(Classe, player.classe_id) if player.classe_id else None
     nome_classe = classe.nome if classe else "Sem classe"
 
-    from game.atributos import entregar_kit_inicial
+    from game.atributos import entregar_kit_inicial, calcular_mana_maximo
     entregar_kit_inicial(session, player, classe)
+
+    mana_calc = calcular_mana_maximo(player=player, session=session, nivel=player.nivel)
+    if not player.mana_max or player.mana_max < mana_calc:
+        diff = mana_calc - (player.mana_max or 0)
+        player.mana_max = mana_calc
+        player.mana_atual = min(player.mana_max, (player.mana_atual or 0) + diff)
+        session.commit()
 
     # protege contra personagem antigo com campo vazio (evita quebrar a barra)
     hp_max = player.hp_max or 24

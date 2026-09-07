@@ -156,7 +156,10 @@ def importar():
                 pass
         elif Modelo == Classe:
             try:
-                if session.query(Classe).filter(Classe.kit_inicial.is_(None)).count() > 0:
+                guerreiro = session.query(Classe).filter(Classe.nome.ilike("%Guerreiro%")).first()
+                if guerreiro and (guerreiro.mana_mult is None or guerreiro.mana_mult < 1.5):
+                    precisa_forcar = True
+                elif session.query(Classe).filter(Classe.kit_inicial.is_(None)).count() > 0:
                     precisa_forcar = True
             except Exception:
                 pass
@@ -196,6 +199,25 @@ def importar():
         print("Importação concluída com sucesso.")
     else:
         print("Todas as tabelas de referência já tinham dado — nada novo a importar.")
+
+    # Sincroniza mana_max de jogadores já criados no banco com base no balanceamento da classe
+    try:
+        from game.atributos import calcular_mana_maximo
+        players = session.query(Player).all()
+        atualizou_players = False
+        for p in players:
+            m_calc = calcular_mana_maximo(player=p, session=session, nivel=p.nivel)
+            if not p.mana_max or p.mana_max < m_calc:
+                diff = m_calc - (p.mana_max or 0)
+                p.mana_max = m_calc
+                p.mana_atual = min(p.mana_max, (p.mana_atual or 0) + diff)
+                atualizou_players = True
+        if atualizou_players:
+            session.commit()
+            print("Status de Mana de jogadores existentes atualizado com sucesso.")
+    except Exception as e:
+        print(f"Aviso ao sincronizar mana de jogadores: {e}")
+
     session.close()
 
 
