@@ -1,0 +1,255 @@
+<USER_REQUEST>
+# PROMPT MESTRE FINAL — Recursos, Proficiência, Debuffs, Armas, Talentos, Títulos, Corrupção, Mutações + Exibição no Telegram
+
+**Este documento substitui os dois anteriores ("prompt final único" e "Parte 2") — manda só este daqui pra frente.** O prompt de correção de bug (persistência, kit quebrado, card de classe) é outro documento separado e continua valendo do jeito que está.
+
+Contexto: mudanças de mecânica aprovadas pelo dono do projeto. Números marcados
+"primeira passada" podem ser ajustados depois de teste real. Implementar seção por
+seção, testar com dado real antes de seguir pra próxima.
+
+---
+
+## 1. Vigor/Mana
+Habilidades Ativas físicas (Golpe de Impacto, Tiro Perfurante, Apunhalada nas Sombras,
+Investida Brutal, Bomba de Fragmentação) passam a custar Mana em vez de Vigor —
+`recurso_tipo` em `ref_habilidades_ativas` muda de "Vigor" pra "Mana", custo numérico
+não muda. Ajustar `mana_mult` na planilha:
+  Guerreiro da Forja: 1.0 -> ~2.0 | Batedor dos Ecos: 1.0 -> ~2.0
+  Ladino das Sombras: 1.0 -> ~1.6 | Bárbaro da Fenda: 0.67 -> ~2.0
+  Artífice Mecânico: 1.33 -> ~2.0 | Mago Elemental: 1.67 -> ~1.26 (reduzir)
+  Inquisidor de Prata e Conjurador de Sangue: sem mudança (já cobrem 2x o custo).
+Vigor passa a pagar só: custo de exploração por local (já existe, não mexer) e a Fuga
+(item 2).
+
+## 2. Chance de Fuga — sem DES, ligada a Vigor
+Em `game/combat.py:chance_fuga()`: remover o parâmetro `bonus` baseado em
+`atributo_des`. Nova fórmula: tentar fugir custa 10 de Vigor (deduzir de `vig_atual`
+sempre, sucesso ou não); chance = 0.40 + (vig_atual/vig_max) * 0.20 (teto 60%, mínimo
+40% mesmo com pouco Vigor). Atualizar todo chamador de `chance_fuga(bonus=...)` pra
+passar `vig_atual`/`vig_max`.
+
+## 3. Proficiência de Arma — 4 trilhas passivas, todo nível relevante, 30 níveis
+Sem habilidade ativa desbloqueada por proficiência. O %Dano por nível que já existe
+continua igual. Adicionar 3 trilhas novas em `game/proficiencia.py`, subindo
+`NIVEL_MAXIMO` de 20 pra 30:
+- A cada 4 níveis: Multiplicador de Dano Crítico da arma +0.05x. Hoje o crítico é
+  sempre `dano_base * 2` fixo em `resolver_ataque()` (`game/combat.py`) — trocar por
+  um multiplicador dinâmico começando em 2.0x. Nível 28 = 2.35x (teto no Nv30).
+- A cada 3 níveis: +1% de Chance de Drop de material, só quando o hit que encerra o
+  combate for com essa arma. Passar como parâmetro extra (`bonus_drop_pct`) pra dentro
+  de `rolar_materiais()`/`resolver_loot()` em `game/loot.py`, somado à chance base de
+  cada material (teto 100%).
+- A cada 5 níveis: +0.5% de Chance de Crítico base com essa arma, somado em
+  `calcular_critico_chance()`.
+- A cada 6 níveis: -2% no custo de reparo dessa arma no ferreiro
+  (`handlers/comercio.py`).
+Fórmula única, mesma pra qualquer tipo de arma — sem conteúdo único por arma.
+
+## 4. Debuffs de Derrota (tabela de dados, não 1 efeito fixo)
+Nova aba na planilha "Debuffs de Derrota": Nome | Chance (%) | Efeito | Cura.
+  Ferida Profunda | 12% | -10% HP Máximo | Curandeiro (cidade), preço normal
+  Tremor nos Braços | 8% | -1 Dano da Arma | Descanso longo (2 dias) ou Curandeiro
+  Fadiga Persistente | 8% | -10 Vigor Máximo | Descanso longo (1 dia)
+  Marca do Medo | 4% | -5% Chance de Fuga | Some sozinha após vencer 1 combate
+  (68% restante: nada acontece além da perda de ouro/corrupção que já existe hoje)
+`resolver_derrota()` sorteia entre essa tabela (incluindo a chance de "nada acontece")
+e guarda o debuff ativo em `Player.debuff_ativo`. Cada debuff precisa de checagem no
+cálculo correspondente (HP Máximo, Dano da Arma, Vigor Máximo, Chance de Fuga).
+Curandeiro/Taverna ganha opção "Tratar Ferimento" que limpa `debuff_ativo`. Debuffs
+curáveis por Descanso Longo resolvem sozinhos ao completar os dias. "Marca do Medo"
+some ao VENCER o próximo combate.
+
+## 5. Efeito Especial de Armas — implementar reaproveitando a engine de DoT/CC das
+   Habilidades Ativas de classe
+Adicionar 2 colunas em `ref_armas`: `efeito_chance_pct` e `efeito_valor`. No momento do
+hit em combate, rolar a chance de disparar o `efeito_especial` da arma, reaproveitando:
+  Sangramento -> mesmo formato de `sangramento_dot_pct` (Artífice)
+  Atordoamento -> mesmo formato de `atordoamento_chance_pct` (Guerreiro)
+  Queimadura -> mesmo formato de `queimadura_dot_pct` (Mago)
+  Rouba Vida -> mesmo formato de `cura_pct_dano` (Conjurador)
+  Ignora Resistência Mágica -> mesma lógica de "Ignora Defesa", mas pra ataques mágicos
+  Fragilidade (novo) -> reduz a Defesa do alvo em X pontos por N turnos
+Extrair a lógica de DoT/CC pra uma função compartilhada se ainda não for uma, chamada
+tanto pela Habilidade Ativa quanto pelo hit de arma comum.
+
+## 6. Efeito Especial de Armaduras ("Fragilidade") — REMOVER
+Tirar o campo/uso de `efeito_especial` em Armaduras (planilha e modelo). Confirmado.
+
+## 7. Talentos de Classe — Fase 1: implementar os 8 de Nível 15, preparar o resto
+Conteúdo já existe em `ref_talentos_classe` (32 talentos, não inventar nada novo). Ao
+atingir o nível exigido, conceder automaticamente e mostrar mensagem citando o
+`mestre` do talento. Implementar de verdade só os 8 de Nível 15 (1 por classe):
+Guerreiro "Muralha Inabalável" (+3 Defesa abaixo de 30% HP), Inquisidor "Lança de
+Purificação" (+2 dano e Ignora Resistência Mágica vs mortos-vivos/cultistas),
+Conjurador "Lâmina da Carne Corrompida" (arma ganha Rouba Vida 15% permanente, usa o
+efeito especial de arma do item 5), Batedor "Nevasca Perfurante" (arco ganha
+Queimadura ou Lentidão à escolha, permanente), Ladino "Manto da Não-Existência" (+20%
+em Furtividade — se não existir esse sistema ainda, só registrar o bônus), Mago "Arco
+Voltaico Encadeado" (destrava feitiço mais cedo — se o feitiço não existir, marcar
+como pendente), Bárbaro "Golpe Desesperado" (+2 Dano abaixo de 30% HP), Artífice
+"Barreira de Distorção Rúnica" (destrava feitiço de escudo de graça — mesma ressalva
+do Mago). Os outros 24 (nível 26+): conceder automaticamente com a mensagem
+narrativa, mas mostrar com tag "🔧 Efeito em desenvolvimento" na ficha em vez de
+aplicar — fica pro próximo ciclo.
+
+## 8. Títulos — motor genérico de condição + bônus, 6 novos de contador
+Adicionar `condicao_tipo`/`condicao_valor` e `bonus_tipo`/`bonus_valor` em
+`ref_titulos`, preenchendo pros 17 existentes conforme o texto atual (ex: "Caçador de
+Gigantes" -> condicao_tipo="derrotar_boss_qtd", condicao_valor=10,
+bonus_tipo="dano_vs_boss_pct", bonus_valor=5). Títulos sem bônus mecânico real ficam
+com bonus_tipo=null. Implementar em `game/titulos.py` checagem genérica cobrindo
+poupar_monstro (já existe), derrotar_boss_qtd, reputacao_faccao,
+identificar_itens_qtd. Aplicar o bônus do título ATIVO (`player.titulo_ativo`) nos
+cálculos correspondentes. Adicionar 6 títulos novos (condicao_tipo="contador_generico",
+exige contadores novos no Player — combates vencidos, fugas com sucesso, reparos
+feitos, pico de ouro):
+  Veterano de Mil Batalhas | vencer_combates_qtd=100 | +1% Crítico
+  Açougueiro | vencer_combates_qtd=250 | +2% Crítico (substitui o de cima)
+  Sobrevivente Nato | fugas_com_sucesso_qtd=25 | +5% Chance de Fuga
+  Ferreiro de Mão Cheia | reparos_feitos_qtd=20 | -10% custo de reparo
+  Bolso Fundo | ouro_acumulado_pico=5000 | +5% de ouro ganho em combate
+  Mestre de Uma Só Arma | proficiencia_nivel_max_qtd=20 (qualquer arma) | +5% dano
+  com aquele tipo de arma especificamente
+
+## 9. Corrupção — redesenho com risco/recompensa real e Purificação
+IMPORTANTE (correção de entendimento): Corrupção só é ganha na DERROTA em combate
+(`aplicar_ganho_corrupcao()`, chamado só dentro do fluxo de derrota em
+`handlers/aventura.py`), nunca ao vencer. Os pontos (+2 Comum/+3 Elite/+5 Boss) não
+variam por Tier. Isso não muda nesse prompt — só documentando pra clareza.
+
+Substituir `ESTAGIOS` em `game/corrupcao.py`:
+  0 (0-19): Puro — sem efeito.
+  1 (20-39): Manchado — +5% dano (mult_dano=1.05), -1 Defesa (bonus_defesa=-1).
+  2 (40-59): Corrompido — +10% dano (1.10), -2 Defesa (-2), -15% cura (mod_cura=0.85).
+  3 (60-79): Possuído — +18% dano (1.18), -3 Defesa (-3), -30% cura (0.70). Ao ENTRAR
+    nesse estágio, sortear 1 mutação garantida extra além da mutação normal.
+  4 (80-94): Hospedeiro — +25% dano (1.25), -4 Defesa (-4), -50% cura (0.50), preços
+    em qualquer loja de cidade +20% (novo hook em `handlers/comercio.py`).
+  5 (95-99): Ponto de Não Retorno — mesmos números do estágio 4, aviso a cada
+    exploração: "Você sente que está perdendo o controle...".
+  6 (100): Assimilação — mantém a regra existente (personagem sai do controle do
+    jogador, vira inimigo da campanha). Não mudar essa parte.
+Conferir que `calcular_defesa_total()` (`game/atributos.py`) soma `bonus_defesa`
+negativo corretamente sem truncar antes da hora — só o resultado final não pode ficar
+negativo.
+Nova função `custo_purificacao(corrupcao_atual)`: preço em ouro pra reduzir 20 pontos
+de Corrupção, escalando com o estágio atual (sugestão: `50 * (1.5 ** estagio_atual)`).
+Adicionar opção "Purificação" no Curandeiro/Templo da cidade.
+
+## 10. Mutações — as 20 reestruturadas com efeito mecânico real
+Substituir `bonus_mecanico`/`penalidade` de cada entrada de `TABELA_MUTACOES_1D20`
+(mantendo nome/lore/categoria) e adicionar `bonus_tipo`/`bonus_valor` e
+`penalidade_tipo`/`penalidade_valor` estruturados:
+  1 Olhos de Vidro Negro: atq_noturno(+2) | atq_diurno(-1)
+  2 Garras de Quitina Retorcida: sangramento_desarmado (engine do item 5) |
+    dano_arma_tipo(-1, [Adaga,Arco,Cetro])
+  3 Couraça Escamosa de Ébano: defesa_flat(+3) [já existe] | chance_fuga_pct(-10)
+  4 Coração Silencioso: imune_debuff("Marca do Medo") | cura_recebida_pct(-20)
+  5 Sangue Cáustico Ácido: contra_ataque_dano(4) | chance_pocao_falha_pct(20)
+  6 Voz Dupla dos Ecos: desconto_loja_pct(5) | chance_fuga_pct(-10)
+  7 Membro Mimetizado (Tentáculo): atq_flat(+1) | defesa_flat(-1)
+  8 Mandíbula de Fera: dano_fixo_1x_combate(6) | preco_compra_pct(+5)
+  9 Pulmões de Cinza Morta: resist_dot_pct("Queimadura",15) | vigor_maximo_flat(-10)
+  10 Mente Fragmentada dos Cem Reis: xp_ganho_pct(10) | dano_apos_sofrer_critico_pct(-10)
+  11 Ossos de Pedra Fóssil: defesa_flat(+2) | custo_vigor_exploracao_pct(+15)
+  12 Presença Gélida do Ceifador: dano_passivo_por_turno(2) | atq_flat(-1)
+  13 Asas Atrofiadas de Morcego: reducao_perda_ouro_derrota_pct(50) | preco_armadura_pct(+50)
+  14 Marca Estelar Pulsante: mana_maxima_flat(+15) | corrupcao_ganho_extra(+1)
+  15 Sensibilidade de Verme das Profundezas: imune_debuff("Fadiga Persistente") | defesa_flat(-1)
+  16 Seiva da Árvore Sangrenta: resist_dot_pct("Sangramento",10) | chance_fuga_pct(-5)
+  17 Olho Adicional na Palma da Mão: atq_arma_tipo(+2, [Arco,Cetro]) | defesa_flat(-1)
+  18 Digestão de Minérios: consumir_material_cura(10) | comida_sem_efeito
+  19 Aura de Decomposição Acelerada: ouro_ganho_pct(5) | cura_recebida_pct(-15)
+  20 Centelha do Aspecto Desperto: acao_extra_1x_combate | corrupcao_ganho_extra(+2)
+Implementar um leitor genérico que aplica cada `tipo` no ponto certo do código,
+reaproveitando hooks que já existem ou que este prompt cria (engine de efeito de
+arma, tabela de Debuffs pra imunidade). Onde não existir hook, criar a função nova
+em `game/combat.py` (contra-ataque, dano passivo por turno, ação extra 1x/combate,
+resistência a DoT específico).
+
+## 11. EXIBIÇÃO NO TELEGRAM — como cada mecânica nova aparece na tela
+
+### 11.1 Ficha "Atributos & Ficha Técnica" — 3 blocos novos
+Adicionar depois do bloco de Corrupção que já existe hoje:
+
+```
+☣️ Corrupção: 47/100 (Estágio II — Corrompido)
+   ⚔️ +10% Dano   🛡️ -2 Defesa   💉 -15% Cura Recebida
+   💰 Purificar (-20 pontos): 113 de ouro [botão]
+
+🧬 Mutações Ativas (2):
+   • Couraça Escamosa de Ébano — 🛡️ +3 Defesa | ❌ -10% Fuga
+   • Marca Estelar Pulsante — 🔮 +15 Mana Máx. | ❌ +1 Corrupção extra por derrota
+
+🩹 Status: Ferida Profunda ativa (-10% HP Máximo)
+   Cure no Curandeiro da cidade.
+```
+(o bloco 🩹 só aparece se `debuff_ativo` não for None)
+
+### 11.2 Maestria de Arma — novo bloco na ficha (ou no Inventário, embaixo da arma equipada)
+```
+⚔️ Maestria: Machado — Nível 12/30
+   💥 Dano Crítico: 2.15x   🎲 Chance de Drop: +4%
+   🎯 Crítico: +1%   🔧 Reparo: -4% de custo
+   📊 +12% de Dano (proficiência de arma)
+```
+
+### 11.3 Notificação ao subir de nível de proficiência (mensagem separada, no meio do combate)
+```
+⚔️ Sua maestria com Machado evoluiu para o Nível 12!
+🎲 +1% Chance de Drop   🔧 -2% custo de Reparo
+```
+(mostra só as trilhas que bateram naquele nível específico, não a lista toda de novo)
+
+### 11.4 Combate — quando um efeito de arma ou mutação dispara
+```
+Você acerta o Lobo Corrompido com seu Machado! (6 de dano)
+🩸 Sangramento aplicado! (-2 HP por 3 turnos)
+```
+```
+💥 CRÍTICO! Dano multiplicado por 2.15x — 13 de dano total!
+```
+
+### 11.5 Ao ser derrotado
+```
+☠️ Você caiu diante do Corvo Sanguinário...
+💰 Perdeu 15 de ouro.
+☣️ +3 de Corrupção (47 → 50, Estágio II mantido)
+🩹 Você sofreu uma Ferida Profunda! (-10% HP Máximo até ser curado)
+```
+
+### 11.6 Curandeiro/Templo — novas opções no menu
+```
+🏥 Curandeiro de Vale Cinza
+
+[💊 Curar HP (padrão) — 20 ouro]
+[🩹 Tratar Ferimento (Ferida Profunda) — 10 ouro]
+[✨ Purificação (-20 Corrupção) — 113 ouro]
+```
+(o botão de Tratar Ferimento só aparece se houver debuff ativo curável ali)
+
+### 11.7 Item de loja/inventário — efeito especial de arma visível
+```
+🪓 Machado de Ferro Forjado
+   Dano: 8   Tipo: Machado
+   ✨ 15% de chance: Sangramento (2 turnos)
+```
+
+### 11.8 Título ativo — mostrar o bônus real, não só o nome
+```
+🏅 Título Ativo: Veterano de Mil Batalhas
+   +1% de Chance de Crítico
+```
+
+Implementar essas telas junto com a lógica correspondente de cada seção (não deixar
+pra depois — cada seção numerada acima já deve nascer com sua exibição, não só o
+cálculo por trás).
+
+Testar tudo com dado real (combate de verdade, derrota de verdade, subir de nível de
+proficiência de verdade, cruzar estágio de corrupção de verdade) antes de considerar
+pronto. Seção por seção.
+```
+</USER_REQUEST>
+<ADDITIONAL_METADATA>
+The current local time is: 2026-09-07T08:00:54-03:00.
+</ADDITIONAL_METADATA>
