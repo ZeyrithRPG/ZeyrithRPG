@@ -147,7 +147,21 @@ def importar():
     for Modelo, chave in tabelas_e_dados:
         itens_json = dados.get(chave, [])
         hash_atual = _hash_lista(itens_json)
-        if hashes_salvos.get(chave) == hash_atual and session.query(Modelo).count() > 0:
+        precisa_forcar = False
+        if Modelo == HabilidadeAtiva:
+            try:
+                if session.query(HabilidadeAtiva).filter(HabilidadeAtiva.recurso_tipo == "Vigor").count() > 0:
+                    precisa_forcar = True
+            except Exception:
+                pass
+        elif Modelo == Classe:
+            try:
+                if session.query(Classe).filter(Classe.kit_inicial.is_(None)).count() > 0:
+                    precisa_forcar = True
+            except Exception:
+                pass
+
+        if not precisa_forcar and hashes_salvos.get(chave) == hash_atual and session.query(Modelo).count() > 0:
             continue  # conteudo identico ao ultimo import, nao mexe
         # Tabela de REFERENCIA (nunca escrita durante o jogo) — seguro substituir por completo
         # sempre que a planilha mudar (rebalanceamento), detectado por hash de conteudo.
