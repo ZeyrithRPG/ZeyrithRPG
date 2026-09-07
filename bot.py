@@ -457,7 +457,8 @@ async def mostrar_hud(update: Update, context: ContextTypes.DEFAULT_TYPE):
             texto += f"\n{tipo_arma}: Nv.{nivel} ({atual}/{proximo})" if proximo else f"\n{tipo_arma}: Nv.{nivel} (MÁX)"
     corrupcao = player.corrupcao or 0
     if corrupcao > 0:
-        estagio = min(5, corrupcao // 20 + 1)
+        from game.corrupcao import estagio_corrupcao
+        estagio = estagio_corrupcao(corrupcao)
         texto += f"\n\n👁️ Corrupção: {corrupcao}/100 (Estágio {estagio})"
 
     from game.talentos import obter_talentos_jogador

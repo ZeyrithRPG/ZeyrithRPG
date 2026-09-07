@@ -137,11 +137,14 @@ async def explorar(update: Update, context: ContextTypes.DEFAULT_TYPE):
             f"⚡ *Vigor insuficiente* pra explorar aqui.\n\n"
             f"⚡ Vigor: {vig_atual}/{vig_max}\n"
             f"🔍 Precisa de: {custo} VIG\n\n"
-            "_(Descanso ainda não foi implementado — chega numa fase futura.)_",
+            "_(Volte a uma cidade pra descansar e recuperar Vigor.)_",
             parse_mode="Markdown",
-            reply_markup=InlineKeyboardMarkup(
-                [[InlineKeyboardButton("⬅️ Voltar", callback_data="menu_status")]]
-            ),
+            reply_markup=InlineKeyboardMarkup([
+                [
+                    InlineKeyboardButton("🗺️ Ir ao Mapa", callback_data="menu_mapa"),
+                    InlineKeyboardButton("⬅️ Voltar", callback_data="menu_status"),
+                ]
+            ]),
         )
         return
 
@@ -474,7 +477,7 @@ async def atacar(update: Update, context: ContextTypes.DEFAULT_TYPE):
             linhas.append(formatar_critico_combate(mult_c, dano_final) + extra_emp)
         else:
             from game.ui_utils import esc_md
-            nome_arma_str = arma_obj.nome if (arma_obj and arma_obj.nome) else "seus punhos"
+            nome_arma_str = arma_obj.variacao if (arma_obj and arma_obj.variacao) else "seus punhos"
             linhas.append(f"Você acerta o {esc_md(monstro.nome)} com {esc_md(nome_arma_str)}! ({dano_final} de dano){extra_emp}")
 
         # Persistência mandatória do dano no HP do monstro
